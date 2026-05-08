@@ -324,7 +324,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: xryv/DoneSpec@v0.1.1
+      - uses: xryv/DoneSpec@v0.2.0
         with:
           spec: done.json
           root: .
@@ -425,7 +425,7 @@ donespec validate done.json
 
 ## Release
 
-DoneSpec `v0.1.1` is available on PyPI:
+DoneSpec `v0.2.0` is available on PyPI:
 
 ```bash
 pip install donespec
@@ -434,7 +434,7 @@ pip install donespec
 GitHub release:
 
 ```text
-https://github.com/xryv/DoneSpec/releases/tag/v0.1.1
+https://github.com/xryv/DoneSpec/releases/tag/v0.2.0
 ```
 
 PyPI package:
