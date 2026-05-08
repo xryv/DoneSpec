@@ -479,6 +479,35 @@
       "name": "Strict tests cover absolute paths",
       "path": "tests/test_strict_validation.py",
       "pattern": "path must be relative"
+    },
+    {
+      "type": "file_exists",
+      "name": "Strict documentation exists",
+      "path": "docs/strict.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Strict docs explain strict validation",
+      "path": "docs/strict.md",
+      "pattern": "donespec validate done\\.json --strict"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Strict docs mention duplicate names",
+      "path": "docs/strict.md",
+      "pattern": "duplicate check names"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Strict docs mention unsafe paths",
+      "path": "docs/strict.md",
+      "pattern": "unsafe paths"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links strict documentation",
+      "path": "README.md",
+      "pattern": "docs/strict\\.md"
     }
   ],
   "must_not": [

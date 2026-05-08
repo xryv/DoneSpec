@@ -183,6 +183,19 @@ Read the full guide:
 [docs/schema.md](docs/schema.md)
 
 
+### Enable strict contract validation
+
+```bash
+donespec validate done.json --strict
+```
+
+Strict mode validates semantic contract quality before execution, including duplicate check names, duplicate IDs, invalid regex patterns, unsafe paths, and empty contracts.
+
+Read the full guide:
+
+[docs/strict.md](docs/strict.md)
+
+
 ## 5. Quick example
 
 Create `done.json`:
