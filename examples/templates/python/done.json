@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "task_id": "python-validation",
+  "must_pass": [
+    {
+      "type": "file_exists",
+      "name": "DoneSpec file exists",
+      "path": "done.json"
+    },
+    {
+      "type": "command",
+      "name": "python is available",
+      "run": "python --version"
+    },
+    {
+      "type": "command",
+      "name": "ruff lint passes",
+      "run": "python -m ruff check ."
+    },
+    {
+      "type": "command",
+      "name": "ruff format passes",
+      "run": "python -m ruff format --check ."
+    },
+    {
+      "type": "command",
+      "name": "pytest passes",
+      "run": "python -m pytest -q"
+    }
+  ],
+  "must_not": []
+}

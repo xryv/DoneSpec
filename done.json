@@ -299,6 +299,72 @@
       "name": "Init tests cover python template",
       "path": "tests/test_init_project.py",
       "pattern": "--template"
+    },
+    {
+      "type": "file_exists",
+      "name": "Templates documentation exists",
+      "path": "docs/templates.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Templates docs explain donespec templates",
+      "path": "docs/templates.md",
+      "pattern": "donespec templates"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Templates docs mention python template",
+      "path": "docs/templates.md",
+      "pattern": "donespec init --template python --yes"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links templates documentation",
+      "path": "README.md",
+      "pattern": "docs/templates\\.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Generic template example exists",
+      "path": "examples/templates/generic/done.json"
+    },
+    {
+      "type": "file_exists",
+      "name": "Python template example exists",
+      "path": "examples/templates/python/done.json"
+    },
+    {
+      "type": "file_exists",
+      "name": "Node template example exists",
+      "path": "examples/templates/node/done.json"
+    },
+    {
+      "type": "file_exists",
+      "name": "Docs template example exists",
+      "path": "examples/templates/docs/done.json"
+    },
+    {
+      "type": "file_exists",
+      "name": "API template example exists",
+      "path": "examples/templates/api/done.json"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Python template example includes pytest",
+      "path": "examples/templates/python/done.json",
+      "pattern": "pytest passes"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Node template example includes npm build",
+      "path": "examples/templates/node/done.json",
+      "pattern": "npm build passes"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "API template example includes http check",
+      "path": "examples/templates/api/done.json",
+      "pattern": "http_check"
     }
   ],
   "must_not": [

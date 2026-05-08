@@ -155,6 +155,20 @@ docs/doctor.md
 
 ](docs/init.md)
 
+### Use starter templates
+
+```bash
+donespec templates
+donespec init --template python --yes
+```
+
+DoneSpec includes starter templates for generic, Python, Node.js, documentation, and API projects.
+
+Read the full guide:
+
+[docs/templates.md](docs/templates.md)
+
+
 ## 5. Quick example
 
 Create `done.json`:

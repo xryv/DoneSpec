@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "task_id": "api-validation",
+  "must_pass": [
+    {
+      "type": "file_exists",
+      "name": "DoneSpec file exists",
+      "path": "done.json"
+    },
+    {
+      "type": "http_check",
+      "name": "health endpoint responds",
+      "url": "http://127.0.0.1:8000/health",
+      "method": "GET",
+      "expected_status": 200,
+      "timeout_seconds": 3
+    }
+  ],
+  "must_not": []
+}
