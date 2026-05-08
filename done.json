@@ -65,6 +65,23 @@
       "name": "VS Code task runs DoneSpec validation",
       "path": ".vscode/tasks.json",
       "pattern": "donespec validate done\\.json"
+    },
+    {
+      "type": "file_exists",
+      "name": "Claude Code instructions exist",
+      "path": "CLAUDE.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Claude imports shared agent protocol",
+      "path": "CLAUDE.md",
+      "pattern": "@AGENTS\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Claude instructions require DoneSpec validation",
+      "path": "CLAUDE.md",
+      "pattern": "donespec validate done\\.json"
     }
   ],
   "must_not": [
