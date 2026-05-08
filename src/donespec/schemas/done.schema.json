@@ -4,7 +4,10 @@
   "title": "DoneSpec task validation spec",
   "type": "object",
   "additionalProperties": false,
-  "required": ["version", "task_id"],
+  "required": [
+    "version",
+    "task_id"
+  ],
   "properties": {
     "version": {
       "type": "string",
@@ -20,28 +23,56 @@
     },
     "must_pass": {
       "type": "array",
-      "items": { "$ref": "#/$defs/check" },
+      "items": {
+        "$ref": "#/$defs/check"
+      },
       "default": []
     },
     "must_not": {
       "type": "array",
-      "items": { "$ref": "#/$defs/check" },
+      "items": {
+        "$ref": "#/$defs/check"
+      },
       "default": []
+    },
+    "$schema": {
+      "type": "string",
+      "description": "Optional JSON Schema reference for editor and tool integration."
     }
   },
   "anyOf": [
-    { "required": ["must_pass"] },
-    { "required": ["must_not"] }
+    {
+      "required": [
+        "must_pass"
+      ]
+    },
+    {
+      "required": [
+        "must_not"
+      ]
+    }
   ],
   "$defs": {
     "check": {
       "oneOf": [
-        { "$ref": "#/$defs/command" },
-        { "$ref": "#/$defs/file_exists" },
-        { "$ref": "#/$defs/regex_in_file" },
-        { "$ref": "#/$defs/regex_absent" },
-        { "$ref": "#/$defs/file_not_modified" },
-        { "$ref": "#/$defs/http_check" }
+        {
+          "$ref": "#/$defs/command"
+        },
+        {
+          "$ref": "#/$defs/file_exists"
+        },
+        {
+          "$ref": "#/$defs/regex_in_file"
+        },
+        {
+          "$ref": "#/$defs/regex_absent"
+        },
+        {
+          "$ref": "#/$defs/file_not_modified"
+        },
+        {
+          "$ref": "#/$defs/http_check"
+        }
       ]
     },
     "base_check": {
@@ -59,55 +90,118 @@
     },
     "command": {
       "allOf": [
-        { "$ref": "#/$defs/base_check" },
+        {
+          "$ref": "#/$defs/base_check"
+        },
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["type", "run"],
+          "required": [
+            "type",
+            "run"
+          ],
           "properties": {
-            "id": { "type": "string", "minLength": 1 },
-            "name": { "type": "string", "minLength": 1 },
-            "type": { "const": "command" },
-            "run": { "type": "string", "minLength": 1 },
-            "expected_exit_code": { "type": "integer", "default": 0 },
-            "timeout_seconds": { "type": "number", "exclusiveMinimum": 0, "default": 120 }
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "const": "command"
+            },
+            "run": {
+              "type": "string",
+              "minLength": 1
+            },
+            "expected_exit_code": {
+              "type": "integer",
+              "default": 0
+            },
+            "timeout_seconds": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "default": 120
+            }
           }
         }
       ]
     },
     "file_exists": {
       "allOf": [
-        { "$ref": "#/$defs/base_check" },
+        {
+          "$ref": "#/$defs/base_check"
+        },
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["type", "path"],
+          "required": [
+            "type",
+            "path"
+          ],
           "properties": {
-            "id": { "type": "string", "minLength": 1 },
-            "name": { "type": "string", "minLength": 1 },
-            "type": { "const": "file_exists" },
-            "path": { "type": "string", "minLength": 1 }
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "const": "file_exists"
+            },
+            "path": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         }
       ]
     },
     "regex_in_file": {
       "allOf": [
-        { "$ref": "#/$defs/base_check" },
+        {
+          "$ref": "#/$defs/base_check"
+        },
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["type", "path", "pattern"],
+          "required": [
+            "type",
+            "path",
+            "pattern"
+          ],
           "properties": {
-            "id": { "type": "string", "minLength": 1 },
-            "name": { "type": "string", "minLength": 1 },
-            "type": { "const": "regex_in_file" },
-            "path": { "type": "string", "minLength": 1 },
-            "pattern": { "type": "string", "minLength": 1 },
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "const": "regex_in_file"
+            },
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "pattern": {
+              "type": "string",
+              "minLength": 1
+            },
             "flags": {
               "type": "array",
               "items": {
-                "enum": ["IGNORECASE", "MULTILINE", "DOTALL"]
+                "enum": [
+                  "IGNORECASE",
+                  "MULTILINE",
+                  "DOTALL"
+                ]
               },
               "default": []
             }
@@ -117,21 +211,45 @@
     },
     "regex_absent": {
       "allOf": [
-        { "$ref": "#/$defs/base_check" },
+        {
+          "$ref": "#/$defs/base_check"
+        },
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["type", "path", "pattern"],
+          "required": [
+            "type",
+            "path",
+            "pattern"
+          ],
           "properties": {
-            "id": { "type": "string", "minLength": 1 },
-            "name": { "type": "string", "minLength": 1 },
-            "type": { "const": "regex_absent" },
-            "path": { "type": "string", "minLength": 1 },
-            "pattern": { "type": "string", "minLength": 1 },
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "const": "regex_absent"
+            },
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "pattern": {
+              "type": "string",
+              "minLength": 1
+            },
             "flags": {
               "type": "array",
               "items": {
-                "enum": ["IGNORECASE", "MULTILINE", "DOTALL"]
+                "enum": [
+                  "IGNORECASE",
+                  "MULTILINE",
+                  "DOTALL"
+                ]
               },
               "default": []
             }
@@ -141,35 +259,76 @@
     },
     "file_not_modified": {
       "allOf": [
-        { "$ref": "#/$defs/base_check" },
+        {
+          "$ref": "#/$defs/base_check"
+        },
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["type", "path"],
+          "required": [
+            "type",
+            "path"
+          ],
           "properties": {
-            "id": { "type": "string", "minLength": 1 },
-            "name": { "type": "string", "minLength": 1 },
-            "type": { "const": "file_not_modified" },
-            "path": { "type": "string", "minLength": 1 }
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "const": "file_not_modified"
+            },
+            "path": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         }
       ]
     },
     "http_check": {
       "allOf": [
-        { "$ref": "#/$defs/base_check" },
+        {
+          "$ref": "#/$defs/base_check"
+        },
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["type", "url"],
+          "required": [
+            "type",
+            "url"
+          ],
           "properties": {
-            "id": { "type": "string", "minLength": 1 },
-            "name": { "type": "string", "minLength": 1 },
-            "type": { "const": "http_check" },
-            "url": { "type": "string", "format": "uri", "minLength": 1 },
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "const": "http_check"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "minLength": 1
+            },
             "method": {
               "type": "string",
-              "enum": ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+              "enum": [
+                "GET",
+                "HEAD",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE",
+                "OPTIONS"
+              ],
               "default": "GET"
             },
             "expected_status": {
@@ -185,7 +344,9 @@
             },
             "headers": {
               "type": "object",
-              "additionalProperties": { "type": "string" },
+              "additionalProperties": {
+                "type": "string"
+              },
               "default": {}
             }
           }

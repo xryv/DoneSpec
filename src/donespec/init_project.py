@@ -6,6 +6,8 @@ from dataclasses import dataclass, field
 from enum import StrEnum
 from pathlib import Path
 
+from donespec.schema_command import get_schema_text
+
 
 class AgentMode(StrEnum):
     all = "all"
@@ -191,7 +193,8 @@ def _build_files(
             template=template,
             with_vscode=with_vscode,
             with_hooks=with_hooks,
-        )
+        ),
+        "done.schema.json": get_schema_text(),
     }
 
     if agent in {AgentMode.all, AgentMode.codex, AgentMode.claude}:
@@ -233,7 +236,12 @@ def _done_json(
             "type": "file_exists",
             "name": "DoneSpec file exists",
             "path": "done.json",
-        }
+        },
+        {
+            "type": "file_exists",
+            "name": "DoneSpec schema exists",
+            "path": "done.schema.json",
+        },
     ]
 
     must_pass.extend(_template_checks(template))
@@ -317,6 +325,7 @@ def _done_json(
         )
 
     payload = {
+        "$schema": "done.schema.json",
         "version": "1.0",
         "task_id": f"{template.value}-validation",
         "must_pass": must_pass,

@@ -17,6 +17,7 @@ def test_init_creates_default_agent_ready_files() -> None:
         assert result.exit_code == 0, result.output
         assert "Template: generic" in result.output
         assert Path("done.json").exists()
+        assert Path("done.schema.json").exists()
         assert Path("AGENTS.md").exists()
         assert Path("CLAUDE.md").exists()
         assert Path(".vscode/tasks.json").exists()
@@ -27,8 +28,10 @@ def test_init_creates_default_agent_ready_files() -> None:
         payload = json.loads(Path("done.json").read_text(encoding="utf-8"))
         names = {check["name"] for check in payload["must_pass"]}
 
+        assert payload["$schema"] == "done.schema.json"
         assert payload["version"] == "1.0"
         assert payload["task_id"] == "generic-validation"
+        assert "DoneSpec schema exists" in names
         assert "Agent instructions require DoneSpec validation" in names
         assert "VS Code task runs DoneSpec validation" in names
         assert "Git pre-push hook runs DoneSpec" in names

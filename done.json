@@ -365,6 +365,51 @@
       "name": "API template example includes http check",
       "path": "examples/templates/api/done.json",
       "pattern": "http_check"
+    },
+    {
+      "type": "file_exists",
+      "name": "Schema command module exists",
+      "path": "src/donespec/schema_command.py"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "CLI exposes schema command",
+      "path": "src/donespec/cli.py",
+      "pattern": "@app\\.command\\(name=\"schema\"\\)"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Schema command supports write option",
+      "path": "src/donespec/cli.py",
+      "pattern": "--write"
+    },
+    {
+      "type": "file_exists",
+      "name": "Schema command tests exist",
+      "path": "tests/test_schema_command.py"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Schema tests cover force overwrite",
+      "path": "tests/test_schema_command.py",
+      "pattern": "--force"
+    },
+    {
+      "type": "file_exists",
+      "name": "Packaged JSON schema exists",
+      "path": "src/donespec/schemas/done.schema.json"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Init creates local schema file",
+      "path": "src/donespec/init_project.py",
+      "pattern": "done\\.schema\\.json"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Init generated specs reference schema",
+      "path": "src/donespec/init_project.py",
+      "pattern": "\\$schema"
     }
   ],
   "must_not": [

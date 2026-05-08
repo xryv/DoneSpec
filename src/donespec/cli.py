@@ -20,6 +20,7 @@ from donespec.init_project import (
 )
 from donespec.loader import load_spec
 from donespec.output import error_to_json, print_human_report, report_to_json
+from donespec.schema_command import get_schema_text, write_schema_file
 
 app = typer.Typer(
     name="donespec",
@@ -184,6 +185,39 @@ def init_command(
         console.print("3. Optional: install Git hooks")
         console.print("   Windows: .\\scripts\\install-git-hooks.ps1")
         console.print("   Unix:    ./scripts/install-git-hooks.sh")
+
+
+@app.command(name="schema")
+def schema_command(
+    write_path: Annotated[
+        Path | None,
+        typer.Option(
+            "--write",
+            help="Write the packaged DoneSpec JSON Schema to a file.",
+        ),
+    ] = None,
+    force: Annotated[
+        bool,
+        typer.Option(
+            "--force",
+            help="Overwrite the target schema file when used with --write.",
+        ),
+    ] = False,
+) -> None:
+    """Print or write the DoneSpec JSON Schema."""
+    if write_path is None:
+        sys.stdout.write(get_schema_text())
+        raise typer.Exit(code=0)
+
+    try:
+        target = write_schema_file(write_path, force=force)
+    except FileExistsError as exc:
+        console.print(f"[bold red]Schema file already exists:[/bold red] {exc}")
+        console.print("Use --force to overwrite it.")
+        raise typer.Exit(code=1) from exc
+
+    console.print("[bold green]DoneSpec schema written.[/bold green]")
+    console.print(f"Path: {target}")
 
 
 @app.command()
