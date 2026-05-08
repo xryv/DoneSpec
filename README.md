@@ -455,6 +455,16 @@ That is the point.
 
 ---
 
+## Cross-platform verification
+
+DoneSpec is intended to behave consistently across Windows, Linux, macOS, local shells, git hooks, and CI.
+
+See:
+
+[docs/cross-platform-verification.md](docs/cross-platform-verification.md)
+
+---
+
 ## Roadmap to v1.0
 
 The core is already capable.

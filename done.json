@@ -843,6 +843,53 @@
       "name": "README links editor support documentation",
       "path": "README.md",
       "pattern": "docs/editor-support\\.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Cross-platform verification documentation exists",
+      "path": "docs/cross-platform-verification.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform docs mention Windows PowerShell",
+      "path": "docs/cross-platform-verification.md",
+      "pattern": "Windows PowerShell"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform docs mention Linux",
+      "path": "docs/cross-platform-verification.md",
+      "pattern": "Linux"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform docs mention macOS",
+      "path": "docs/cross-platform-verification.md",
+      "pattern": "macOS"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform docs require strict validation",
+      "path": "docs/cross-platform-verification.md",
+      "pattern": "donespec validate .*--strict"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform docs include PyPI smoke test",
+      "path": "docs/cross-platform-verification.md",
+      "pattern": "PyPI smoke test"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform docs include encoding verification",
+      "path": "docs/cross-platform-verification.md",
+      "pattern": "Encoding verification"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links cross-platform verification documentation",
+      "path": "README.md",
+      "pattern": "docs/cross-platform-verification\\.md"
     }
   ],
   "must_not": [
