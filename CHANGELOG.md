@@ -8,6 +8,10 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ## Unreleased
 
+### Added
+
+- Added first real Codex + VS Code DoneSpec field note.
+
 ### Fixed
 
 - Made human CLI status symbols fall back to ASCII on legacy Windows output streams such as cp1252.

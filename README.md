@@ -32,6 +32,14 @@ Done means deterministically verified.
 
 ---
 
+## Field notes
+
+Real-world usage notes:
+
+- [First real Codex + VS Code experience](docs/field-notes/first-codex-vscode-experience.md)
+
+---
+
 ## Demo
 
 See the core DoneSpec failure-and-recovery demo:

@@ -1226,6 +1226,47 @@
       "name": "Changelog records line ending stabilization",
       "path": "CHANGELOG.md",
       "pattern": "Stabilized repository line endings"
+    },
+    {
+      "type": "file_exists",
+      "name": "First Codex VS Code field note exists",
+      "path": "docs/field-notes/first-codex-vscode-experience.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "First Codex field note mentions Codex and VS Code",
+      "path": "docs/field-notes/first-codex-vscode-experience.md",
+      "pattern": "Codex no VS Code"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "First Codex field note mentions UnicodeEncodeError",
+      "path": "docs/field-notes/first-codex-vscode-experience.md",
+      "pattern": "UnicodeEncodeError"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "First Codex field note mentions cp1252 fallback",
+      "path": "docs/field-notes/first-codex-vscode-experience.md",
+      "pattern": "cp1252"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "First Codex field note preserves deterministic conclusion",
+      "path": "docs/field-notes/first-codex-vscode-experience.md",
+      "pattern": "deterministic validation"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links first Codex field note",
+      "path": "README.md",
+      "pattern": "docs/field-notes/first-codex-vscode-experience\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records first Codex field note",
+      "path": "CHANGELOG.md",
+      "pattern": "Added first real Codex \\+ VS Code DoneSpec field note"
     }
   ],
   "must_not": [
