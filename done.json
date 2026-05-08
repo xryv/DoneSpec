@@ -82,6 +82,12 @@
       "name": "Claude instructions require DoneSpec validation",
       "path": "CLAUDE.md",
       "pattern": "donespec validate done\\.json"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "CI runs DoneSpec self-validation",
+      "path": ".github/workflows/ci.yml",
+      "pattern": "donespec validate done\\.json"
     }
   ],
   "must_not": [
