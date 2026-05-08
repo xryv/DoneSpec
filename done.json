@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0",
   "task_id": "donespec-self-validation",
   "must_pass": [
@@ -43,6 +43,17 @@
       "name": "No LLM dependencies in packaging",
       "path": "pyproject.toml",
       "pattern": "openai|anthropic|langchain|llama-index"
+    },
+    {
+      "type": "file_exists",
+      "name": "Agent instructions exist",
+      "path": "AGENTS.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Agent instructions require DoneSpec validation",
+      "path": "AGENTS.md",
+      "pattern": "donespec validate done\\.json"
     }
   ],
   "must_not": [
