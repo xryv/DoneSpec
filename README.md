@@ -4,9 +4,9 @@
 
 **DoneSpec verifies they actually are.**
 
-DoneSpec is the deterministic completion layer for AI coding agents.
+The deterministic completion layer for AI coding agents.
 
-It turns ?done? into a local, repeatable, machine-checkable contract.
+DoneSpec turns "done" into a local, repeatable, machine-checkable contract.
 
 <p align="center">
   <img src="docs/assets/demo-terminal.svg" alt="DoneSpec terminal demo showing deterministic validation failure and success" width="860">
@@ -14,17 +14,11 @@ It turns ?done? into a local, repeatable, machine-checkable contract.
 
 ---
 
-## The problem
+## The Problem
 
-AI coding agents are fast, but their definition of completion is often conversational.
+AI coding agents can claim completion while tests fail, required files are missing, forbidden paths changed, or documentation was skipped.
 
-They can say:
-
-> Done.
-
-while tests fail, required files are missing, forbidden files changed, docs were skipped, or a CI contract was silently weakened.
-
-DoneSpec fixes that by making completion deterministic.
+DoneSpec makes completion explicit: a task is not done until `done.json` passes.
 
 ```text
 Done means deterministically verified.
@@ -32,21 +26,16 @@ Done means deterministically verified.
 
 ---
 
-## Field notes
-
-Real-world usage notes:
-
-- [First real Codex + VS Code experience](docs/field-notes/first-codex-vscode-experience.md)
-
----
-
 ## Demo
 
-See the core DoneSpec failure-and-recovery demo:
+The core demo is a forbidden-file scenario:
 
-[docs/demo.md](docs/demo.md)
+1. An agent modifies a file protected by `done.json`.
+2. `donespec validate done.json` fails.
+3. The issue is fixed.
+4. DoneSpec passes.
 
-Run locally:
+Run it locally:
 
 ```bash
 ./scripts/demo-forbidden-file.sh
@@ -55,8 +44,10 @@ Run locally:
 Windows PowerShell:
 
 ```powershell
-.\\scripts\\demo-forbidden-file.ps1
+.\scripts\demo-forbidden-file.ps1
 ```
+
+See [docs/demo.md](docs/demo.md).
 
 ---
 
@@ -72,7 +63,7 @@ Check the installed version:
 donespec --version
 ```
 
-DoneSpec `0.7.0` is available on PyPI:
+PyPI:
 
 ```text
 https://pypi.org/project/donespec/0.8.0/
@@ -88,25 +79,25 @@ https://github.com/xryv/DoneSpec/releases/tag/v0.8.0
 
 ## 60-second quickstart
 
-Create a DoneSpec contract in a project:
+Create a completion contract:
 
 ```bash
 donespec init --yes
 ```
 
-Run validation:
+Validate it:
 
 ```bash
 donespec validate done.json
 ```
 
-For serious agent workflows, use the stricter gate:
+Use strict mode for serious agent workflows:
 
 ```bash
 donespec validate done.json --strict
 ```
 
-Inspect what the contract requires without executing checks:
+Inspect the contract without executing checks:
 
 ```bash
 donespec explain done.json
@@ -129,6 +120,11 @@ donespec add-check done.json --type file_exists --name "README exists" --path RE
   "task_id": "ship-safe-change",
   "must_pass": [
     {
+      "type": "file_exists",
+      "name": "README exists",
+      "path": "README.md"
+    },
+    {
       "type": "command",
       "name": "tests pass",
       "run": "pytest -q"
@@ -150,32 +146,32 @@ donespec add-check done.json --type file_exists --name "README exists" --path RE
 }
 ```
 
-This file is the completion contract.
-
-An agent can modify code however it wants, but it cannot honestly claim completion until the contract passes.
+The contract is plain JSON. Agents, humans, hooks, and CI can all read the same definition of completion.
 
 ---
 
-## Example CLI output
+## Example CLI Output
+
+Passing:
 
 ```text
 DoneSpec validation: ship-safe-change
 
-? tests pass  (812.4ms)
-? README explains DoneSpec  (0.6ms)
-? lockfile untouched  (34.1ms)
++ README exists  (0.4ms)
++ tests pass  (812.4ms)
++ README explains DoneSpec  (0.6ms)
 
 Validation passed. 3 checks passed.
 Exit code: 0
 ```
 
-Failure is explicit:
+Failing:
 
 ```text
 DoneSpec validation: ship-safe-change
 
-? tests pass  (804.8ms)
-? lockfile untouched  (31.5ms)
++ README exists  (0.4ms)
+x lockfile untouched  (31.5ms)
   Forbidden path modified: uv.lock
 
 Validation failed.
@@ -183,9 +179,11 @@ Validation failed.
 Exit code: 1
 ```
 
+DoneSpec uses Unicode status symbols when the output stream supports them and ASCII fallback when it does not.
+
 ---
 
-## GitHub Action usage
+## GitHub Actions
 
 Use DoneSpec as a completion gate in CI:
 
@@ -210,39 +208,32 @@ jobs:
         run: donespec validate done.json --strict
 ```
 
-This makes the contract visible to humans, agents, and CI.
+The same contract runs locally, in git hooks, in CI, and inside agent workflows.
 
 ---
 
 ## Why deterministic validation matters
 
-AI coding agents are probabilistic.
+DoneSpec validates explicit contracts, not confidence.
 
-Production systems are not.
-
-DoneSpec creates a small deterministic layer between agent output and human trust:
+It does not replace tests, CI, or human review. It gives them a small deterministic interface:
 
 ```text
-agent claims ? done.json contract ? deterministic checks ? pass/fail result
+agent claim -> done.json -> deterministic checks -> exit code
 ```
 
 That means:
 
-- completion is inspectable
-- requirements are explicit
-- CI can enforce the same contract locally
-- agents can reason from a stable target
-- humans can review what ?done? actually means
-
-DoneSpec is not AI magic.
-
-It is deterministic infrastructure.
+- completion requirements are inspectable
+- failures are machine-readable and repeatable
+- CI can enforce the same contract agents see locally
+- reviewers can inspect what "done" actually means
 
 ---
 
-## AI agent integration
+## AI Agent Integration
 
-DoneSpec works with any coding agent because it does not require an agent runtime, API key, SaaS service, memory layer, or LLM dependency.
+DoneSpec works with coding agents because it has no agent runtime, API key, SaaS service, memory layer, or LLM dependency.
 
 A useful agent instruction is:
 
@@ -270,7 +261,44 @@ See:
 
 - [docs/integrations.md](docs/integrations.md)
 - [docs/agent-integration.md](docs/agent-integration.md)
-- [docs/authoring.md](docs/authoring.md)
+
+---
+
+## Core Philosophy
+
+DoneSpec stays small on purpose:
+
+- local-first
+- no cloud
+- no LLM dependency
+- no orchestration
+- no database
+- no hidden network calls
+- deterministic exit codes
+
+It is infrastructure, not a platform.
+
+---
+
+## Architecture Overview
+
+```text
+CLI
+  reads done.json
+  validates JSON Schema
+  optionally applies strict contract hygiene
+  runs deterministic checks
+  emits human or JSON output
+  exits 0, 1, or 2
+```
+
+The main pieces are:
+
+- `donespec` CLI
+- `done.json` completion contract
+- deterministic checks
+- packaged JSON Schema
+- CI, git hooks, and agent instructions that call the same command
 
 ---
 
@@ -285,23 +313,19 @@ See:
 | `file_not_modified` | Fail if a tracked file was modified          |
 | `http_check`        | Check an HTTP endpoint response              |
 
-DoneSpec is intentionally small.
-
-The goal is not to model every workflow.
-
-The goal is to provide a minimal, deterministic completion contract that composes with everything else.
+DoneSpec is intentionally small. The goal is not to model every workflow; it is to provide a deterministic completion contract that composes with existing tools.
 
 ---
 
-## Strict mode
+## Strict Mode
 
-Strict mode validates the quality of `done.json` before executing checks:
+Strict mode validates contract hygiene before executing checks:
 
 ```bash
 donespec validate done.json --strict
 ```
 
-It catches issues such as:
+It catches:
 
 - empty contracts
 - unnamed checks
@@ -311,189 +335,53 @@ It catches issues such as:
 - absolute paths
 - parent traversal paths
 
-See:
-
-[docs/strict.md](docs/strict.md)
+See [docs/strict.md](docs/strict.md).
 
 ---
 
-## Explain mode
+## CLI Commands
 
-Explain a contract without executing it:
+`donespec explain done.json`
 
-```bash
-donespec explain done.json
-```
+Explain a contract without executing it. Supports `--json`. See [docs/explain.md](docs/explain.md).
 
-Emit machine-readable output:
+`donespec doctor`
 
-```bash
-donespec explain done.json --json
-```
+Inspect whether a project is DoneSpec-ready. Supports `--json`. See [docs/doctor.md](docs/doctor.md).
 
-This is useful for agents, reviewers, and CI tooling that need to inspect the contract before execution.
+`donespec schema`
 
-See:
+Print or export the packaged JSON Schema. See [docs/schema.md](docs/schema.md).
 
-[docs/explain.md](docs/explain.md)
+`donespec templates`
 
----
+List starter contract templates. See [docs/templates.md](docs/templates.md).
 
-## Authoring mode
+`donespec add-check`
 
-Safely add checks without manually editing JSON:
+Safely add a check and validate the updated contract before writing it. See [docs/authoring.md](docs/authoring.md).
 
-```bash
-donespec add-check done.json --type command --name "tests pass" --run "pytest -q"
-```
+`donespec init`
 
-DoneSpec validates the updated contract before writing it.
+Create DoneSpec files in a project. See [docs/init.md](docs/init.md).
 
-See:
-
-[docs/authoring.md](docs/authoring.md)
+Editor support is documented in [docs/editor-support.md](docs/editor-support.md).
 
 ---
 
-## Editor support
+## Reliability And Field Notes
 
-Use `done.schema.json` for editor validation and autocomplete:
+DoneSpec's own failures become permanent checks.
 
-```json
-{
-  "json.schemas": [
-    {
-      "fileMatch": [
-        "/done.json"
-      ],
-      "url": "./done.schema.json"
-    }
-  ]
-}
-```
+The first real Codex + VS Code pass found practical issues around release metadata, git hooks, line endings, and Windows output encoding. Those failures were turned into tests and DoneSpec checks.
 
-See:
+See [docs/field-notes/first-codex-vscode-experience.md](docs/field-notes/first-codex-vscode-experience.md).
 
-[docs/editor-support.md](docs/editor-support.md)
+Cross-platform verification is documented in [docs/cross-platform-verification.md](docs/cross-platform-verification.md).
 
 ---
 
-## Schema support
-
-Export the official JSON Schema:
-
-```bash
-donespec schema
-donespec schema --write done.schema.json
-```
-
-Generated projects include:
-
-```text
-done.json
-done.schema.json
-```
-
-This enables editor validation, autocomplete, CI validation, and agent-side contract inspection.
-
-See:
-
-[docs/schema.md](docs/schema.md)
-
----
-
-## Templates
-
-Initialize common contract shapes:
-
-```bash
-donespec templates
-donespec init --template python --yes
-donespec init --template node --yes
-donespec init --template docs --yes
-donespec init --template api --yes
-```
-
-See:
-
-[docs/templates.md](docs/templates.md)
-
----
-
-## Doctor
-
-Inspect whether a project is DoneSpec-ready:
-
-```bash
-donespec doctor
-donespec doctor --json
-```
-
-See:
-
-[docs/doctor.md](docs/doctor.md)
-
----
-
-## Init
-
-Create DoneSpec files in a project:
-
-```bash
-donespec init --yes
-```
-
-See:
-
-[docs/init.md](docs/init.md)
-
----
-
-## Architecture
-
-DoneSpec is deliberately boring:
-
-```text
-done.json
-  ?
-JSON Schema validation
-  ?
-optional strict semantic validation
-  ?
-checker registry
-  ?
-deterministic execution
-  ?
-structured validation report
-  ?
-exit code
-```
-
-There is no database.
-
-No cloud service.
-
-No dashboard.
-
-No agent runtime.
-
-No LLM dependency.
-
-That is the point.
-
----
-
-## Cross-platform verification
-
-DoneSpec is intended to behave consistently across Windows, Linux, macOS, local shells, git hooks, and CI.
-
-See:
-
-[docs/cross-platform-verification.md](docs/cross-platform-verification.md)
-
----
-
-## v1.0 readiness
+## v1.0 Readiness
 
 DoneSpec v1.0 is a stabilization milestone, not a platform expansion.
 
@@ -501,17 +389,15 @@ See:
 
 - [docs/v1-readiness.md](docs/v1-readiness.md)
 - [docs/oss-launch.md](docs/oss-launch.md)
+- [docs/release-checklist.md](docs/release-checklist.md)
 
 ---
 
 ## Roadmap to v1.0
 
-The core is already capable.
+The core is already capable. The path to v1.0 is stabilization:
 
-The path to v1.0 is stabilization, not expansion:
-
-- polished README
-- demo GIFs and short recordings
+- README polish
 - CLI wording refinement
 - schema freeze
 - documentation hardening
@@ -527,46 +413,18 @@ DoneSpec should remain tiny, local-first, deterministic, composable, and infrast
 
 ## Contributing
 
-Contributions are welcome when they protect the minimal core.
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Good contributions:
+Before opening a change, run:
 
-- improve determinism
-- improve CLI clarity
-- improve docs
-- improve tests
-- improve schema stability
-- improve cross-platform behavior
-- reduce ambiguity
+```bash
+python -m ruff check .
+python -m ruff format --check .
+python -m pytest -q
+donespec validate done.json
+donespec validate done.json --strict
+```
 
-Avoid contributions that turn DoneSpec into:
+Contributions should protect the minimal core: determinism, clear CLI behavior, stable schema, cross-platform behavior, and documentation quality.
 
-- an orchestration platform
-- an AI framework
-- a SaaS service
-- an agent runtime
-- a workflow engine
-- a plugin marketplace
-- a memory layer
-
-The standard succeeds by staying small.
-
----
-
-## Philosophy
-
-AI agents should not be trusted because they sound confident.
-
-They should be trusted when their work passes deterministic checks.
-
-DoneSpec is a tiny primitive for that future.
-
-Reliable.
-
-Local.
-
-Composable.
-
-Deterministic.
-
-Inevitable.
+Avoid changes that turn DoneSpec into an orchestration platform, AI framework, SaaS service, agent runtime, workflow engine, plugin marketplace, or memory layer.

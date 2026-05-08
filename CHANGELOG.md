@@ -10,6 +10,7 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ### Added
 
+- Added v1.0 README polish for clearer positioning, quickstart, examples, architecture, reliability notes, and contribution gates.
 - Added first real Codex + VS Code DoneSpec field note.
 
 ### Fixed

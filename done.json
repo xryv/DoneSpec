@@ -648,6 +648,30 @@
     },
     {
       "type": "regex_in_file",
+      "name": "README includes install command",
+      "path": "README.md",
+      "pattern": "pip install donespec"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README includes example done json",
+      "path": "README.md",
+      "pattern": "Example `done\\.json`"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README example includes file_exists check",
+      "path": "README.md",
+      "pattern": "\"type\": \"file_exists\""
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README example includes file_not_modified check",
+      "path": "README.md",
+      "pattern": "\"type\": \"file_not_modified\""
+    },
+    {
+      "type": "regex_in_file",
       "name": "README includes GitHub Action usage",
       "path": "README.md",
       "pattern": "xryv/DoneSpec@v"
@@ -669,6 +693,18 @@
       "name": "README includes v1 roadmap",
       "path": "README.md",
       "pattern": "Roadmap to v1\\.0"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links contributing guide",
+      "path": "README.md",
+      "pattern": "CONTRIBUTING\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records README v1 polish",
+      "path": "CHANGELOG.md",
+      "pattern": "Added v1\\.0 README polish"
     },
     {
       "type": "file_exists",
