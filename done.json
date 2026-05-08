@@ -110,6 +110,23 @@
       "name": "Git hooks installer configures hooks path",
       "path": "scripts/install-git-hooks.ps1",
       "pattern": "core\\.hooksPath"
+    },
+    {
+      "type": "file_exists",
+      "name": "Unix Git hooks installer exists",
+      "path": "scripts/install-git-hooks.sh"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Unix Git hooks installer configures hooks path",
+      "path": "scripts/install-git-hooks.sh",
+      "pattern": "core\\.hooksPath"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Unix Git hooks installer references DoneSpec validation",
+      "path": "scripts/install-git-hooks.sh",
+      "pattern": "donespec validate done\\.json"
     }
   ],
   "must_not": [
