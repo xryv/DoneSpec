@@ -10,6 +10,13 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ### Added
 
+- Added contributor guidelines.
+- Added security policy.
+- Added GitHub issue templates.
+- Added pull request template.
+
+### Added
+
 - Added v1 readiness documentation.
 - Added OSS launch preparation documentation.
 

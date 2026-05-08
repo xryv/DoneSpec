@@ -1023,6 +1023,85 @@
       "name": "Changelog records v1 readiness documentation",
       "path": "CHANGELOG.md",
       "pattern": "Added v1 readiness documentation"
+    },
+    {
+      "type": "file_exists",
+      "name": "Contributing guide exists",
+      "path": "CONTRIBUTING.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Contributing guide requires strict validation",
+      "path": "CONTRIBUTING.md",
+      "pattern": "donespec validate done\\.json --strict"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Contributing guide protects minimal core",
+      "path": "CONTRIBUTING.md",
+      "pattern": "DoneSpec should remain boring infrastructure"
+    },
+    {
+      "type": "file_exists",
+      "name": "Security policy exists",
+      "path": "SECURITY.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Security policy preserves local-first positioning",
+      "path": "SECURITY.md",
+      "pattern": "local-first"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Security policy rejects hidden network calls",
+      "path": "SECURITY.md",
+      "pattern": "hidden network calls"
+    },
+    {
+      "type": "file_exists",
+      "name": "Bug report issue template exists",
+      "path": ".github/ISSUE_TEMPLATE/bug_report.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Bug report template asks for DoneSpec version",
+      "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+      "pattern": "donespec --version"
+    },
+    {
+      "type": "file_exists",
+      "name": "Documentation issue template exists",
+      "path": ".github/ISSUE_TEMPLATE/documentation.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Documentation issue template references strict validation",
+      "path": ".github/ISSUE_TEMPLATE/documentation.md",
+      "pattern": "donespec validate done\\.json --strict"
+    },
+    {
+      "type": "file_exists",
+      "name": "Pull request template exists",
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Pull request template requires DoneSpec validation",
+      "path": ".github/pull_request_template.md",
+      "pattern": "donespec validate done\\.json --strict"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Pull request template protects against platform expansion",
+      "path": ".github/pull_request_template.md",
+      "pattern": "not an orchestration platform"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records OSS hygiene docs",
+      "path": "CHANGELOG.md",
+      "pattern": "Added contributor guidelines"
     }
   ],
   "must_not": [
