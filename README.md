@@ -196,6 +196,20 @@ Read the full guide:
 [docs/strict.md](docs/strict.md)
 
 
+### Explain a completion contract
+
+```bash
+donespec explain done.json
+donespec explain done.json --json
+```
+
+Use `explain` to inspect a DoneSpec contract before executing it. This is useful for AI agents, swarms, CI logs, and review workflows.
+
+Read the full guide:
+
+[docs/explain.md](docs/explain.md)
+
+
 ## 5. Quick example
 
 Create `done.json`:

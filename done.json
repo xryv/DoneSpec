@@ -508,6 +508,63 @@
       "name": "README links strict documentation",
       "path": "README.md",
       "pattern": "docs/strict\\.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Explain command module exists",
+      "path": "src/donespec/explain.py"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "CLI exposes explain command",
+      "path": "src/donespec/cli.py",
+      "pattern": "def explain"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Explain command supports JSON output",
+      "path": "src/donespec/cli.py",
+      "pattern": "explain_payload"
+    },
+    {
+      "type": "file_exists",
+      "name": "Explain command tests exist",
+      "path": "tests/test_explain_command.py"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Explain tests cover JSON output",
+      "path": "tests/test_explain_command.py",
+      "pattern": "--json"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Explain tests cover strict mode",
+      "path": "tests/test_explain_command.py",
+      "pattern": "--strict"
+    },
+    {
+      "type": "file_exists",
+      "name": "Explain documentation exists",
+      "path": "docs/explain.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Explain docs explain donespec explain",
+      "path": "docs/explain.md",
+      "pattern": "donespec explain done\\.json"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Explain docs mention JSON output",
+      "path": "docs/explain.md",
+      "pattern": "donespec explain done\\.json --json"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links explain documentation",
+      "path": "README.md",
+      "pattern": "docs/explain\\.md"
     }
   ],
   "must_not": [

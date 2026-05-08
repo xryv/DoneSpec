@@ -12,6 +12,7 @@ from donespec import __version__
 from donespec.doctor import DoctorReport, run_doctor
 from donespec.engine import validate_payload
 from donespec.exceptions import SpecValidationError
+from donespec.explain import explain_payload, explain_to_text
 from donespec.init_project import (
     AgentMode,
     TemplateMode,
@@ -189,6 +190,48 @@ def init_command(
         console.print("3. Optional: install Git hooks")
         console.print("   Windows: .\\scripts\\install-git-hooks.ps1")
         console.print("   Unix:    ./scripts/install-git-hooks.sh")
+
+
+@app.command()
+def explain(
+    spec: Annotated[
+        Path,
+        typer.Argument(help="Path to done.json to explain."),
+    ],
+    json_output: Annotated[
+        bool,
+        typer.Option("--json", help="Emit machine-readable JSON output."),
+    ] = False,
+    strict: Annotated[
+        bool,
+        typer.Option("--strict", help="Enable strict semantic validation before explaining."),
+    ] = False,
+) -> None:
+    """Explain a DoneSpec task file without executing checks."""
+    spec_path = spec.resolve()
+
+    try:
+        payload = load_spec(spec_path, strict=strict)
+        explanation = explain_payload(payload, spec_path=spec_path)
+    except SpecValidationError as exc:
+        if json_output:
+            sys.stdout.write(error_to_json(str(exc)) + "\n")
+        else:
+            console.print(f"[bold red]Spec error:[/bold red] {exc}")
+        raise typer.Exit(code=2) from exc
+    except Exception as exc:
+        if json_output:
+            sys.stdout.write(error_to_json(str(exc)) + "\n")
+        else:
+            console.print(f"[bold red]Runtime error:[/bold red] {exc}")
+        raise typer.Exit(code=2) from exc
+
+    if json_output:
+        sys.stdout.write(json.dumps(explanation, indent=2) + "\n")
+    else:
+        sys.stdout.write(explain_to_text(explanation))
+
+    raise typer.Exit(code=0)
 
 
 @app.command(name="schema")
