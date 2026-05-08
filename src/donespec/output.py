@@ -53,3 +53,49 @@ def print_human_report(report: ValidationReport, console: Console | None = None)
 def error_to_json(error: str) -> str:
     payload: dict[str, Any] = {"passed": False, "error": error}
     return json.dumps(payload, indent=2, sort_keys=True)
+
+
+_ASCII_TRANSLATION = str.maketrans(
+    {
+        "\u2713": "+",
+        "\u2717": "x",
+        "\u2192": "->",
+        "\u2193": "|",
+        "\u201c": '"',
+        "\u201d": '"',
+        "\u2018": "'",
+        "\u2019": "'",
+        "\u2014": "-",
+        "\u2013": "-",
+        "\u2026": "...",
+    }
+)
+
+
+def safe_for_encoding(text: str, encoding: str | None) -> str:
+    """Return text that can be written to a stream with the given encoding."""
+
+    if not encoding:
+        return text
+
+    try:
+        text.encode(encoding)
+    except UnicodeEncodeError:
+        text = text.translate(_ASCII_TRANSLATION)
+        return text.encode(encoding, errors="replace").decode(encoding, errors="replace")
+
+    return text
+
+
+def write_text(text: str, stream: object | None = None) -> None:
+    """Write text safely, including on Windows cp1252 terminals and pipes."""
+
+    import sys
+
+    target = stream or sys.stdout
+
+    try:
+        target.write(text)
+    except UnicodeEncodeError:
+        encoding = getattr(target, "encoding", None)
+        target.write(safe_for_encoding(text, encoding))

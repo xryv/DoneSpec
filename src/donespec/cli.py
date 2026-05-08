@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import sys
 from pathlib import Path
 from typing import Annotated
 
@@ -20,7 +19,7 @@ from donespec.init_project import (
     initialize_project,
 )
 from donespec.loader import load_spec
-from donespec.output import error_to_json, print_human_report, report_to_json
+from donespec.output import error_to_json, print_human_report, report_to_json, write_text
 from donespec.schema_command import get_schema_text, write_schema_file
 
 app = typer.Typer(
@@ -81,19 +80,19 @@ def validate(
         )
     except SpecValidationError as exc:
         if json_output:
-            sys.stdout.write(error_to_json(str(exc)) + "\n")
+            write_text(error_to_json(str(exc)) + "\n")
         else:
             console.print(f"[bold red]Spec error:[/bold red] {exc}")
         raise typer.Exit(code=2) from exc
     except Exception as exc:
         if json_output:
-            sys.stdout.write(error_to_json(str(exc)) + "\n")
+            write_text(error_to_json(str(exc)) + "\n")
         else:
             console.print(f"[bold red]Runtime error:[/bold red] {exc}")
         raise typer.Exit(code=2) from exc
 
     if json_output:
-        sys.stdout.write(report_to_json(report) + "\n")
+        write_text(report_to_json(report) + "\n")
     else:
         print_human_report(report, console=console)
 
@@ -215,21 +214,21 @@ def explain(
         explanation = explain_payload(payload, spec_path=spec_path)
     except SpecValidationError as exc:
         if json_output:
-            sys.stdout.write(error_to_json(str(exc)) + "\n")
+            write_text(error_to_json(str(exc)) + "\n")
         else:
             console.print(f"[bold red]Spec error:[/bold red] {exc}")
         raise typer.Exit(code=2) from exc
     except Exception as exc:
         if json_output:
-            sys.stdout.write(error_to_json(str(exc)) + "\n")
+            write_text(error_to_json(str(exc)) + "\n")
         else:
             console.print(f"[bold red]Runtime error:[/bold red] {exc}")
         raise typer.Exit(code=2) from exc
 
     if json_output:
-        sys.stdout.write(json.dumps(explanation, indent=2) + "\n")
+        write_text(json.dumps(explanation, indent=2) + "\n")
     else:
-        sys.stdout.write(explain_to_text(explanation))
+        write_text(explain_to_text(explanation))
 
     raise typer.Exit(code=0)
 
@@ -348,7 +347,7 @@ def schema_command(
 ) -> None:
     """Print or write the DoneSpec JSON Schema."""
     if write_path is None:
-        sys.stdout.write(get_schema_text())
+        write_text(get_schema_text())
         raise typer.Exit(code=0)
 
     try:
@@ -376,7 +375,7 @@ def templates(
         payload = {
             "templates": [{"name": item.name, "description": item.description} for item in items]
         }
-        sys.stdout.write(json.dumps(payload, indent=2) + "\n")
+        write_text(json.dumps(payload, indent=2) + "\n")
         raise typer.Exit(code=0)
 
     console.print("[bold]Available DoneSpec templates[/bold]\n")
@@ -403,7 +402,7 @@ def doctor(
     report = run_doctor(root)
 
     if json_output:
-        sys.stdout.write(json.dumps(report.to_dict(), indent=2) + "\n")
+        write_text(json.dumps(report.to_dict(), indent=2) + "\n")
     else:
         _print_doctor_report(report)
 

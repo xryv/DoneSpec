@@ -669,6 +669,34 @@
       "name": "README includes v1 roadmap",
       "path": "README.md",
       "pattern": "Roadmap to v1\\.0"
+    },
+    {
+      "type": "file_exists",
+      "name": "Safe output helper exists",
+      "path": "src/donespec/output.py"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "CLI uses safe output writer",
+      "path": "src/donespec/cli.py",
+      "pattern": "write_text"
+    },
+    {
+      "type": "file_exists",
+      "name": "Safe output tests exist",
+      "path": "tests/test_output.py"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Safe output tests cover cp1252",
+      "path": "tests/test_output.py",
+      "pattern": "cp1252"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Safe output tests cover status glyph fallback",
+      "path": "tests/test_output.py",
+      "pattern": "status_glyphs"
     }
   ],
   "must_not": [
