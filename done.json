@@ -178,6 +178,29 @@
       "name": "Init tests cover force overwrite",
       "path": "tests/test_init_project.py",
       "pattern": "--force"
+    },
+    {
+      "type": "file_exists",
+      "name": "Init documentation exists",
+      "path": "docs/init.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Init docs explain donespec init",
+      "path": "docs/init.md",
+      "pattern": "donespec init"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Init docs mention force option",
+      "path": "docs/init.md",
+      "pattern": "--force"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links init documentation",
+      "path": "README.md",
+      "pattern": "docs/init\\.md"
     }
   ],
   "must_not": [

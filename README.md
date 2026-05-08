@@ -120,6 +120,19 @@ Verify:
 donespec --version
 ```
 
+### initialize a DoneSpec-ready project
+
+```bash
+donespec init --yes
+donespec validate done.json
+```
+
+This creates a starter `done.json`, agent instructions, VS Code tasks, and optional Git hook files.
+
+Read the full guide:
+
+[docs/init.md](docs/init.md)
+
 ## 5. Quick example
 
 Create `done.json`:
