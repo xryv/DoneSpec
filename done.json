@@ -749,6 +749,59 @@
       "name": "Release checklist includes v1 readiness gate",
       "path": "docs/release-checklist.md",
       "pattern": "v1\\.0 readiness gate"
+    },
+    {
+      "type": "file_exists",
+      "name": "Integrations documentation exists",
+      "path": "docs/integrations.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Integrations docs mention Codex",
+      "path": "docs/integrations.md",
+      "pattern": "Codex"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Integrations docs mention Claude Code",
+      "path": "docs/integrations.md",
+      "pattern": "Claude Code"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Integrations docs mention Cursor",
+      "path": "docs/integrations.md",
+      "pattern": "Cursor"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Integrations docs mention Aider",
+      "path": "docs/integrations.md",
+      "pattern": "Aider"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Integrations docs mention OpenAI Agents SDK",
+      "path": "docs/integrations.md",
+      "pattern": "OpenAI Agents SDK"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Integrations docs include GitHub Actions",
+      "path": "docs/integrations.md",
+      "pattern": "GitHub Actions"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Integrations docs require strict validation",
+      "path": "docs/integrations.md",
+      "pattern": "donespec validate done\\.json --strict"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links integrations documentation",
+      "path": "README.md",
+      "pattern": "docs/integrations\\.md"
     }
   ],
   "must_not": [
