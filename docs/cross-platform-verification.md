@@ -15,6 +15,43 @@ same exit codes
 same trust contract
 ```
 
+## Automated GitHub Actions matrix
+
+DoneSpec includes an automated cross-platform GitHub Actions workflow:
+
+```text
+.github/workflows/cross-platform.yml
+```
+
+The workflow verifies DoneSpec on:
+
+```text
+ubuntu-latest
+windows-latest
+macos-latest
+```
+
+It runs:
+
+```bash
+python -m ruff check .
+python -m ruff format --check .
+python -m pytest -q
+donespec validate done.json
+donespec validate done.json --strict
+donespec explain done.json --strict --json
+donespec templates
+donespec doctor .
+donespec init ci-smoke --yes
+donespec validate ci-smoke/done.json --strict
+```
+
+This gives DoneSpec a real CI-backed portability gate before v1.0.
+
+The goal is not to add platform complexity.
+
+The goal is to prove the same small CLI behaves consistently everywhere.
+
 ## Required platforms
 
 Before v1.0, verify DoneSpec on:

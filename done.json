@@ -1102,6 +1102,59 @@
       "name": "Changelog records OSS hygiene docs",
       "path": "CHANGELOG.md",
       "pattern": "Added contributor guidelines"
+    },
+    {
+      "type": "file_exists",
+      "name": "Cross-platform GitHub Actions workflow exists",
+      "path": ".github/workflows/cross-platform.yml"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform workflow runs on Ubuntu",
+      "path": ".github/workflows/cross-platform.yml",
+      "pattern": "ubuntu-latest"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform workflow runs on Windows",
+      "path": ".github/workflows/cross-platform.yml",
+      "pattern": "windows-latest"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform workflow runs on macOS",
+      "path": ".github/workflows/cross-platform.yml",
+      "pattern": "macos-latest"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform workflow runs pytest",
+      "path": ".github/workflows/cross-platform.yml",
+      "pattern": "python -m pytest -q"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform workflow runs strict DoneSpec validation",
+      "path": ".github/workflows/cross-platform.yml",
+      "pattern": "donespec validate done.json --strict"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform workflow tests init smoke project",
+      "path": ".github/workflows/cross-platform.yml",
+      "pattern": "donespec init ci-smoke --yes"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform docs mention automated matrix",
+      "path": "docs/cross-platform-verification.md",
+      "pattern": "Automated GitHub Actions matrix"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records cross-platform workflow",
+      "path": "CHANGELOG.md",
+      "pattern": "Added automated cross-platform verification workflow"
     }
   ],
   "must_not": [

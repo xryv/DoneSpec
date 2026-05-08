@@ -1,0 +1,76 @@
+name: Cross-platform verification
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: ${{ matrix.os }} / Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        python-version:
+          - "3.12"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install project
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Show environment
+        run: |
+          python --version
+          python -m pip --version
+          donespec --version
+
+      - name: Lint
+        run: python -m ruff check .
+
+      - name: Format check
+        run: python -m ruff format --check .
+
+      - name: Test
+        run: python -m pytest -q
+
+      - name: Validate DoneSpec contract
+        run: donespec validate done.json
+
+      - name: Validate DoneSpec contract strictly
+        run: donespec validate done.json --strict
+
+      - name: Explain contract as JSON
+        run: |
+          donespec explain done.json --strict --json > explain.json
+          python -m json.tool explain.json
+
+      - name: CLI smoke test
+        run: |
+          donespec --help
+          donespec templates
+          donespec doctor .
+
+      - name: Init smoke test
+        run: |
+          donespec init ci-smoke --yes
+          donespec validate ci-smoke/done.json --strict

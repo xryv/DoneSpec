@@ -10,6 +10,10 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ### Added
 
+- Added automated cross-platform verification workflow for Windows, Linux, and macOS.
+
+### Added
+
 - Added contributor guidelines.
 - Added security policy.
 - Added GitHub issue templates.
