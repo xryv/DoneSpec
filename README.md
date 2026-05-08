@@ -32,6 +32,26 @@ Done means deterministically verified.
 
 ---
 
+## Demo
+
+See the core DoneSpec failure-and-recovery demo:
+
+[docs/demo.md](docs/demo.md)
+
+Run locally:
+
+```bash
+./scripts/demo-forbidden-file.sh
+```
+
+Windows PowerShell:
+
+```powershell
+.\\scripts\\demo-forbidden-file.ps1
+```
+
+---
+
 ## Install
 
 ```bash

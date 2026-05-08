@@ -890,6 +890,57 @@
       "name": "README links cross-platform verification documentation",
       "path": "README.md",
       "pattern": "docs/cross-platform-verification\\.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Demo documentation exists",
+      "path": "docs/demo.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Demo docs explain forbidden file scenario",
+      "path": "docs/demo.md",
+      "pattern": "file is protected by done\\.json"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Demo docs explain failure then pass",
+      "path": "docs/demo.md",
+      "pattern": "Validation failed"
+    },
+    {
+      "type": "file_exists",
+      "name": "PowerShell demo script exists",
+      "path": "scripts/demo-forbidden-file.ps1"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "PowerShell demo script modifies forbidden README",
+      "path": "scripts/demo-forbidden-file.ps1",
+      "pattern": "Agent edited this forbidden file"
+    },
+    {
+      "type": "file_exists",
+      "name": "Unix demo script exists",
+      "path": "scripts/demo-forbidden-file.sh"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Unix demo script runs strict validation",
+      "path": "scripts/demo-forbidden-file.sh",
+      "pattern": "donespec validate done\\.json --strict"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links demo documentation",
+      "path": "README.md",
+      "pattern": "docs/demo\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records demo experience",
+      "path": "CHANGELOG.md",
+      "pattern": "Added demo experience guide"
     }
   ],
   "must_not": [

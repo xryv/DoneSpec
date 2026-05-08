@@ -8,6 +8,11 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ## Unreleased
 
+### Added
+
+- Added demo experience guide.
+- Added forbidden-file demo scripts for PowerShell and Unix shells.
+
 ### Stabilization
 
 - Prepare v1.0 release engineering.
