@@ -4,6 +4,12 @@ set -euo pipefail
 ORIGINAL_LOCATION="$(pwd)"
 DEMO_ROOT="$ORIGINAL_LOCATION/.tmp-donespec-demo"
 
+cleanup_demo() {
+        rm -rf "$DEMO_ROOT"
+}
+
+trap cleanup_demo EXIT
+
 rm -rf "$DEMO_ROOT"
 mkdir -p "$DEMO_ROOT"
 
@@ -80,4 +86,3 @@ donespec validate done.json --strict
 echo ""
 echo "Demo complete."
 
-cd "$ORIGINAL_LOCATION"

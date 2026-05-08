@@ -941,6 +941,24 @@
       "name": "Changelog records demo experience",
       "path": "CHANGELOG.md",
       "pattern": "Added demo experience guide"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "PowerShell demo cleans temporary directory",
+      "path": "scripts/demo-forbidden-file.ps1",
+      "pattern": "Remove-Item -Recurse -Force \\$DemoRoot"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Unix demo cleans temporary directory",
+      "path": "scripts/demo-forbidden-file.sh",
+      "pattern": "cleanup_demo"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Demo docs mention temporary cleanup",
+      "path": "docs/demo.md",
+      "pattern": "removes the temporary demo directory"
     }
   ],
   "must_not": [

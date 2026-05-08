@@ -85,4 +85,5 @@ try {
 }
 finally {
     Set-Location $OriginalLocation
+    Remove-Item -Recurse -Force $DemoRoot -ErrorAction SilentlyContinue
 }

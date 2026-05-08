@@ -75,6 +75,7 @@ shows the expected failure
 restores README.md
 runs DoneSpec again
 shows the passing result
+removes the temporary demo directory
 ```
 
 ## Unix demo
