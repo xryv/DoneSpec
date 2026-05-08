@@ -127,6 +127,29 @@
       "name": "Unix Git hooks installer references DoneSpec validation",
       "path": "scripts/install-git-hooks.sh",
       "pattern": "donespec validate done\\.json"
+    },
+    {
+      "type": "file_exists",
+      "name": "Agent integration documentation exists",
+      "path": "docs/agent-integration.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Agent integration docs mention Codex",
+      "path": "docs/agent-integration.md",
+      "pattern": "Codex"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Agent integration docs mention Claude Code",
+      "path": "docs/agent-integration.md",
+      "pattern": "Claude Code"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Agent integration docs require DoneSpec validation",
+      "path": "docs/agent-integration.md",
+      "pattern": "donespec validate done\\.json"
     }
   ],
   "must_not": [
