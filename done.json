@@ -246,6 +246,59 @@
       "name": "README links doctor documentation",
       "path": "README.md",
       "pattern": "docs/doctor\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Init supports template option",
+      "path": "src/donespec/cli.py",
+      "pattern": "--template"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Template mode exists",
+      "path": "src/donespec/init_project.py",
+      "pattern": "class TemplateMode"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Python template exists",
+      "path": "src/donespec/init_project.py",
+      "pattern": "TemplateMode\\.python"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Node template exists",
+      "path": "src/donespec/init_project.py",
+      "pattern": "TemplateMode\\.node"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Docs template exists",
+      "path": "src/donespec/init_project.py",
+      "pattern": "TemplateMode\\.docs"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "API template exists",
+      "path": "src/donespec/init_project.py",
+      "pattern": "TemplateMode\\.api"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "CLI exposes templates command",
+      "path": "src/donespec/cli.py",
+      "pattern": "def templates"
+    },
+    {
+      "type": "file_exists",
+      "name": "Templates command tests exist",
+      "path": "tests/test_templates_command.py"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Init tests cover python template",
+      "path": "tests/test_init_project.py",
+      "pattern": "--template"
     }
   ],
   "must_not": [

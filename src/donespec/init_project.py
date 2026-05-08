@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from copy import deepcopy
 from dataclasses import dataclass, field
 from enum import StrEnum
 from pathlib import Path
@@ -13,6 +14,20 @@ class AgentMode(StrEnum):
     none = "none"
 
 
+class TemplateMode(StrEnum):
+    generic = "generic"
+    python = "python"
+    node = "node"
+    docs = "docs"
+    api = "api"
+
+
+@dataclass(frozen=True)
+class TemplateDefinition:
+    name: str
+    description: str
+
+
 @dataclass
 class InitResult:
     created: list[str] = field(default_factory=list)
@@ -20,10 +35,95 @@ class InitResult:
     overwritten: list[str] = field(default_factory=list)
 
 
+TEMPLATE_DESCRIPTIONS: dict[TemplateMode, str] = {
+    TemplateMode.generic: "Minimal universal DoneSpec contract.",
+    TemplateMode.python: "Python project checks for ruff, formatting, and pytest.",
+    TemplateMode.node: "Node.js project checks for package.json, tests, and build.",
+    TemplateMode.docs: "Documentation-focused checks for README-based tasks.",
+    TemplateMode.api: "API project checks including a local health endpoint example.",
+}
+
+
+TEMPLATE_CHECKS: dict[TemplateMode, list[dict[str, object]]] = {
+    TemplateMode.generic: [],
+    TemplateMode.python: [
+        {
+            "type": "command",
+            "name": "python is available",
+            "run": "python --version",
+        },
+        {
+            "type": "command",
+            "name": "ruff lint passes",
+            "run": "python -m ruff check .",
+        },
+        {
+            "type": "command",
+            "name": "ruff format passes",
+            "run": "python -m ruff format --check .",
+        },
+        {
+            "type": "command",
+            "name": "pytest passes",
+            "run": "python -m pytest -q",
+        },
+    ],
+    TemplateMode.node: [
+        {
+            "type": "file_exists",
+            "name": "package.json exists",
+            "path": "package.json",
+        },
+        {
+            "type": "command",
+            "name": "npm tests pass",
+            "run": "npm test",
+        },
+        {
+            "type": "command",
+            "name": "npm build passes",
+            "run": "npm run build",
+        },
+    ],
+    TemplateMode.docs: [
+        {
+            "type": "file_exists",
+            "name": "README exists",
+            "path": "README.md",
+        },
+        {
+            "type": "regex_in_file",
+            "name": "README has a title",
+            "path": "README.md",
+            "pattern": "^# ",
+            "flags": ["MULTILINE"],
+        },
+    ],
+    TemplateMode.api: [
+        {
+            "type": "http_check",
+            "name": "health endpoint responds",
+            "url": "http://127.0.0.1:8000/health",
+            "method": "GET",
+            "expected_status": 200,
+            "timeout_seconds": 3,
+        }
+    ],
+}
+
+
+def available_templates() -> list[TemplateDefinition]:
+    return [
+        TemplateDefinition(name=template.value, description=description)
+        for template, description in TEMPLATE_DESCRIPTIONS.items()
+    ]
+
+
 def initialize_project(
     root: Path,
     *,
     agent: AgentMode = AgentMode.all,
+    template: TemplateMode = TemplateMode.generic,
     with_vscode: bool = True,
     with_hooks: bool = True,
     force: bool = False,
@@ -33,6 +133,7 @@ def initialize_project(
 
     files = _build_files(
         agent=agent,
+        template=template,
         with_vscode=with_vscode,
         with_hooks=with_hooks,
     )
@@ -46,7 +147,7 @@ def initialize_project(
             result=result,
         )
 
-    for relative_path in _executable_paths(agent=agent, with_hooks=with_hooks):
+    for relative_path in _executable_paths(with_hooks=with_hooks):
         path = root / relative_path
         if path.exists():
             path.chmod(path.stat().st_mode | 0o111)
@@ -80,12 +181,14 @@ def _write_file(
 def _build_files(
     *,
     agent: AgentMode,
+    template: TemplateMode,
     with_vscode: bool,
     with_hooks: bool,
 ) -> dict[str, str]:
     files: dict[str, str] = {
         "done.json": _done_json(
             agent=agent,
+            template=template,
             with_vscode=with_vscode,
             with_hooks=with_hooks,
         )
@@ -108,8 +211,7 @@ def _build_files(
     return files
 
 
-def _executable_paths(*, agent: AgentMode, with_hooks: bool) -> list[str]:
-    _ = agent
+def _executable_paths(*, with_hooks: bool) -> list[str]:
     if not with_hooks:
         return []
 
@@ -122,6 +224,7 @@ def _executable_paths(*, agent: AgentMode, with_hooks: bool) -> list[str]:
 def _done_json(
     *,
     agent: AgentMode,
+    template: TemplateMode,
     with_vscode: bool,
     with_hooks: bool,
 ) -> str:
@@ -132,6 +235,8 @@ def _done_json(
             "path": "done.json",
         }
     ]
+
+    must_pass.extend(_template_checks(template))
 
     if agent in {AgentMode.all, AgentMode.codex, AgentMode.claude}:
         must_pass.extend(
@@ -213,12 +318,16 @@ def _done_json(
 
     payload = {
         "version": "1.0",
-        "task_id": "initial-validation",
+        "task_id": f"{template.value}-validation",
         "must_pass": must_pass,
         "must_not": [],
     }
 
     return json.dumps(payload, indent=2) + "\n"
+
+
+def _template_checks(template: TemplateMode) -> list[dict[str, object]]:
+    return deepcopy(TEMPLATE_CHECKS[template])
 
 
 def _agents_md() -> str:

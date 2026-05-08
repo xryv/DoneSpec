@@ -12,7 +12,12 @@ from donespec import __version__
 from donespec.doctor import DoctorReport, run_doctor
 from donespec.engine import validate_payload
 from donespec.exceptions import SpecValidationError
-from donespec.init_project import AgentMode, initialize_project
+from donespec.init_project import (
+    AgentMode,
+    TemplateMode,
+    available_templates,
+    initialize_project,
+)
 from donespec.loader import load_spec
 from donespec.output import error_to_json, print_human_report, report_to_json
 
@@ -103,6 +108,14 @@ def init_command(
             help="Agent instruction mode: all, codex, claude, or none.",
         ),
     ] = AgentMode.all,
+    template: Annotated[
+        TemplateMode,
+        typer.Option(
+            "--template",
+            case_sensitive=False,
+            help="Starter done.json template: generic, python, node, docs, or api.",
+        ),
+    ] = TemplateMode.generic,
     with_vscode: Annotated[
         bool,
         typer.Option(
@@ -139,12 +152,14 @@ def init_command(
     result = initialize_project(
         root,
         agent=agent,
+        template=template,
         with_vscode=with_vscode,
         with_hooks=with_hooks,
         force=force,
     )
 
     console.print("[bold green]DoneSpec project initialized.[/bold green]")
+    console.print(f"\nTemplate: [bold]{template.value}[/bold]")
 
     if result.created:
         console.print("\n[bold]Created:[/bold]")
@@ -169,6 +184,32 @@ def init_command(
         console.print("3. Optional: install Git hooks")
         console.print("   Windows: .\\scripts\\install-git-hooks.ps1")
         console.print("   Unix:    ./scripts/install-git-hooks.sh")
+
+
+@app.command()
+def templates(
+    json_output: Annotated[
+        bool,
+        typer.Option("--json", help="Emit machine-readable JSON output."),
+    ] = False,
+) -> None:
+    """List available DoneSpec init templates."""
+    items = available_templates()
+
+    if json_output:
+        payload = {
+            "templates": [{"name": item.name, "description": item.description} for item in items]
+        }
+        sys.stdout.write(json.dumps(payload, indent=2) + "\n")
+        raise typer.Exit(code=0)
+
+    console.print("[bold]Available DoneSpec templates[/bold]\n")
+
+    for item in items:
+        console.print(f"✓ [bold]{item.name}[/bold] - {item.description}")
+
+    console.print("\nExample:")
+    console.print("  donespec init --template python --yes")
 
 
 @app.command()
