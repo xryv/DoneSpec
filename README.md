@@ -304,6 +304,15 @@ The action installs DoneSpec, runs validation, and fails CI if any check fails.
 - run: donespec validate done.json
 ```
 
+### Agent integrations
+
+DoneSpec includes a practical multi-agent workflow for Codex, Claude Code, VS Code tasks, Git hooks, and CI enforcement.
+
+Read the full guide:
+
+[docs/agent-integration.md](docs/agent-integration.md)
+
+
 ## 8. Philosophy
 
 DoneSpec is intentionally boring.

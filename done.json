@@ -150,6 +150,12 @@
       "name": "Agent integration docs require DoneSpec validation",
       "path": "docs/agent-integration.md",
       "pattern": "donespec validate done\\.json"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links agent integration guide",
+      "path": "README.md",
+      "pattern": "docs/agent-integration\\.md"
     }
   ],
   "must_not": [
