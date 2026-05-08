@@ -1028,6 +1028,58 @@
     },
     {
       "type": "file_exists",
+      "name": "Demo transcript documentation exists",
+      "path": "docs/demo-transcript.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Demo transcript shows forbidden file failure",
+      "path": "docs/demo-transcript.md",
+      "pattern": "Forbidden path modified: README\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Demo transcript shows validation passed",
+      "path": "docs/demo-transcript.md",
+      "pattern": "Validation passed\\. 2 checks passed\\."
+    },
+    {
+      "type": "file_exists",
+      "name": "Demo recording guide exists",
+      "path": "docs/demo-recording.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Demo recording guide mentions terminal GIF",
+      "path": "docs/demo-recording.md",
+      "pattern": "terminal GIF"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Demo recording guide preserves local-first positioning",
+      "path": "docs/demo-recording.md",
+      "pattern": "local-first"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links demo transcript",
+      "path": "README.md",
+      "pattern": "docs/demo-transcript\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links demo recording guide",
+      "path": "README.md",
+      "pattern": "docs/demo-recording\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records demo recording guide",
+      "path": "CHANGELOG.md",
+      "pattern": "Added polished demo transcript and recording guide"
+    },
+    {
+      "type": "file_exists",
       "name": "v1 readiness documentation exists",
       "path": "docs/v1-readiness.md"
     },

@@ -1,99 +1,62 @@
 # Demo experience
 
-This demo exists to make DoneSpec understandable in under 20 seconds.
-
-The core story:
+This demo proves the core DoneSpec claim:
 
 ```text
-AI agent says a task is done.
-DoneSpec verifies whether it actually is.
+AI agents say tasks are done.
+DoneSpec verifies they actually are.
 ```
 
-The most memorable scenario is simple:
+The story is intentionally small:
 
-```text
-1. A file is protected by done.json
-2. An agent modifies it anyway
-3. DoneSpec detects the violation
-4. Validation fails
-5. The file is restored
-6. Validation passes
-```
+1. A temporary project is created.
+2. `done.json` protects `README.md` with `file_not_modified`.
+3. A simulated agent modifies that forbidden file.
+4. DoneSpec detects the violation.
+5. Validation fails.
+6. The file is restored.
+7. DoneSpec validates successfully.
 
-This is the product.
+No cloud service, dashboard, agent runtime, database, or LLM dependency is involved.
 
-Not a dashboard.
-Not a platform.
-Not AI magic.
+In this scenario, the file is protected by done.json and any modification must fail validation.
 
-A deterministic completion gate.
+## Why forbidden-file detection matters
 
-## Demo script
+AI coding agents often touch more than the requested change. A task can look complete while a protected file, lockfile, generated artifact, release note, or policy document was changed by accident.
 
-Use this narrative when recording a terminal GIF or short video:
+`file_not_modified` makes that requirement explicit. If a protected path changes, DoneSpec fails with a deterministic exit code that local shells, git hooks, CI, and agents can all use.
 
-```text
-An AI coding agent can sound confident.
+## Run the demo
 
-But confidence is not completion.
-
-Here, done.json says README.md must not be modified.
-
-Now we simulate an agent changing it.
-
-DoneSpec runs.
-
-It fails.
-
-The agent fixes the violation.
-
-DoneSpec runs again.
-
-It passes.
-
-Done means deterministically verified.
-```
-
-## PowerShell demo
-
-Run:
+Windows PowerShell:
 
 ```powershell
 .\scripts\demo-forbidden-file.ps1
 ```
 
-What it does:
-
-```text
-creates a temporary git repo
-creates a done.json contract
-protects README.md from modification
-commits a clean baseline
-modifies README.md
-runs DoneSpec
-shows the expected failure
-restores README.md
-runs DoneSpec again
-shows the passing result
-removes the temporary demo directory
-```
-
-## Unix demo
-
-Run:
+Unix and macOS:
 
 ```bash
 ./scripts/demo-forbidden-file.sh
 ```
 
-## Expected failure moment
+Both scripts create a temporary `.tmp-donespec-demo` project, initialize a git baseline, run the failure case, restore the forbidden file, run the passing case, and remove the temporary demo directory when finished.
 
-The demo should show a failure similar to:
+The cleanup step removes the temporary demo directory after the script exits.
+
+## Expected failure
+
+The failure moment should look like this:
 
 ```text
+==> Simulating agent modifying forbidden file
+
+==> Running DoneSpec. This is expected to fail.
 DoneSpec validation: agent-completion-demo
 
-x README was not modified
++ README exists  (0.4ms)
+x README was not modified  (31.5ms)
   Forbidden path modified: README.md
 
 Validation failed.
@@ -101,78 +64,38 @@ Validation failed.
 Exit code: 1
 ```
 
-## Expected success moment
+On Unicode-capable terminals, DoneSpec may display check and cross status glyphs instead of ASCII fallback symbols.
 
-After restoring the forbidden file:
+## Expected pass
+
+After the script restores `README.md`, the same contract passes:
 
 ```text
+==> Restoring forbidden file
+
+==> Running DoneSpec again. This is expected to pass.
 DoneSpec validation: agent-completion-demo
 
-+ README exists
-+ README was not modified
++ README exists  (0.4ms)
++ README was not modified  (28.2ms)
 
 Validation passed. 2 checks passed.
 Exit code: 0
 ```
 
-On Unicode-capable terminals, DoneSpec may display status glyphs instead of ASCII fallback symbols.
+## What this proves
 
-Both are acceptable.
+DoneSpec validates explicit completion contracts, not confidence.
 
-## Recording guidance
+The demo is deterministic, local, and CI-friendly:
 
-Keep the recording short.
+- it runs in a local temporary project
+- it uses plain `done.json`
+- it depends on git status, not hidden state
+- it exits non-zero when the protected file changes
+- it exits zero after the violation is fixed
+- it cleans up temporary files after execution
 
-Recommended structure:
+For a compact terminal transcript, see [demo-transcript.md](demo-transcript.md).
 
-```text
-0-3s: show done.json contract
-3-7s: simulate forbidden edit
-7-12s: run DoneSpec and show failure
-12-16s: restore file
-16-20s: run DoneSpec and show pass
-```
-
-## Suggested terminal title
-
-```text
-AI said done. DoneSpec said no.
-```
-
-## Suggested caption
-
-```text
-AI agents should not be trusted because they sound confident.
-They should be trusted when deterministic checks pass.
-```
-
-## Suggested social copy
-
-```text
-AI coding agents need a completion gate.
-
-DoneSpec is a tiny local-first validator that checks whether a task is actually done.
-
-No cloud.
-No LLM dependency.
-No orchestration platform.
-
-Just done.json + deterministic checks.
-
-Done means deterministically verified.
-```
-
-## Why this demo matters
-
-The demo shows the entire value proposition:
-
-```text
-agent claim -> contract -> deterministic validation -> trusted result
-```
-
-That is DoneSpec.
-
-Small.
-Local.
-Composable.
-Standard-ready.
+For recording guidance, see [demo-recording.md](demo-recording.md).

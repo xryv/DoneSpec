@@ -47,7 +47,11 @@ Windows PowerShell:
 .\scripts\demo-forbidden-file.ps1
 ```
 
-See [docs/demo.md](docs/demo.md).
+See:
+
+- [docs/demo.md](docs/demo.md)
+- [docs/demo-transcript.md](docs/demo-transcript.md)
+- [docs/demo-recording.md](docs/demo-recording.md)
 
 ---
 
