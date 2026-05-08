@@ -10,6 +10,7 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ### Fixed
 
+- Made human CLI status symbols fall back to ASCII on legacy Windows output streams such as cp1252.
 - Stabilized repository line endings for cross-platform DoneSpec validation.
 - Prevented Windows Git checkout line-ending conversion from causing false `file_not_modified` failures.
 

@@ -19,7 +19,15 @@ from donespec.init_project import (
     initialize_project,
 )
 from donespec.loader import load_spec
-from donespec.output import error_to_json, print_human_report, report_to_json, write_text
+from donespec.output import (
+    error_to_json,
+    print_human_report,
+    report_to_json,
+    safe_symbol_for_console,
+    status_symbol_for_console,
+    status_symbols_for_console,
+    write_text,
+)
 from donespec.schema_command import get_schema_text, write_schema_file
 
 app = typer.Typer(
@@ -168,13 +176,15 @@ def init_command(
 
     if result.created:
         console.print("\n[bold]Created:[/bold]")
+        created_symbol, _ = status_symbols_for_console(console)
         for path in result.created:
-            console.print(f"✓ {path}")
+            console.print(f"{created_symbol} {path}")
 
     if result.overwritten:
         console.print("\n[bold yellow]Overwritten:[/bold yellow]")
+        overwritten_symbol = safe_symbol_for_console(console, "\u21bb", "*")
         for path in result.overwritten:
-            console.print(f"↻ {path}")
+            console.print(f"{overwritten_symbol} {path}")
 
     if result.skipped:
         console.print("\n[bold]Skipped existing files:[/bold]")
@@ -380,8 +390,9 @@ def templates(
 
     console.print("[bold]Available DoneSpec templates[/bold]\n")
 
+    template_symbol, _ = status_symbols_for_console(console)
     for item in items:
-        console.print(f"✓ [bold]{item.name}[/bold] - {item.description}")
+        console.print(f"{template_symbol} [bold]{item.name}[/bold] - {item.description}")
 
     console.print("\nExample:")
     console.print("  donespec init --template python --yes")
@@ -414,7 +425,7 @@ def _print_doctor_report(report: DoctorReport) -> None:
     console.print(f"Root: {report.root}\n")
 
     for check in report.checks:
-        symbol = "✓" if check.passed else "✗"
+        symbol = status_symbol_for_console(console, check.passed)
         style = "green" if check.passed else "red"
         required = " required" if check.required else ""
         details = f"  {check.details}" if check.details else ""

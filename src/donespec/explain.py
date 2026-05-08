@@ -78,8 +78,8 @@ def explain_to_text(explanation: dict[str, Any]) -> str:
     else:
         lines.append("- none")
 
-    _append_group(lines, checks, "must_pass", "Must pass", "✓")
-    _append_group(lines, checks, "must_not", "Must not", "✗")
+    _append_group(lines, checks, "must_pass", "Must pass", "\u2713")
+    _append_group(lines, checks, "must_not", "Must not", "\u2717")
 
     lines.append("")
     lines.append("Recommended gate:")

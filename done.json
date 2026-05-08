@@ -699,6 +699,36 @@
       "pattern": "status_glyphs"
     },
     {
+      "type": "regex_in_file",
+      "name": "Human report detects output stream encoding",
+      "path": "src/donespec/output.py",
+      "pattern": "getattr\\(console, \"file\""
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Human report exposes status symbol fallback",
+      "path": "src/donespec/output.py",
+      "pattern": "status_symbols_for_console"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Human report tests cp1252 stream fallback",
+      "path": "tests/test_output.py",
+      "pattern": "test_print_human_report_uses_ascii_status_symbols_for_cp1252_stream"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Human report cp1252 test rejects Unicode status symbols",
+      "path": "tests/test_output.py",
+      "pattern": "\\\\u2713.*not in stream\\.value"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records Windows ASCII status fallback",
+      "path": "CHANGELOG.md",
+      "pattern": "legacy Windows output streams such as cp1252"
+    },
+    {
       "type": "file_exists",
       "name": "Changelog exists",
       "path": "CHANGELOG.md"
