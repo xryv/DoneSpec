@@ -339,3 +339,19 @@ small
 boring
 trustworthy
 ```
+
+
+## Line ending stability
+
+Windows runners must not rewrite repository text files from LF to CRLF during validation.
+
+The cross-platform workflow configures:
+
+```bash
+git config --global core.autocrlf false
+git config --global core.eol lf
+```
+
+The repository also uses `.gitattributes` to keep text files stable across Windows, Linux, and macOS.
+
+This protects `file_not_modified` checks from false failures caused by line-ending conversion.

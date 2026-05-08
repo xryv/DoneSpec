@@ -8,6 +8,11 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ## Unreleased
 
+### Fixed
+
+- Stabilized repository line endings for cross-platform DoneSpec validation.
+- Prevented Windows Git checkout line-ending conversion from causing false `file_not_modified` failures.
+
 ### Added
 
 - Added automated cross-platform verification workflow for Windows, Linux, and macOS.

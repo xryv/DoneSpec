@@ -1155,6 +1155,47 @@
       "name": "Changelog records cross-platform workflow",
       "path": "CHANGELOG.md",
       "pattern": "Added automated cross-platform verification workflow"
+    },
+    {
+      "type": "file_exists",
+      "name": "Git attributes file exists",
+      "path": ".gitattributes"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Git attributes enforce LF markdown files",
+      "path": ".gitattributes",
+      "pattern": "\\*\\.md text eol=lf"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Git attributes enforce LF JSON files",
+      "path": ".gitattributes",
+      "pattern": "\\*\\.json text eol=lf"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform workflow disables autocrlf",
+      "path": ".github/workflows/cross-platform.yml",
+      "pattern": "core.autocrlf false"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform workflow forces LF endings",
+      "path": ".github/workflows/cross-platform.yml",
+      "pattern": "core.eol lf"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Cross-platform docs explain line ending stability",
+      "path": "docs/cross-platform-verification.md",
+      "pattern": "Line ending stability"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records line ending stabilization",
+      "path": "CHANGELOG.md",
+      "pattern": "Stabilized repository line endings"
     }
   ],
   "must_not": [
