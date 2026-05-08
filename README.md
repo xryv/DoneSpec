@@ -131,7 +131,29 @@ This creates a starter `done.json`, agent instructions, VS Code tasks, and optio
 
 Read the full guide:
 
-[docs/init.md](docs/init.md)
+[docs/init.md
+
+### Inspect project readiness
+
+```bash
+donespec doctor
+```
+
+Use `doctor` to check whether a repository has the expected DoneSpec files, agent instructions, editor tasks, hooks, and CI integration.
+
+Machine-readable output:
+
+```bash
+donespec doctor --json
+```
+
+Read the full guide:
+
+```text
+docs/doctor.md
+```
+
+](docs/init.md)
 
 ## 5. Quick example
 

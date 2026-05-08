@@ -223,6 +223,29 @@
       "name": "Doctor supports JSON output",
       "path": "src/donespec/cli.py",
       "pattern": "report\\.to_dict"
+    },
+    {
+      "type": "file_exists",
+      "name": "Doctor documentation exists",
+      "path": "docs/doctor.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Doctor docs explain donespec doctor",
+      "path": "docs/doctor.md",
+      "pattern": "donespec doctor"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Doctor docs mention JSON output",
+      "path": "docs/doctor.md",
+      "pattern": "donespec doctor --json"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links doctor documentation",
+      "path": "README.md",
+      "pattern": "docs/doctor\\.md"
     }
   ],
   "must_not": [
