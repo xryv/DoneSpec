@@ -697,6 +697,58 @@
       "name": "Safe output tests cover status glyph fallback",
       "path": "tests/test_output.py",
       "pattern": "status_glyphs"
+    },
+    {
+      "type": "file_exists",
+      "name": "Changelog exists",
+      "path": "CHANGELOG.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog documents unreleased section",
+      "path": "CHANGELOG.md",
+      "pattern": "## Unreleased"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog documents v0.7.0",
+      "path": "CHANGELOG.md",
+      "pattern": "## 0\\.7\\.0"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog preserves deterministic philosophy",
+      "path": "CHANGELOG.md",
+      "pattern": "Done means deterministically verified"
+    },
+    {
+      "type": "file_exists",
+      "name": "Release checklist exists",
+      "path": "docs/release-checklist.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Release checklist explains PyPI release",
+      "path": "docs/release-checklist.md",
+      "pattern": "twine upload"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Release checklist requires strict validation",
+      "path": "docs/release-checklist.md",
+      "pattern": "donespec validate done\\.json --strict"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Release checklist protects minimal core",
+      "path": "docs/release-checklist.md",
+      "pattern": "Anti-expansion checklist"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Release checklist includes v1 readiness gate",
+      "path": "docs/release-checklist.md",
+      "pattern": "v1\\.0 readiness gate"
     }
   ],
   "must_not": [
