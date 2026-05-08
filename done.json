@@ -1,0 +1,55 @@
+﻿{
+  "version": "1.0",
+  "task_id": "donespec-self-validation",
+  "must_pass": [
+    {
+      "type": "command",
+      "name": "ruff lint passes",
+      "run": "ruff check ."
+    },
+    {
+      "type": "command",
+      "name": "ruff format passes",
+      "run": "ruff format --check ."
+    },
+    {
+      "type": "command",
+      "name": "pytest passes",
+      "run": "pytest -q"
+    },
+    {
+      "type": "file_exists",
+      "name": "CLI entrypoint exists",
+      "path": "src/donespec/cli.py"
+    },
+    {
+      "type": "file_exists",
+      "name": "GitHub Action exists",
+      "path": "action.yml"
+    },
+    {
+      "type": "file_exists",
+      "name": "JSON schema exists",
+      "path": "done.schema.json"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README contains core philosophy",
+      "path": "README.md",
+      "pattern": "Done means deterministically verified"
+    },
+    {
+      "type": "regex_absent",
+      "name": "No LLM dependencies in packaging",
+      "path": "pyproject.toml",
+      "pattern": "openai|anthropic|langchain|llama-index"
+    }
+  ],
+  "must_not": [
+    {
+      "type": "file_not_modified",
+      "name": "README untouched during validation",
+      "path": "README.md"
+    }
+  ]
+}
