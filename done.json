@@ -201,6 +201,28 @@
       "name": "README links init documentation",
       "path": "README.md",
       "pattern": "docs/init\\.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Doctor module exists",
+      "path": "src/donespec/doctor.py"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "CLI exposes doctor command",
+      "path": "src/donespec/cli.py",
+      "pattern": "@app\\.command\\(\\)"
+    },
+    {
+      "type": "file_exists",
+      "name": "Doctor command tests exist",
+      "path": "tests/test_doctor.py"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Doctor supports JSON output",
+      "path": "src/donespec/cli.py",
+      "pattern": "report\\.to_dict"
     }
   ],
   "must_not": [

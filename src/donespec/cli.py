@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 from typing import Annotated
@@ -8,6 +9,7 @@ import typer
 from rich.console import Console
 
 from donespec import __version__
+from donespec.doctor import DoctorReport, run_doctor
 from donespec.engine import validate_payload
 from donespec.exceptions import SpecValidationError
 from donespec.init_project import AgentMode, initialize_project
@@ -167,3 +169,48 @@ def init_command(
         console.print("3. Optional: install Git hooks")
         console.print("   Windows: .\\scripts\\install-git-hooks.ps1")
         console.print("   Unix:    ./scripts/install-git-hooks.sh")
+
+
+@app.command()
+def doctor(
+    root: Annotated[
+        Path,
+        typer.Argument(help="Project root to inspect."),
+    ] = Path("."),
+    json_output: Annotated[
+        bool,
+        typer.Option("--json", help="Emit machine-readable JSON output."),
+    ] = False,
+) -> None:
+    """Inspect whether a project is DoneSpec-ready."""
+    report = run_doctor(root)
+
+    if json_output:
+        sys.stdout.write(json.dumps(report.to_dict(), indent=2) + "\n")
+    else:
+        _print_doctor_report(report)
+
+    raise typer.Exit(code=0 if report.required_passed else 1)
+
+
+def _print_doctor_report(report: DoctorReport) -> None:
+    console.print("[bold]DoneSpec doctor[/bold]\n")
+    console.print(f"Root: {report.root}\n")
+
+    for check in report.checks:
+        symbol = "✓" if check.passed else "✗"
+        style = "green" if check.passed else "red"
+        required = " required" if check.required else ""
+        details = f"  {check.details}" if check.details else ""
+
+        console.print(f"[{style}]{symbol}[/{style}] {check.name}{required}{details}")
+
+    if report.required_passed:
+        console.print("\n[bold green]Project has the required DoneSpec files.[/bold green]")
+    else:
+        console.print("\n[bold red]Project is missing required DoneSpec files.[/bold red]")
+
+    if report.all_passed:
+        console.print("[bold green]Recommended integration is complete.[/bold green]")
+    else:
+        console.print("[yellow]Some optional integration checks are missing.[/yellow]")
