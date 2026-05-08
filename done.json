@@ -802,6 +802,47 @@
       "name": "README links integrations documentation",
       "path": "README.md",
       "pattern": "docs/integrations\\.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Editor support documentation exists",
+      "path": "docs/editor-support.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Editor support docs explain VS Code schema association",
+      "path": "docs/editor-support.md",
+      "pattern": "VS Code schema association"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Editor support docs mention Cursor",
+      "path": "docs/editor-support.md",
+      "pattern": "Cursor"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Editor support docs include json.schemas",
+      "path": "docs/editor-support.md",
+      "pattern": "json\\.schemas"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Editor support docs map done json to schema",
+      "path": "docs/editor-support.md",
+      "pattern": "done\\.json -> done\\.schema\\.json"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Editor support docs preserve local first positioning",
+      "path": "docs/editor-support.md",
+      "pattern": "local-first"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links editor support documentation",
+      "path": "README.md",
+      "pattern": "docs/editor-support\\.md"
     }
   ],
   "must_not": [

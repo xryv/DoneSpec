@@ -327,6 +327,29 @@ See:
 
 ---
 
+## Editor support
+
+Use `done.schema.json` for editor validation and autocomplete:
+
+```json
+{
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "/done.json"
+      ],
+      "url": "./done.schema.json"
+    }
+  ]
+}
+```
+
+See:
+
+[docs/editor-support.md](docs/editor-support.md)
+
+---
+
 ## Schema support
 
 Export the official JSON Schema:
