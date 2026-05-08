@@ -1,8 +1,8 @@
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 from typing import Annotated
-import sys
 
 import typer
 from rich.console import Console
@@ -55,7 +55,7 @@ def validate(
 ) -> None:
     """Validate a DoneSpec task file."""
     spec_path = spec.resolve()
-    root_dir = (root.resolve() if root else spec_path.parent.resolve())
+    root_dir = root.resolve() if root else spec_path.parent.resolve()
 
     try:
         payload = load_spec(spec_path)
@@ -71,7 +71,7 @@ def validate(
         else:
             console.print(f"[bold red]Spec error:[/bold red] {exc}")
         raise typer.Exit(code=2) from exc
-    except Exception as exc:  # noqa: BLE001 - CLI must fail cleanly
+    except Exception as exc:
         if json_output:
             sys.stdout.write(error_to_json(str(exc)) + "\n")
         else:

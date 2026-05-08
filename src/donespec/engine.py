@@ -8,9 +8,7 @@ from donespec.checkers import get_checker
 from donespec.models import CheckGroup, CheckResult, ValidationContext, ValidationReport
 
 
-def run_check(
-    config: dict[str, Any], group: CheckGroup, context: ValidationContext
-) -> CheckResult:
+def run_check(config: dict[str, Any], group: CheckGroup, context: ValidationContext) -> CheckResult:
     checker_class = get_checker(config["type"])
     checker = checker_class(config=config, group=group, context=context)
     return checker.run()

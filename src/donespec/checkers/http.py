@@ -26,7 +26,7 @@ class HttpCheckChecker(Checker):
         reason: str | None = None
 
         try:
-            with urlopen(request, timeout=timeout_seconds) as response:  # noqa: S310 - user-controlled local validation tool
+            with urlopen(request, timeout=timeout_seconds) as response:
                 status = int(response.status)
                 reason = response.reason
         except HTTPError as exc:

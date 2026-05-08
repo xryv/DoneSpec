@@ -12,7 +12,9 @@ class Checker(ABC):
 
     type_name: str
 
-    def __init__(self, config: dict[str, Any], group: CheckGroup, context: ValidationContext) -> None:
+    def __init__(
+        self, config: dict[str, Any], group: CheckGroup, context: ValidationContext
+    ) -> None:
         self.config = config
         self.group = group
         self.context = context
@@ -53,7 +55,7 @@ def timed(fn):
         started = perf_counter()
         try:
             return fn(self, started)
-        except Exception as exc:  # noqa: BLE001 - checker failures must be reported, not crash the run
+        except Exception as exc:
             duration_ms = (perf_counter() - started) * 1000
             return self.result(
                 passed=False,

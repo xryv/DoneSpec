@@ -9,11 +9,11 @@ from donespec.engine import validate_payload
 
 
 class _Handler(BaseHTTPRequestHandler):
-    def do_GET(self):  # noqa: N802
+    def do_GET(self):
         self.send_response(204)
         self.end_headers()
 
-    def log_message(self, format, *args):  # noqa: A002
+    def log_message(self, format, *args):
         return
 
 
@@ -59,7 +59,9 @@ def test_file_not_modified_detects_forbidden_change(tmp_path: Path):
     target.parent.mkdir()
     target.write_text("export type UserId = string\n", encoding="utf-8")
     subprocess.run(["git", "add", "."], cwd=tmp_path, check=True)
-    subprocess.run(["git", "commit", "-m", "initial"], cwd=tmp_path, check=True, capture_output=True)
+    subprocess.run(
+        ["git", "commit", "-m", "initial"], cwd=tmp_path, check=True, capture_output=True
+    )
 
     target.write_text("export type UserId = number\n", encoding="utf-8")
 

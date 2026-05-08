@@ -34,14 +34,17 @@ class CommandChecker(Checker):
                 passed=False,
                 duration_ms=duration_ms,
                 error=f"Command timed out after {timeout_seconds:g}s",
-                metadata={"command": command, "timeout_seconds": timeout_seconds, "stdout": exc.stdout, "stderr": exc.stderr},
+                metadata={
+                    "command": command,
+                    "timeout_seconds": timeout_seconds,
+                    "stdout": exc.stdout,
+                    "stderr": exc.stderr,
+                },
             )
 
         duration_ms = (perf_counter() - started) * 1000
         passed = completed.returncode == expected_exit_code
-        details = (
-            f"exit_code={completed.returncode}, expected_exit_code={expected_exit_code}"
-        )
+        details = f"exit_code={completed.returncode}, expected_exit_code={expected_exit_code}"
         return self.result(
             passed=passed,
             duration_ms=duration_ms,
