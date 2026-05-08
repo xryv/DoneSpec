@@ -6,10 +6,29 @@
       "type": "shell",
       "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe -m donespec validate done.json",
       "linux": {
-        "command": "${workspaceFolder}/.venv/bin/python -m donespec validate done.json"
+        "command": "${workspaceFolder}/.venv/bin/python -m donespec validate done.json",
+        "options": {
+          "env": {
+            "PATH": "${workspaceFolder}/.venv/bin:${env:PATH}",
+            "VIRTUAL_ENV": "${workspaceFolder}/.venv"
+          }
+        }
       },
       "osx": {
-        "command": "${workspaceFolder}/.venv/bin/python -m donespec validate done.json"
+        "command": "${workspaceFolder}/.venv/bin/python -m donespec validate done.json",
+        "options": {
+          "env": {
+            "PATH": "${workspaceFolder}/.venv/bin:${env:PATH}",
+            "VIRTUAL_ENV": "${workspaceFolder}/.venv"
+          }
+        }
+      },
+      "options": {
+        "env": {
+          "PATH": "${workspaceFolder}\\.venv\\Scripts;${env:PATH}",
+          "Path": "${workspaceFolder}\\.venv\\Scripts;${env:Path}",
+          "VIRTUAL_ENV": "${workspaceFolder}\\.venv"
+        }
       },
       "group": {
         "kind": "test",
@@ -27,10 +46,29 @@
       "type": "shell",
       "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe -m donespec validate done.json --json",
       "linux": {
-        "command": "${workspaceFolder}/.venv/bin/python -m donespec validate done.json --json"
+        "command": "${workspaceFolder}/.venv/bin/python -m donespec validate done.json --json",
+        "options": {
+          "env": {
+            "PATH": "${workspaceFolder}/.venv/bin:${env:PATH}",
+            "VIRTUAL_ENV": "${workspaceFolder}/.venv"
+          }
+        }
       },
       "osx": {
-        "command": "${workspaceFolder}/.venv/bin/python -m donespec validate done.json --json"
+        "command": "${workspaceFolder}/.venv/bin/python -m donespec validate done.json --json",
+        "options": {
+          "env": {
+            "PATH": "${workspaceFolder}/.venv/bin:${env:PATH}",
+            "VIRTUAL_ENV": "${workspaceFolder}/.venv"
+          }
+        }
+      },
+      "options": {
+        "env": {
+          "PATH": "${workspaceFolder}\\.venv\\Scripts;${env:PATH}",
+          "Path": "${workspaceFolder}\\.venv\\Scripts;${env:Path}",
+          "VIRTUAL_ENV": "${workspaceFolder}\\.venv"
+        }
       },
       "problemMatcher": [],
       "presentation": {
