@@ -410,6 +410,35 @@
       "name": "Init generated specs reference schema",
       "path": "src/donespec/init_project.py",
       "pattern": "\\$schema"
+    },
+    {
+      "type": "file_exists",
+      "name": "Schema documentation exists",
+      "path": "docs/schema.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Schema docs explain donespec schema",
+      "path": "docs/schema.md",
+      "pattern": "donespec schema"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Schema docs mention write option",
+      "path": "docs/schema.md",
+      "pattern": "donespec schema --write done\\.schema\\.json"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Schema docs explain schema reference",
+      "path": "docs/schema.md",
+      "pattern": "\\$schema"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links schema documentation",
+      "path": "README.md",
+      "pattern": "docs/schema\\.md"
     }
   ],
   "must_not": [

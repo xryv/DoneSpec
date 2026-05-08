@@ -169,6 +169,20 @@ Read the full guide:
 [docs/templates.md](docs/templates.md)
 
 
+### Use the JSON Schema
+
+```bash
+donespec schema
+donespec schema --write done.schema.json
+```
+
+DoneSpec includes a packaged JSON Schema for `done.json`, enabling editor validation, autocomplete, and safer integration with agents and CI systems.
+
+Read the full guide:
+
+[docs/schema.md](docs/schema.md)
+
+
 ## 5. Quick example
 
 Create `done.json`:
