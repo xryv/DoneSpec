@@ -959,6 +959,70 @@
       "name": "Demo docs mention temporary cleanup",
       "path": "docs/demo.md",
       "pattern": "removes the temporary demo directory"
+    },
+    {
+      "type": "file_exists",
+      "name": "v1 readiness documentation exists",
+      "path": "docs/v1-readiness.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 readiness docs define readiness gate",
+      "path": "docs/v1-readiness.md",
+      "pattern": "DoneSpec v1\\.0 readiness gate"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 readiness docs protect against platform expansion",
+      "path": "docs/v1-readiness.md",
+      "pattern": "No platform expansion"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 readiness docs preserve deterministic positioning",
+      "path": "docs/v1-readiness.md",
+      "pattern": "the deterministic completion layer for AI coding agents"
+    },
+    {
+      "type": "file_exists",
+      "name": "OSS launch documentation exists",
+      "path": "docs/oss-launch.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "OSS launch docs include primary message",
+      "path": "docs/oss-launch.md",
+      "pattern": "AI agents say tasks are done"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "OSS launch docs include deterministic layer positioning",
+      "path": "docs/oss-launch.md",
+      "pattern": "deterministic completion layer"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "OSS launch docs reject platform framing",
+      "path": "docs/oss-launch.md",
+      "pattern": "Do not claim DoneSpec"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links v1 readiness documentation",
+      "path": "README.md",
+      "pattern": "docs/v1-readiness\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links OSS launch documentation",
+      "path": "README.md",
+      "pattern": "docs/oss-launch\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records v1 readiness documentation",
+      "path": "CHANGELOG.md",
+      "pattern": "Added v1 readiness documentation"
     }
   ],
   "must_not": [

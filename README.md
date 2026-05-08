@@ -485,6 +485,17 @@ See:
 
 ---
 
+## v1.0 readiness
+
+DoneSpec v1.0 is a stabilization milestone, not a platform expansion.
+
+See:
+
+- [docs/v1-readiness.md](docs/v1-readiness.md)
+- [docs/oss-launch.md](docs/oss-launch.md)
+
+---
+
 ## Roadmap to v1.0
 
 The core is already capable.

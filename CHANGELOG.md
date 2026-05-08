@@ -10,6 +10,11 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ### Added
 
+- Added v1 readiness documentation.
+- Added OSS launch preparation documentation.
+
+### Added
+
 - Added demo experience guide.
 - Added forbidden-file demo scripts for PowerShell and Unix shells.
 
