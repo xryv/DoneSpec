@@ -61,13 +61,17 @@ def validate(
         bool,
         typer.Option("--fail-fast", help="Stop after the first failed check."),
     ] = False,
+    strict: Annotated[
+        bool,
+        typer.Option("--strict", help="Enable strict semantic validation of done.json."),
+    ] = False,
 ) -> None:
     """Validate a DoneSpec task file."""
     spec_path = spec.resolve()
     root_dir = root.resolve() if root else spec_path.parent.resolve()
 
     try:
-        payload = load_spec(spec_path)
+        payload = load_spec(spec_path, strict=strict)
         report = validate_payload(
             payload,
             spec_path=spec_path,

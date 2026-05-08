@@ -439,6 +439,46 @@
       "name": "README links schema documentation",
       "path": "README.md",
       "pattern": "docs/schema\\.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Strict validation module exists",
+      "path": "src/donespec/strict.py"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "CLI exposes strict validation option",
+      "path": "src/donespec/cli.py",
+      "pattern": "--strict"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Loader supports strict validation",
+      "path": "src/donespec/loader.py",
+      "pattern": "validate_strict_payload"
+    },
+    {
+      "type": "file_exists",
+      "name": "Strict validation tests exist",
+      "path": "tests/test_strict_validation.py"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Strict tests cover duplicate names",
+      "path": "tests/test_strict_validation.py",
+      "pattern": "duplicate check name"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Strict tests cover invalid regex",
+      "path": "tests/test_strict_validation.py",
+      "pattern": "regex pattern is invalid"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Strict tests cover absolute paths",
+      "path": "tests/test_strict_validation.py",
+      "pattern": "path must be relative"
     }
   ],
   "must_not": [

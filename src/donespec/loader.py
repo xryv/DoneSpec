@@ -6,9 +6,10 @@ from typing import Any
 
 from donespec.exceptions import SpecValidationError
 from donespec.schema import validate_spec_payload
+from donespec.strict import validate_strict_payload
 
 
-def load_spec(path: Path) -> dict[str, Any]:
+def load_spec(path: Path, *, strict: bool = False) -> dict[str, Any]:
     if not path.exists():
         raise SpecValidationError(f"Spec file not found: {path}")
 
@@ -21,6 +22,8 @@ def load_spec(path: Path) -> dict[str, Any]:
         raise SpecValidationError("Invalid done.json: root value must be an object")
 
     validate_spec_payload(payload)
+    if strict:
+        validate_strict_payload(payload)
     payload.setdefault("must_pass", [])
     payload.setdefault("must_not", [])
     return payload
