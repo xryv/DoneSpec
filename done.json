@@ -156,6 +156,28 @@
       "name": "README links agent integration guide",
       "path": "README.md",
       "pattern": "docs/agent-integration\\.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Init project module exists",
+      "path": "src/donespec/init_project.py"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "CLI exposes init command",
+      "path": "src/donespec/cli.py",
+      "pattern": "@app\\.command\\(name=\"init\"\\)"
+    },
+    {
+      "type": "file_exists",
+      "name": "Init command tests exist",
+      "path": "tests/test_init_project.py"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Init tests cover force overwrite",
+      "path": "tests/test_init_project.py",
+      "pattern": "--force"
     }
   ],
   "must_not": [

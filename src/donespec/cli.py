@@ -10,6 +10,7 @@ from rich.console import Console
 from donespec import __version__
 from donespec.engine import validate_payload
 from donespec.exceptions import SpecValidationError
+from donespec.init_project import AgentMode, initialize_project
 from donespec.loader import load_spec
 from donespec.output import error_to_json, print_human_report, report_to_json
 
@@ -84,3 +85,85 @@ def validate(
         print_human_report(report, console=console)
 
     raise typer.Exit(code=report.exit_code)
+
+
+@app.command(name="init")
+def init_command(
+    root: Annotated[
+        Path,
+        typer.Argument(help="Project root to initialize."),
+    ] = Path("."),
+    agent: Annotated[
+        AgentMode,
+        typer.Option(
+            "--agent",
+            case_sensitive=False,
+            help="Agent instruction mode: all, codex, claude, or none.",
+        ),
+    ] = AgentMode.all,
+    with_vscode: Annotated[
+        bool,
+        typer.Option(
+            "--with-vscode/--no-vscode",
+            help="Create VS Code tasks.",
+        ),
+    ] = True,
+    with_hooks: Annotated[
+        bool,
+        typer.Option(
+            "--with-hooks/--no-hooks",
+            help="Create Git hook files and installers.",
+        ),
+    ] = True,
+    force: Annotated[
+        bool,
+        typer.Option(
+            "--force",
+            help="Overwrite existing DoneSpec files.",
+        ),
+    ] = False,
+    yes: Annotated[
+        bool,
+        typer.Option(
+            "--yes",
+            "-y",
+            help="Run non-interactively with defaults.",
+        ),
+    ] = False,
+) -> None:
+    """Initialize DoneSpec files in a project."""
+    _ = yes
+
+    result = initialize_project(
+        root,
+        agent=agent,
+        with_vscode=with_vscode,
+        with_hooks=with_hooks,
+        force=force,
+    )
+
+    console.print("[bold green]DoneSpec project initialized.[/bold green]")
+
+    if result.created:
+        console.print("\n[bold]Created:[/bold]")
+        for path in result.created:
+            console.print(f"✓ {path}")
+
+    if result.overwritten:
+        console.print("\n[bold yellow]Overwritten:[/bold yellow]")
+        for path in result.overwritten:
+            console.print(f"↻ {path}")
+
+    if result.skipped:
+        console.print("\n[bold]Skipped existing files:[/bold]")
+        for path in result.skipped:
+            console.print(f"- {path}")
+
+    console.print("\n[bold]Next steps:[/bold]")
+    console.print("1. Review done.json")
+    console.print("2. Run: donespec validate done.json")
+
+    if with_hooks:
+        console.print("3. Optional: install Git hooks")
+        console.print("   Windows: .\\scripts\\install-git-hooks.ps1")
+        console.print("   Unix:    ./scripts/install-git-hooks.sh")
