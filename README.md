@@ -1,10 +1,19 @@
-# DoneSpec
+﻿# DoneSpec
+
+[![PyPI version](https://img.shields.io/pypi/v/donespec.svg)](https://pypi.org/project/donespec/)
+[![Python versions](https://img.shields.io/pypi/pyversions/donespec.svg)](https://pypi.org/project/donespec/)
+[![CI](https://github.com/xryv/DoneSpec/actions/workflows/ci.yml/badge.svg)](https://github.com/xryv/DoneSpec/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/xryv/DoneSpec.svg)](https://github.com/xryv/DoneSpec/blob/main/LICENSE)
 
 > Done means deterministically verified.
 
 DoneSpec is a tiny CLI for validating whether an AI coding agent actually completed a task.
 
 It reads a machine-readable `done.json`, executes deterministic checks, and exits with `0` only when the task is verifiably complete.
+
+```bash
+pip install donespec
+```
 
 ```bash
 donespec validate done.json
@@ -79,6 +88,12 @@ It is developer infrastructure.
 
 ## 4. Installation
 
+### pip
+
+```bash
+pip install donespec
+```
+
 ### pipx
 
 ```bash
@@ -94,8 +109,8 @@ uv tool install donespec
 ### from source
 
 ```bash
-git clone https://github.com/donespec/donespec.git
-cd donespec
+git clone https://github.com/xryv/DoneSpec.git
+cd DoneSpec
 python -m pip install -e ".[dev]"
 ```
 
@@ -274,7 +289,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: donespec/action@v1
+      - uses: xryv/DoneSpec@v0.1.0
         with:
           spec: done.json
           root: .
@@ -337,6 +352,7 @@ Not in the MVP:
 ```text
 .
 ├── action.yml
+├── done.json
 ├── done.schema.json
 ├── docs/
 ├── examples/
@@ -360,6 +376,27 @@ python -m pip install -e ".[dev]"
 ruff check .
 ruff format .
 pytest
+donespec validate done.json
+```
+
+## Release
+
+DoneSpec `v0.1.0` is available on PyPI:
+
+```bash
+pip install donespec
+```
+
+GitHub release:
+
+```text
+https://github.com/xryv/DoneSpec/releases/tag/v0.1.0
+```
+
+PyPI package:
+
+```text
+https://pypi.org/project/donespec/
 ```
 
 ## License
