@@ -88,6 +88,28 @@
       "name": "CI runs DoneSpec self-validation",
       "path": ".github/workflows/ci.yml",
       "pattern": "donespec validate done\\.json"
+    },
+    {
+      "type": "file_exists",
+      "name": "Git pre-push hook exists",
+      "path": ".githooks/pre-push"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Git pre-push hook runs DoneSpec",
+      "path": ".githooks/pre-push",
+      "pattern": "donespec validate done\\.json"
+    },
+    {
+      "type": "file_exists",
+      "name": "Git hooks installer exists",
+      "path": "scripts/install-git-hooks.ps1"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Git hooks installer configures hooks path",
+      "path": "scripts/install-git-hooks.ps1",
+      "pattern": "core\\.hooksPath"
     }
   ],
   "must_not": [

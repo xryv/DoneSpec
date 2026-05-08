@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+set -eu
+
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+if [ -x ".venv/Scripts/python.exe" ]; then
+  export PATH="$ROOT/.venv/Scripts:$PATH"
+  PYTHON=".venv/Scripts/python.exe"
+elif [ -x ".venv/bin/python" ]; then
+  export PATH="$ROOT/.venv/bin:$PATH"
+  PYTHON=".venv/bin/python"
+else
+  PYTHON="python"
+fi
+
+echo "[DoneSpec] Running pre-push validation..."
+"$PYTHON" -m donespec validate done.json
+
+echo "[DoneSpec] Pre-push validation passed."
