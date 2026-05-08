@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "task_id": "update-install-docs",
+  "description": "Validate docs-only completion.",
+  "must_pass": [
+    {
+      "type": "file_exists",
+      "name": "installation docs exist",
+      "path": "docs/installation.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "uv install path documented",
+      "path": "docs/installation.md",
+      "pattern": "uv tool install"
+    }
+  ],
+  "must_not": [
+    {
+      "type": "file_not_modified",
+      "name": "source code untouched",
+      "path": "src"
+    }
+  ]
+}

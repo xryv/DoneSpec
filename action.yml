@@ -1,0 +1,51 @@
+name: "DoneSpec Validate"
+description: "Run deterministic DoneSpec validation in CI."
+author: "DoneSpec Contributors"
+
+inputs:
+  spec:
+    description: "Path to done.json"
+    required: false
+    default: "done.json"
+  root:
+    description: "Project root used for relative paths and commands"
+    required: false
+    default: "."
+  version:
+    description: "DoneSpec version to install from PyPI"
+    required: false
+    default: "donespec"
+  json:
+    description: "Emit JSON output"
+    required: false
+    default: "false"
+  fail-fast:
+    description: "Stop after first failed check"
+    required: false
+    default: "false"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install DoneSpec
+      shell: bash
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install "${{ inputs.version }}"
+
+    - name: Validate DoneSpec
+      shell: bash
+      run: |
+        args=("${{ inputs.spec }}" "--root" "${{ inputs.root }}")
+        if [[ "${{ inputs.json }}" == "true" ]]; then
+          args+=("--json")
+        fi
+        if [[ "${{ inputs.fail-fast }}" == "true" ]]; then
+          args+=("--fail-fast")
+        fi
+        donespec validate "${args[@]}"

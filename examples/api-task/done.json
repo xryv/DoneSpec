@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "task_id": "add-health-endpoint",
+  "description": "Validate that the API exposes a deterministic health endpoint.",
+  "must_pass": [
+    {
+      "type": "command",
+      "name": "API tests pass",
+      "run": "pytest tests/api"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "health route exists",
+      "path": "src/api/routes.py",
+      "pattern": "/health"
+    },
+    {
+      "type": "http_check",
+      "name": "health endpoint returns 200",
+      "url": "http://127.0.0.1:8000/health",
+      "expected_status": 200,
+      "timeout_seconds": 3
+    }
+  ]
+}

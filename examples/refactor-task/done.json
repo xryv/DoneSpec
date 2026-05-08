@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "task_id": "refactor-user-service",
+  "description": "Validate an internal refactor without API drift.",
+  "must_pass": [
+    {
+      "type": "command",
+      "name": "unit tests pass",
+      "run": "pytest tests/unit"
+    },
+    {
+      "type": "regex_absent",
+      "name": "no debug prints remain",
+      "path": "src/user_service.py",
+      "pattern": "print\\("
+    }
+  ],
+  "must_not": [
+    {
+      "type": "file_not_modified",
+      "name": "public API contract untouched",
+      "path": "src/public_api.py"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "donespec"
+version = "0.1.0"
+description = "Deterministic validation for AI agent task completion."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+authors = [
+  { name = "DoneSpec Contributors" }
+]
+keywords = [
+  "ai-agents",
+  "cli",
+  "ci",
+  "developer-tools",
+  "validation",
+  "testing",
+  "deterministic"
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Quality Assurance",
+  "Topic :: Software Development :: Testing"
+]
+dependencies = [
+  "jsonschema>=4.22.0",
+  "pydantic>=2.7.0",
+  "rich>=13.7.0",
+  "typer>=0.12.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2.0",
+  "ruff>=0.5.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/donespec/donespec"
+Repository = "https://github.com/donespec/donespec"
+Issues = "https://github.com/donespec/donespec/issues"
+
+[project.scripts]
+donespec = "donespec.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/donespec"]
+include = [
+  "src/donespec/schemas/*.json"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"

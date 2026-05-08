@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "task_id": "fix-auth-bug",
+  "description": "Validate that the auth redirect bug is fixed without touching shared types.",
+  "must_pass": [
+    {
+      "type": "command",
+      "name": "npm tests passed",
+      "run": "npm test"
+    },
+    {
+      "type": "file_exists",
+      "name": "auth.ts exists",
+      "path": "src/auth.ts"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "returnTo is implemented",
+      "path": "src/auth.ts",
+      "pattern": "returnTo"
+    }
+  ],
+  "must_not": [
+    {
+      "type": "file_not_modified",
+      "name": "shared types untouched",
+      "path": "src/types.ts"
+    }
+  ]
+}
