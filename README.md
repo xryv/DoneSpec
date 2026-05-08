@@ -371,6 +371,8 @@ Create DoneSpec files in a project. See [docs/init.md](docs/init.md).
 
 Editor support is documented in [docs/editor-support.md](docs/editor-support.md).
 
+CLI output principles are documented in [docs/cli-ux.md](docs/cli-ux.md).
+
 ---
 
 ## Reliability And Field Notes

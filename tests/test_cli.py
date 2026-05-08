@@ -10,6 +10,20 @@ from donespec.cli import app
 runner = CliRunner()
 
 
+def test_root_help_includes_stable_command_descriptions() -> None:
+    result = runner.invoke(app, ["--help"])
+
+    assert result.exit_code == 0, result.output
+    assert "Deterministic completion validation for local development and CI." in result.output
+    assert "Validate a DoneSpec task file." in result.output
+    assert "Initialize DoneSpec files in a project." in result.output
+    assert "Explain a DoneSpec task file without executing checks." in result.output
+    assert "Safely add a check to a DoneSpec contract." in result.output
+    assert "Print or write the DoneSpec JSON Schema." in result.output
+    assert "List available DoneSpec init templates." in result.output
+    assert "Inspect whether a project is DoneSpec-ready." in result.output
+
+
 def test_validate_json_output(tmp_path: Path):
     (tmp_path / "src").mkdir()
     (tmp_path / "src" / "auth.ts").write_text("returnTo\n", encoding="utf-8")

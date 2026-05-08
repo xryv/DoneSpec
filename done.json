@@ -701,6 +701,59 @@
       "pattern": "CONTRIBUTING\\.md"
     },
     {
+      "type": "file_exists",
+      "name": "CLI UX documentation exists",
+      "path": "docs/cli-ux.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "CLI UX docs mention stable exit codes",
+      "path": "docs/cli-ux.md",
+      "pattern": "Stable exit codes"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "CLI UX docs mention no hidden network calls",
+      "path": "docs/cli-ux.md",
+      "pattern": "No hidden network calls"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "CLI UX docs mention Windows-safe output",
+      "path": "docs/cli-ux.md",
+      "pattern": "Windows-safe output"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "CLI UX docs mention JSON output",
+      "path": "docs/cli-ux.md",
+      "pattern": "JSON output"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links CLI UX documentation",
+      "path": "README.md",
+      "pattern": "docs/cli-ux\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records CLI UX documentation",
+      "path": "CHANGELOG.md",
+      "pattern": "Added CLI UX documentation"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "CLI help uses stable root description",
+      "path": "src/donespec/cli.py",
+      "pattern": "Deterministic completion validation for local development and CI"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "CLI tests cover stable help descriptions",
+      "path": "tests/test_cli.py",
+      "pattern": "test_root_help_includes_stable_command_descriptions"
+    },
+    {
       "type": "regex_in_file",
       "name": "Changelog records README v1 polish",
       "path": "CHANGELOG.md",

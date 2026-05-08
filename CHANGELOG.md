@@ -10,9 +10,14 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ### Added
 
+- Added CLI UX documentation for v1.0 output and automation principles.
 - Added polished demo transcript and recording guide for v1.0 launch readiness.
 - Added v1.0 README polish for clearer positioning, quickstart, examples, architecture, reliability notes, and contribution gates.
 - Added first real Codex + VS Code DoneSpec field note.
+
+### Changed
+
+- Refined CLI wording consistency for v1.0 readiness.
 
 ### Fixed
 

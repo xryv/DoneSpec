@@ -32,7 +32,7 @@ from donespec.schema_command import get_schema_text, write_schema_file
 
 app = typer.Typer(
     name="donespec",
-    help="Deterministic validation for AI agent task completion.",
+    help="Deterministic completion validation for local development and CI.",
     no_args_is_help=True,
 )
 console = Console(stderr=False)
