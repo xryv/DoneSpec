@@ -54,6 +54,17 @@
       "name": "Agent instructions require DoneSpec validation",
       "path": "AGENTS.md",
       "pattern": "donespec validate done\\.json"
+    },
+    {
+      "type": "file_exists",
+      "name": "VS Code tasks exist",
+      "path": ".vscode/tasks.json"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "VS Code task runs DoneSpec validation",
+      "path": ".vscode/tasks.json",
+      "pattern": "donespec validate done\\.json"
     }
   ],
   "must_not": [
