@@ -565,6 +565,63 @@
       "name": "README links explain documentation",
       "path": "README.md",
       "pattern": "docs/explain\\.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Authoring command module exists",
+      "path": "src/donespec/author.py"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "CLI exposes add-check command",
+      "path": "src/donespec/cli.py",
+      "pattern": "def add_check"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Add-check command calls author module",
+      "path": "src/donespec/cli.py",
+      "pattern": "add_check_to_file"
+    },
+    {
+      "type": "file_exists",
+      "name": "Authoring command tests exist",
+      "path": "tests/test_author_command.py"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Authoring tests cover file_exists",
+      "path": "tests/test_author_command.py",
+      "pattern": "file_exists"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Authoring tests cover command checks",
+      "path": "tests/test_author_command.py",
+      "pattern": "pytest -q"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Authoring tests cover duplicate rejection",
+      "path": "tests/test_author_command.py",
+      "pattern": "duplicate check name"
+    },
+    {
+      "type": "file_exists",
+      "name": "Authoring documentation exists",
+      "path": "docs/authoring.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Authoring docs explain add-check",
+      "path": "docs/authoring.md",
+      "pattern": "donespec add-check"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links authoring documentation",
+      "path": "README.md",
+      "pattern": "docs/authoring\\.md"
     }
   ],
   "must_not": [

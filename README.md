@@ -210,6 +210,19 @@ Read the full guide:
 [docs/explain.md](docs/explain.md)
 
 
+### Author contracts safely
+
+```bash
+donespec add-check done.json --type file_exists --name "README exists" --path README.md
+```
+
+DoneSpec can safely add checks to an existing `done.json`, validating the updated contract before writing it.
+
+Read the full guide:
+
+[docs/authoring.md](docs/authoring.md)
+
+
 ## 5. Quick example
 
 Create `done.json`:

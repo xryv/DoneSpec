@@ -234,6 +234,101 @@ def explain(
     raise typer.Exit(code=0)
 
 
+@app.command(name="add-check")
+def add_check(
+    spec: Annotated[
+        Path,
+        typer.Argument(help="Path to done.json to update."),
+    ],
+    check_type: Annotated[
+        str,
+        typer.Option("--type", help="Check type to add."),
+    ],
+    name: Annotated[
+        str,
+        typer.Option("--name", help="Unique check name."),
+    ],
+    group: Annotated[
+        str,
+        typer.Option("--group", help="Target group: must_pass or must_not."),
+    ] = "must_pass",
+    check_id: Annotated[
+        str | None,
+        typer.Option("--id", help="Optional unique check id."),
+    ] = None,
+    path: Annotated[
+        str | None,
+        typer.Option("--path", help="Path used by file and regex checks."),
+    ] = None,
+    pattern: Annotated[
+        str | None,
+        typer.Option("--pattern", help="Regex pattern used by regex checks."),
+    ] = None,
+    run: Annotated[
+        str | None,
+        typer.Option("--run", help="Command used by command checks."),
+    ] = None,
+    url: Annotated[
+        str | None,
+        typer.Option("--url", help="URL used by http_check checks."),
+    ] = None,
+    method: Annotated[
+        str,
+        typer.Option("--method", help="HTTP method used by http_check checks."),
+    ] = "GET",
+    expected_status: Annotated[
+        int,
+        typer.Option("--expected-status", help="Expected HTTP status for http_check."),
+    ] = 200,
+    expected_exit_code: Annotated[
+        int,
+        typer.Option("--expected-exit-code", help="Expected exit code for command checks."),
+    ] = 0,
+    timeout_seconds: Annotated[
+        float | None,
+        typer.Option("--timeout-seconds", help="Optional timeout in seconds."),
+    ] = None,
+    flags: Annotated[
+        list[str] | None,
+        typer.Option("--flag", help="Regex flag. Can be passed multiple times."),
+    ] = None,
+    headers_json: Annotated[
+        str | None,
+        typer.Option("--headers-json", help="HTTP headers as a JSON object."),
+    ] = None,
+) -> None:
+    """Safely add a check to a DoneSpec contract."""
+    from donespec.author import add_check_to_file
+
+    try:
+        result = add_check_to_file(
+            spec,
+            group=group,
+            check_type=check_type,
+            name=name,
+            check_id=check_id,
+            path=path,
+            pattern=pattern,
+            run=run,
+            url=url,
+            method=method,
+            expected_status=expected_status,
+            expected_exit_code=expected_exit_code,
+            timeout_seconds=timeout_seconds,
+            flags=flags,
+            headers_json=headers_json,
+        )
+    except SpecValidationError as exc:
+        console.print(f"[bold red]Spec error:[/bold red] {exc}")
+        raise typer.Exit(code=2) from exc
+
+    console.print("[bold green]DoneSpec check added.[/bold green]")
+    console.print(f"Spec: {result.spec_path}")
+    console.print(f"Group: {result.group}")
+    console.print(f"Type: {result.check['type']}")
+    console.print(f"Name: {result.check['name']}")
+
+
 @app.command(name="schema")
 def schema_command(
     write_path: Annotated[
