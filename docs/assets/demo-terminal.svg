@@ -1,0 +1,20 @@
+﻿<svg width="960" height="540" viewBox="0 0 960 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="540" rx="28" fill="#0B1020"/>
+  <rect x="32" y="32" width="896" height="476" rx="18" fill="#111827" stroke="#263244"/>
+  <circle cx="64" cy="60" r="7" fill="#EF4444"/>
+  <circle cx="88" cy="60" r="7" fill="#F59E0B"/>
+  <circle cx="112" cy="60" r="7" fill="#10B981"/>
+
+  <text x="56" y="118" fill="#94A3B8" font-size="22" font-family="Consolas, monospace">$ agent: task complete</text>
+  <text x="56" y="162" fill="#E5E7EB" font-size="22" font-family="Consolas, monospace">$ donespec validate done.json --strict</text>
+
+  <text x="56" y="220" fill="#F87171" font-size="22" font-family="Consolas, monospace">✗ README untouched during validation</text>
+  <text x="84" y="256" fill="#94A3B8" font-size="20" font-family="Consolas, monospace">Forbidden path modified: README.md</text>
+
+  <text x="56" y="314" fill="#94A3B8" font-size="22" font-family="Consolas, monospace">$ agent: fixed contract violation</text>
+  <text x="56" y="358" fill="#E5E7EB" font-size="22" font-family="Consolas, monospace">$ donespec validate done.json --strict</text>
+
+  <text x="56" y="416" fill="#34D399" font-size="22" font-family="Consolas, monospace">✓ Validation passed. 111 checks passed.</text>
+
+  <text x="56" y="468" fill="#CBD5E1" font-size="20" font-family="Consolas, monospace">AI agents say tasks are done. DoneSpec verifies they actually are.</text>
+</svg>

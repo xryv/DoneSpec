@@ -622,6 +622,53 @@
       "name": "README links authoring documentation",
       "path": "README.md",
       "pattern": "docs/authoring\\.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "README demo terminal asset exists",
+      "path": "docs/assets/demo-terminal.svg"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README opens with agent completion positioning",
+      "path": "README.md",
+      "pattern": "AI agents say tasks are done"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README positions deterministic completion layer",
+      "path": "README.md",
+      "pattern": "deterministic completion layer"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README includes 60-second quickstart",
+      "path": "README.md",
+      "pattern": "60-second quickstart"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README includes GitHub Action usage",
+      "path": "README.md",
+      "pattern": "xryv/DoneSpec@v"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README explains deterministic validation matters",
+      "path": "README.md",
+      "pattern": "Why deterministic validation matters"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README documents supported checks",
+      "path": "README.md",
+      "pattern": "Supported checks"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README includes v1 roadmap",
+      "path": "README.md",
+      "pattern": "Roadmap to v1\\.0"
     }
   ],
   "must_not": [
