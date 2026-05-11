@@ -1125,6 +1125,41 @@
     },
     {
       "type": "file_exists",
+      "name": "v1 freeze report exists",
+      "path": "docs/v1-freeze-report.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 freeze report includes deterministic completion layer positioning",
+      "path": "docs/v1-freeze-report.md",
+      "pattern": "deterministic completion layer for AI coding agents"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 freeze report rejects platform framing",
+      "path": "docs/v1-freeze-report.md",
+      "pattern": "not an orchestration platform"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 freeze report includes release freeze recommendation",
+      "path": "docs/v1-freeze-report.md",
+      "pattern": "Recommendation: DoneSpec is ready to enter v1\\.0 release freeze"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links v1 freeze report",
+      "path": "README.md",
+      "pattern": "docs/v1-freeze-report\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records v1 freeze report",
+      "path": "CHANGELOG.md",
+      "pattern": "Added final v1\\.0 freeze report"
+    },
+    {
+      "type": "file_exists",
       "name": "v1 release runbook exists",
       "path": "docs/v1-release-runbook.md"
     },

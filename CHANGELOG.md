@@ -10,6 +10,7 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ### Added
 
+- Added final v1.0 freeze report.
 - Added v1 OSS launch asset drafts.
 - Added public verification badges and README verification summary for v1 readiness.
 - Added package verification workflow for v1 release readiness.

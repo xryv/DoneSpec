@@ -415,6 +415,7 @@ DoneSpec v1.0 is a stabilization milestone, not a platform expansion.
 See:
 
 - [docs/v1-readiness.md](docs/v1-readiness.md)
+- [docs/v1-freeze-report.md](docs/v1-freeze-report.md)
 - [docs/v1-release-candidate-audit.md](docs/v1-release-candidate-audit.md)
 - [docs/v1-release-runbook.md](docs/v1-release-runbook.md)
 - [docs/launch/README.md](docs/launch/README.md)
