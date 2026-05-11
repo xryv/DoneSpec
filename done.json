@@ -966,6 +966,76 @@
     },
     {
       "type": "file_exists",
+      "name": "v1 release candidate audit exists",
+      "path": "docs/v1-release-candidate-audit.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release candidate audit defines product definition",
+      "path": "docs/v1-release-candidate-audit.md",
+      "pattern": "## Product definition"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release candidate audit lists non-goals",
+      "path": "docs/v1-release-candidate-audit.md",
+      "pattern": "## Non-goals"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release candidate audit lists validation gates",
+      "path": "docs/v1-release-candidate-audit.md",
+      "pattern": "## Validation gates"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release candidate audit lists release blockers",
+      "path": "docs/v1-release-candidate-audit.md",
+      "pattern": "## Release blockers"
+    },
+    {
+      "type": "file_exists",
+      "name": "v1 release draft exists",
+      "path": "docs/releases/v1.0.0-draft.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release draft includes installation section",
+      "path": "docs/releases/v1.0.0-draft.md",
+      "pattern": "## Installation"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release draft includes stability promise",
+      "path": "docs/releases/v1.0.0-draft.md",
+      "pattern": "## Stability promise"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release draft says what DoneSpec is not",
+      "path": "docs/releases/v1.0.0-draft.md",
+      "pattern": "## What DoneSpec is not"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links v1 release candidate audit",
+      "path": "README.md",
+      "pattern": "docs/v1-release-candidate-audit\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links v1 release draft",
+      "path": "README.md",
+      "pattern": "docs/releases/v1\\.0\\.0-draft\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records v1 release candidate audit",
+      "path": "CHANGELOG.md",
+      "pattern": "Added v1\\.0 release candidate audit documentation"
+    },
+    {
+      "type": "file_exists",
       "name": "Integrations documentation exists",
       "path": "docs/integrations.md"
     },

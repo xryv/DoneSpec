@@ -10,6 +10,8 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ### Added
 
+- Added v1.0 release candidate audit documentation.
+- Added v1.0 GitHub release notes draft.
 - Added package smoke-test documentation for local wheel and PyPI install verification.
 - Added copy-paste integration examples for Codex, Claude Code, Cursor, Aider, OpenAI Agents SDK, and GitHub Actions.
 - Added CLI UX documentation for v1.0 output and automation principles.
