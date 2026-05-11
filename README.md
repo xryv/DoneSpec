@@ -6,6 +6,8 @@
 
 The deterministic completion layer for AI coding agents.
 
+Current release: `v1.0.0`.
+
 [![CI](https://github.com/xryv/DoneSpec/actions/workflows/ci.yml/badge.svg)](https://github.com/xryv/DoneSpec/actions/workflows/ci.yml)
 [![Cross-platform verification](https://github.com/xryv/DoneSpec/actions/workflows/cross-platform.yml/badge.svg)](https://github.com/xryv/DoneSpec/actions/workflows/cross-platform.yml)
 [![Package verification](https://github.com/xryv/DoneSpec/actions/workflows/package-verification.yml/badge.svg)](https://github.com/xryv/DoneSpec/actions/workflows/package-verification.yml)
@@ -422,7 +424,7 @@ See:
 - [docs/launch/README.md](docs/launch/README.md)
 - [docs/oss-launch.md](docs/oss-launch.md)
 - [docs/release-checklist.md](docs/release-checklist.md)
-- [docs/releases/v1.0.0-draft.md](docs/releases/v1.0.0-draft.md)
+- [docs/releases/v1.0.0.md](docs/releases/v1.0.0.md)
 
 ---
 
@@ -461,3 +463,14 @@ donespec validate done.json --strict
 Contributions should protect the minimal core: determinism, clear CLI behavior, stable schema, cross-platform behavior, and documentation quality.
 
 Avoid changes that turn DoneSpec into an orchestration platform, AI framework, SaaS service, agent runtime, workflow engine, plugin marketplace, or memory layer.
+
+## v1.0 release status
+
+DoneSpec v1.0.0 is the first stable public release.
+
+See:
+
+* [docs/v1-release-completion.md](docs/v1-release-completion.md)
+
+---
+

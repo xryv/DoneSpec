@@ -8,21 +8,29 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ## Unreleased
 
-### Release candidate
+### Fixed
 
-- Prepared DoneSpec v1.0.0 release candidate metadata.
+* Aligned public documentation with the released DoneSpec v1.0.0 state.
+* Replaced stale v1.0.0 public references with v1.0.0 release references.
+* Added the v1.0.0 release completion report.
+
+## v1.0.0 - 2026-05-11
+
+### Release
+
+- Prepared DoneSpec v1.0.0 release metadata.
 - Confirmed local validation, strict validation, package verification, cross-platform workflow coverage, and launch documentation readiness.
 
 ### Added
 
 - Added v1.0 GitHub Actions verification report.
 - Added final v1.0 freeze report.
-- Added v1 OSS launch asset drafts.
+- Added v1 OSS launch assets.
 - Added public verification badges and README verification summary for v1 readiness.
 - Added package verification workflow for v1 release readiness.
 - Added final v1.0 release runbook.
-- Added v1.0 release candidate audit documentation.
-- Added v1.0 GitHub release notes draft.
+- Added v1.0 release audit documentation.
+- Added v1.0 GitHub release notes.
 - Added package smoke-test documentation for local wheel and PyPI install verification.
 - Added copy-paste integration examples for Codex, Claude Code, Cursor, Aider, OpenAI Agents SDK, and GitHub Actions.
 - Added CLI UX documentation for v1.0 output and automation principles.

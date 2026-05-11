@@ -1,8 +1,8 @@
 # DoneSpec v1.0 launch assets
 
-These files are draft launch assets for a future DoneSpec v1.0 release.
+These files are launch assets for a DoneSpec v1.0.0 release.
 
-No publication has happened from this directory. These drafts are preparation material for maintainers to review, edit, and paste into the appropriate channels only after the release gates pass.
+Publication has happened through the v1.0.0 release. These drafts are preparation material for maintainers to review, edit, and paste into the appropriate channels after the release gates pass.
 
 Keep every claim conservative:
 

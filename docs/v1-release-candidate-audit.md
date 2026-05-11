@@ -1,6 +1,6 @@
-# DoneSpec v1.0 release candidate audit
+# DoneSpec v1.0 release audit
 
-This document audits DoneSpec as a v1.0 release candidate.
+This document audits DoneSpec as a v1.0 release.
 
 It does not declare v1.0 released. It defines the gates that must pass before DoneSpec should proceed to a v1.0 release.
 
@@ -40,7 +40,7 @@ DoneSpec does not replace tests, CI, code review, security review, or engineerin
 
 DoneSpec is v1.0-ready only if it remains small, deterministic, local-first, composable, CI-friendly, and standard-ready.
 
-The release candidate has the expected shape for v1.0:
+The release has the expected shape for v1.0:
 
 - a concise CLI
 - an explicit `done.json` contract
@@ -53,7 +53,7 @@ The release candidate has the expected shape for v1.0:
 
 ## Validation gates
 
-Before v1.0 release, the release candidate must pass:
+Before v1.0 release, the release must pass:
 
 ```bash
 python -m ruff check .
@@ -69,7 +69,7 @@ DoneSpec self-validation must be treated as a release gate, not a best-effort ch
 
 ## Installation gates
 
-The release candidate must verify these installation paths:
+The release must verify these installation paths:
 
 - standard `python -m pip install donespec`
 - project virtual environment install
@@ -91,7 +91,7 @@ Windows PowerShell smoke tests must also account for `.venv\Scripts` on `PATH`.
 
 ## Cross-platform gates
 
-The release candidate must remain portable across:
+The release must remain portable across:
 
 - Windows PowerShell
 - Linux shell
@@ -169,10 +169,10 @@ Known release blockers before v1.0:
 - unclear CLI output or unstable exit code behavior
 - package metadata that points to the wrong repository or misstates the project scope
 
-At the time this audit document is prepared, no blocker should be considered cleared until the listed gates are run for the exact release candidate commit.
+At the time this audit document is prepared, no blocker should be considered cleared until the listed gates are run for the exact release commit.
 
-## Final release candidate conclusion
+## Final release conclusion
 
-DoneSpec is ready to proceed toward v1.0 only if every validation, installation, cross-platform, documentation, agent integration, and packaging gate listed in this audit passes for the release candidate commit.
+DoneSpec is ready to proceed toward v1.0 only if every validation, installation, cross-platform, documentation, agent integration, and packaging gate listed in this audit passes for the release commit.
 
 Passing these gates means DoneSpec is ready to move forward in the release process. It does not mean v1.0 has already been released.

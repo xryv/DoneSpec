@@ -6,7 +6,7 @@ The goal is not hype.
 
 The goal is immediate comprehension.
 
-Draft launch assets live in [docs/launch/README.md](launch/README.md).
+Launch assets live in [docs/launch/README.md](launch/README.md).
 
 ## Primary message
 
@@ -204,7 +204,7 @@ Before public launch:
 ? docs/cross-platform-verification.md ready
 ? docs/release-checklist.md ready
 ? CHANGELOG.md current
-? v1.0 release notes drafted
+? v1.0 release notesed
 ? repository description updated
 ? repository topics added
 ? social announcement drafted

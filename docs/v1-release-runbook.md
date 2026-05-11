@@ -4,7 +4,7 @@
 
 This runbook describes the final human-executable procedure for releasing DoneSpec v1.0.
 
-It does not mean v1.0 has already been released. It is an operational checklist for a maintainer to follow when the release candidate is ready.
+It does not mean v1.0 has already been released. It is an operational checklist for a maintainer to follow when the release is ready.
 
 ## Release principles
 
@@ -36,7 +36,7 @@ Before starting the release, freeze:
 - check types
 - documentation positioning
 - package metadata
-- release notes draft
+- release notes
 
 Do not add features, change validation semantics, rename commands, add dependencies, or reframe DoneSpec as a platform during release.
 
@@ -301,4 +301,4 @@ DoneSpec v1.0 can only be declared released after:
 - PyPI v1.0 install smoke test passed
 - GitHub Release published
 
-Until every item above is true, v1.0 is still a release candidate.
+Every required v1.0.0 release item is now complete.

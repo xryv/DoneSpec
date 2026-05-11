@@ -64,13 +64,13 @@
     },
     {
       "type": "regex_in_file",
-      "name": "Pyproject version prepared for v1 release candidate",
+      "name": "Pyproject version prepared for v1 release",
       "path": "pyproject.toml",
       "pattern": "version = \"1\\.0\\.0\""
     },
     {
       "type": "regex_in_file",
-      "name": "Package version prepared for v1 release candidate",
+      "name": "Package version prepared for v1 release",
       "path": "src/donespec/__init__.py",
       "pattern": "__version__ = \"1\\.0\\.0\""
     },
@@ -1073,30 +1073,30 @@
     },
     {
       "type": "file_exists",
-      "name": "v1 release candidate audit exists",
+      "name": "v1 release audit exists",
       "path": "docs/v1-release-candidate-audit.md"
     },
     {
       "type": "regex_in_file",
-      "name": "v1 release candidate audit defines product definition",
+      "name": "v1 release audit defines product definition",
       "path": "docs/v1-release-candidate-audit.md",
       "pattern": "## Product definition"
     },
     {
       "type": "regex_in_file",
-      "name": "v1 release candidate audit lists non-goals",
+      "name": "v1 release audit lists non-goals",
       "path": "docs/v1-release-candidate-audit.md",
       "pattern": "## Non-goals"
     },
     {
       "type": "regex_in_file",
-      "name": "v1 release candidate audit lists validation gates",
+      "name": "v1 release audit lists validation gates",
       "path": "docs/v1-release-candidate-audit.md",
       "pattern": "## Validation gates"
     },
     {
       "type": "regex_in_file",
-      "name": "v1 release candidate audit lists release blockers",
+      "name": "v1 release audit lists release blockers",
       "path": "docs/v1-release-candidate-audit.md",
       "pattern": "## Release blockers"
     },
@@ -1125,21 +1125,15 @@
     },
     {
       "type": "regex_in_file",
-      "name": "README links v1 release candidate audit",
+      "name": "README links v1 release audit",
       "path": "README.md",
       "pattern": "docs/v1-release-candidate-audit\\.md"
     },
     {
       "type": "regex_in_file",
-      "name": "README links v1 release draft",
-      "path": "README.md",
-      "pattern": "docs/releases/v1\\.0\\.0-draft\\.md"
-    },
-    {
-      "type": "regex_in_file",
-      "name": "Changelog records v1 release candidate audit",
+      "name": "Changelog records v1 release audit",
       "path": "CHANGELOG.md",
-      "pattern": "Added v1\\.0 release candidate audit documentation"
+      "pattern": "Added v1\\.0 release audit documentation"
     },
     {
       "type": "file_exists",
@@ -1178,21 +1172,21 @@
     },
     {
       "type": "regex_in_file",
-      "name": "v1 freeze report says v1 release candidate not tagged",
+      "name": "v1 freeze report says v1 release not tagged",
       "path": "docs/v1-freeze-report.md",
       "pattern": "v1\\.0\\.0 has not been tagged"
     },
     {
       "type": "regex_in_file",
-      "name": "v1 freeze report says v1 release candidate not published",
+      "name": "v1 freeze report says v1 release not published",
       "path": "docs/v1-freeze-report.md",
       "pattern": "v1\\.0\\.0 has not been published to PyPI"
     },
     {
       "type": "regex_in_file",
-      "name": "Changelog records v1 release candidate preparation",
+      "name": "Changelog records v1 release preparation",
       "path": "CHANGELOG.md",
-      "pattern": "Prepared DoneSpec v1\\.0\\.0 release candidate metadata"
+      "pattern": "Prepared DoneSpec v1\\.0\\.0 release metadata"
     },
     {
       "type": "file_exists",
@@ -1771,7 +1765,7 @@
       "type": "regex_in_file",
       "name": "Changelog records v1 OSS launch assets",
       "path": "CHANGELOG.md",
-      "pattern": "Added v1 OSS launch asset drafts"
+      "pattern": "Added v1 OSS launch assets"
     },
     {
       "type": "regex_in_file",
@@ -2004,6 +1998,76 @@
       "name": "Changelog records first Codex field note",
       "path": "CHANGELOG.md",
       "pattern": "Added first real Codex \\+ VS Code DoneSpec field note"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README references current v1 release",
+      "path": "README.md",
+      "pattern": "v1\\.0\\.0"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README uses dynamic PyPI badge",
+      "path": "README.md",
+      "pattern": "img\\.shields\\.io/pypi/v/donespec"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links stable v1 release notes",
+      "path": "README.md",
+      "pattern": "docs/releases/v1\\.0\\.0\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links release completion report",
+      "path": "README.md",
+      "pattern": "docs/v1-release-completion\\.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "v1 release notes exist",
+      "path": "docs/releases/v1.0.0.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "v1 release completion report exists",
+      "path": "docs/v1-release-completion.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release completion report records PyPI release",
+      "path": "docs/v1-release-completion.md",
+      "pattern": "PyPI package donespec 1\\.0\\.0 exists"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release completion report preserves deterministic positioning",
+      "path": "docs/v1-release-completion.md",
+      "pattern": "deterministic completion layer for AI coding agents"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog contains v1 release section",
+      "path": "CHANGELOG.md",
+      "pattern": "## v1\\.0\\.0 - 2026-05-11"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records v1 documentation alignment",
+      "path": "CHANGELOG.md",
+      "pattern": "Aligned public documentation with the released DoneSpec v1\\.0\\.0 state"
+    },
+    {
+      "type": "command",
+      "name": "README has no stale v0.8.0 reference",
+      "run": "python -c \"from pathlib import Path; import re, sys; text=Path('README.md').read_text(encoding='utf-8'); sys.exit(1 if re.search(r'v0\\\\.8\\\\.0|0\\\\.8\\\\.0', text) else 0)\"",
+      "expected_exit_code": 0
+    },
+    {
+      "type": "command",
+      "name": "README has no unpublished release wording",
+      "run": "python -c \"from pathlib import Path; import re, sys; text=Path('README.md').read_text(encoding='utf-8').lower(); sys.exit(1 if re.search(r'unpublished|untagged|not tagged|not published', text) else 0)\"",
+      "expected_exit_code": 0
     }
   ],
   "must_not": [

@@ -6,7 +6,7 @@ Title:
 DoneSpec v1.0.0
 ```
 
-This is draft copy for a future GitHub Release. It does not mean v1.0.0 has been published.
+This is draft copy for a GitHub Release. It does not mean v1.0.0 has been published.
 
 ## Summary
 

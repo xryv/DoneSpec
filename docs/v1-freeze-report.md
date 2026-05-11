@@ -12,7 +12,7 @@ No v1.0.0 tag has been created by this document.
 
 No PyPI publication has happened by this document.
 
-DoneSpec v1.0.0 is prepared as a release candidate only after the version metadata, release-facing documentation, local validation, package build, and local wheel smoke test pass. Final manual tagging, PyPI publication, and GitHub Release creation remain pending.
+DoneSpec v1.0.0 is prepared as a release only after the version metadata, release-facing documentation, local validation, package build, and local wheel smoke test pass. Final tagging, PyPI publication, and GitHub Release creation are complete.
 
 ## Product definition
 
@@ -62,8 +62,8 @@ DoneSpec is the deterministic completion layer for AI coding agents.
 - package verification workflow for build, `twine check`, local wheel install, and smoke validation
 - cross-platform workflow for Windows, Linux, and macOS
 - release checklist and v1 release runbook
-- v1 release candidate audit and v1 release notes draft
-- OSS launch asset drafts
+- v1 release audit and v1 release notes
+- OSS launch assets
 
 ## Current validation gate
 
