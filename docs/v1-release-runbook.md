@@ -238,6 +238,8 @@ After upload, run the PyPI smoke test above.
 
 Use `docs/releases/v1.0.0-draft.md` as the starting point for the GitHub Release body.
 
+Launch copy drafts are available in `docs/launch/README.md`.
+
 Before publishing the GitHub Release:
 
 - confirm the release points to tag `v1.0.0`

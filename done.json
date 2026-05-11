@@ -1551,6 +1551,93 @@
       "pattern": "Do not claim DoneSpec"
     },
     {
+      "type": "file_exists",
+      "name": "Launch assets index exists",
+      "path": "docs/launch/README.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Short announcement exists",
+      "path": "docs/launch/announcement-short.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Long announcement exists",
+      "path": "docs/launch/announcement-long.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Hacker News draft exists",
+      "path": "docs/launch/hacker-news.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Reddit dev draft exists",
+      "path": "docs/launch/reddit-dev-post.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "GitHub release copy exists",
+      "path": "docs/launch/github-release-copy.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "PyPI release copy exists",
+      "path": "docs/launch/pypi-release-copy.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Repository metadata exists",
+      "path": "docs/launch/repository-metadata.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Launch checklist exists",
+      "path": "docs/launch/launch-checklist.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Launch assets mention deterministic completion layer",
+      "path": "docs/launch/README.md",
+      "pattern": "deterministic completion layer"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Launch assets mention AI agents say tasks are done",
+      "path": "docs/launch/README.md",
+      "pattern": "AI agents say tasks are done"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Launch assets reject platform orchestration framing",
+      "path": "docs/launch/README.md",
+      "pattern": "orchestration platform"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links launch assets",
+      "path": "README.md",
+      "pattern": "docs/launch/README\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "OSS launch docs link launch assets",
+      "path": "docs/oss-launch.md",
+      "pattern": "docs/launch/README\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Release runbook links launch assets",
+      "path": "docs/v1-release-runbook.md",
+      "pattern": "docs/launch/README\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records v1 OSS launch assets",
+      "path": "CHANGELOG.md",
+      "pattern": "Added v1 OSS launch asset drafts"
+    },
+    {
       "type": "regex_in_file",
       "name": "README links v1 readiness documentation",
       "path": "README.md",

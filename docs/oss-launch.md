@@ -6,6 +6,8 @@ The goal is not hype.
 
 The goal is immediate comprehension.
 
+Draft launch assets live in [docs/launch/README.md](launch/README.md).
+
 ## Primary message
 
 ```text
