@@ -27,6 +27,7 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ### Changed
 
+- Marked the v1.0 GitHub Actions verification report as manually verified for the observed commit.
 - Polished package, installation, and release metadata documentation for v1 readiness.
 - Refined AI coding agent integration examples for v1 readiness.
 - Refined schema and editor-support documentation for v1 stability.

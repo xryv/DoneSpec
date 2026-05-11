@@ -1200,6 +1200,30 @@
       "pattern": "Added v1\\.0 GitHub Actions verification report"
     },
     {
+      "type": "regex_in_file",
+      "name": "GitHub Actions verification report says manually verified",
+      "path": "docs/v1-github-actions-verification.md",
+      "pattern": "manual GitHub UI inspection"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "GitHub Actions verification report marks caveat resolved",
+      "path": "docs/v1-github-actions-verification.md",
+      "pattern": "The GitHub Actions caveat from the freeze report is resolved for the observed commit"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "GitHub Actions verification report includes observed commit",
+      "path": "docs/v1-github-actions-verification.md",
+      "pattern": "fa49aa2"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records manual GitHub Actions verification",
+      "path": "CHANGELOG.md",
+      "pattern": "Marked the v1\\.0 GitHub Actions verification report as manually verified for the observed commit"
+    },
+    {
       "type": "file_exists",
       "name": "v1 release runbook exists",
       "path": "docs/v1-release-runbook.md"

@@ -2,9 +2,9 @@
 
 ## Status
 
-GitHub Actions status was not verified locally because GitHub CLI was unavailable.
+GitHub Actions status was manually verified through the GitHub UI for the observed commit.
 
-Attempted commands:
+The GitHub CLI was not available locally during the prior verification attempt:
 
 ```powershell
 gh --version
@@ -12,15 +12,13 @@ gh auth status
 gh run list --limit 10
 ```
 
-Each command failed locally because `gh` was not recognized as an installed command.
-
-Manual verification is still required before v1.0 release.
+Each command failed locally because `gh` was not recognized as an installed command. The final workflow status below is therefore based on manual GitHub UI inspection, not local `gh` output.
 
 ## Repository state
 
 - Branch: `main`
-- Latest commit hash: `47a65b57b850eb7546e482f2ed6d01562ac5f19d`
-- Latest commit subject: `docs: add v1 freeze report`
+- Latest commit hash: `fa49aa2`
+- Latest commit subject: `docs: add v1 GitHub Actions verification report`
 - Working tree status: clean
 
 Observed local Git caveat:
@@ -37,14 +35,21 @@ warning: unable to access 'C:\Users\cerqu/.config/git/ignore': Permission denied
 
 ## Observed GitHub Actions result
 
-GitHub Actions status was not verified locally because GitHub CLI was unavailable or unauthenticated.
-Manual verification is still required before v1.0 release.
+Verification method: manual GitHub UI inspection
 
-No workflow run IDs, conclusions, commit associations, or URLs were observed locally.
+Observed commit: `fa49aa2`
+
+| Workflow | Result |
+| --- | --- |
+| CI | passed |
+| Cross-platform verification | passed |
+| Package verification | passed |
+
+No run IDs or URLs are recorded because they were not captured from local tooling.
 
 ## Release implication
 
-The GitHub Actions caveat remains open.
+The GitHub Actions caveat from the freeze report is resolved for the observed commit.
 
 ## Final rule
 
