@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "donespec"
-version = "0.8.0"
+version = "1.0.0"
 description = "Deterministic completion validation for AI coding agents."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -24,7 +24,7 @@ keywords = [
   "deterministic"
 ]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 5 - Production/Stable",
   "Environment :: Console",
   "Intended Audience :: Developers",
   "License :: OSI Approved :: MIT License",

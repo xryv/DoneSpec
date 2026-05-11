@@ -8,6 +8,11 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ## Unreleased
 
+### Release candidate
+
+- Prepared DoneSpec v1.0.0 release candidate metadata.
+- Confirmed local validation, strict validation, package verification, cross-platform workflow coverage, and launch documentation readiness.
+
 ### Added
 
 - Added v1.0 GitHub Actions verification report.

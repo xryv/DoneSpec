@@ -63,6 +63,18 @@
       "pattern": "\\[project\\.urls\\]"
     },
     {
+      "type": "regex_in_file",
+      "name": "Pyproject version prepared for v1 release candidate",
+      "path": "pyproject.toml",
+      "pattern": "version = \"1\\.0\\.0\""
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Package version prepared for v1 release candidate",
+      "path": "src/donespec/__init__.py",
+      "pattern": "__version__ = \"1\\.0\\.0\""
+    },
+    {
       "type": "file_exists",
       "name": "Agent instructions exist",
       "path": "AGENTS.md"
@@ -678,6 +690,12 @@
     },
     {
       "type": "regex_in_file",
+      "name": "README includes DoneSpec verification positioning",
+      "path": "README.md",
+      "pattern": "DoneSpec verifies they actually are"
+    },
+    {
+      "type": "regex_in_file",
       "name": "README positions deterministic completion layer",
       "path": "README.md",
       "pattern": "deterministic completion layer"
@@ -1157,6 +1175,24 @@
       "name": "Changelog records v1 freeze report",
       "path": "CHANGELOG.md",
       "pattern": "Added final v1\\.0 freeze report"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 freeze report says v1 release candidate not tagged",
+      "path": "docs/v1-freeze-report.md",
+      "pattern": "v1\\.0\\.0 has not been tagged"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 freeze report says v1 release candidate not published",
+      "path": "docs/v1-freeze-report.md",
+      "pattern": "v1\\.0\\.0 has not been published to PyPI"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records v1 release candidate preparation",
+      "path": "CHANGELOG.md",
+      "pattern": "Prepared DoneSpec v1\\.0\\.0 release candidate metadata"
     },
     {
       "type": "file_exists",

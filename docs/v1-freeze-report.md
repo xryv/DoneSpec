@@ -1,16 +1,18 @@
-# DoneSpec v1.0 freeze report
+# DoneSpec v1.0.0 freeze report
 
 ## Status
 
 This is a pre-release readiness report.
 
-This document does not publish DoneSpec v1.0. It does not create a tag, publish to PyPI, or create a GitHub Release.
+This document does not publish DoneSpec v1.0.0. It does not create a tag, publish to PyPI, or create a GitHub Release.
 
-No v1.0 release has been published by this document.
+No v1.0.0 release has been published by this document.
 
-No v1.0 tag has been created by this document.
+No v1.0.0 tag has been created by this document.
 
 No PyPI publication has happened by this document.
+
+DoneSpec v1.0.0 is prepared as a release candidate only after the version metadata, release-facing documentation, local validation, package build, and local wheel smoke test pass. Final manual tagging, PyPI publication, and GitHub Release creation remain pending.
 
 ## Product definition
 
@@ -65,7 +67,7 @@ DoneSpec is the deterministic completion layer for AI coding agents.
 
 ## Current validation gate
 
-Before v1.0, run:
+Before v1.0.0, run:
 
 ```powershell
 $env:PATH = "$PWD\.venv\Scripts;$env:PATH"
@@ -83,18 +85,15 @@ The package verification workflow should also build the package, run `twine chec
 
 ## Current DoneSpec check count
 
-Verified locally before this report was written:
-
-- `donespec validate done.json` passed with 326 checks.
-- `donespec validate done.json --strict` passed with 326 checks.
+The final v1.0.0 release-candidate commit must record the observed DoneSpec check count after normal and strict validation pass.
 
 ## Known caveats
 
 - Local Git commands still warn: `unable to access 'C:\Users\cerqu/.config/git/ignore': Permission denied`.
-- v1.0 has not been tagged.
-- v1.0 has not been published to PyPI.
+- v1.0.0 has not been tagged.
+- v1.0.0 has not been published to PyPI.
 - The PyPI smoke test must be repeated after final publication.
-- GitHub Actions should be checked after this report is pushed.
+- GitHub Actions were manually verified as green for observed commit `fa49aa2`; new release-candidate commits must be checked again after push.
 
 ## Release freeze recommendation
 

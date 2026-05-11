@@ -76,13 +76,13 @@ donespec --version
 PyPI:
 
 ```text
-https://pypi.org/project/donespec/0.8.0/
+https://pypi.org/project/donespec/
 ```
 
-GitHub release:
+Upcoming v1.0.0 release tag:
 
 ```text
-https://github.com/xryv/DoneSpec/releases/tag/v0.8.0
+https://github.com/xryv/DoneSpec/releases/tag/v1.0.0
 ```
 
 ---
@@ -212,7 +212,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: xryv/DoneSpec@v0.8.0
+      - uses: xryv/DoneSpec@v1.0.0
 
       - name: Validate completion contract
         run: donespec validate done.json --strict
