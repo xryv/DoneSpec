@@ -265,6 +265,7 @@ See:
 
 - [docs/integrations.md](docs/integrations.md)
 - [docs/agent-integration.md](docs/agent-integration.md)
+- [examples/integrations/](examples/integrations/)
 
 ---
 

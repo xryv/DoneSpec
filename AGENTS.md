@@ -14,7 +14,7 @@ Done means deterministically verified.
 
 Before declaring any task complete, run:
 
-donespec validate done.json
+donespec validate done.json --strict
 
 If the validation fails, the task is not complete.
 
@@ -41,7 +41,7 @@ When working in this repository:
 5. Run the relevant local commands.
 6. Run:
 
-donespec validate done.json
+donespec validate done.json --strict
 
 7. Only report completion if DoneSpec passes.
 
@@ -91,7 +91,7 @@ Example:
 
 DoneSpec command executed:
 
-donespec validate done.json
+donespec validate done.json --strict
 
 Result:
 
@@ -104,7 +104,7 @@ This file is intended for AI coding agents and coding assistants including Codex
 
 The integration point is intentionally boring:
 
-donespec validate done.json
+donespec validate done.json --strict
 
 No API key.
 No model dependency.

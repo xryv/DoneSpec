@@ -1,55 +1,47 @@
-﻿# Integrations
+# Integrations
 
-DoneSpec works with any coding agent or CI system because it is just a local deterministic CLI.
+DoneSpec works with coding agents and CI systems because it is a local deterministic CLI.
 
-There is no API key, cloud service, agent runtime, database, dashboard, memory layer, or LLM dependency.
+It does not run inside the agent. It does not add an agent runtime, API key, cloud service, database, dashboard, memory layer, or LLM dependency.
 
-The universal integration rule is:
-
-```text
-Before claiming completion, run:
-
-donespec validate done.json --strict
-
-If validation fails, the task is not complete.
-Do not weaken done.json to make validation pass unless explicitly requested by the human.
-```
-
-## Codex
-
-Add this to your agent instructions:
-
-```text
-Use DoneSpec as the final completion gate.
-
-Before saying the task is complete:
-
-1. Run `donespec explain done.json --strict` to inspect the contract.
-2. Perform the requested work.
-3. Run `donespec validate done.json --strict`.
-4. If validation fails, fix the implementation and run validation again.
-5. Do not modify `done.json` only to make validation easier unless explicitly instructed.
-```
-
-Recommended final command:
+The integration point is the command:
 
 ```bash
 donespec validate done.json --strict
 ```
 
-## Claude Code
+## Agent completion instruction
 
-Add this to `CLAUDE.md`:
+Paste this into agent instructions, project rules, or task prompts:
 
 ```text
-@AGENTS.md
+You may only claim completion after:
 
-Before reporting completion, run:
+1. implementing the requested change
+2. running the project's normal checks
+3. running `donespec validate done.json --strict`
+4. fixing any failures
+5. reporting the final validation result
+
+Do not weaken, remove, or bypass DoneSpec checks to make validation pass.
+```
+
+DoneSpec does not replace review, tests, or judgement. It verifies the explicit completion contract before an agent claims the task is done.
+
+## Codex
+
+Use `AGENTS.md` for repository-level Codex instructions.
+
+Copy-paste instruction:
+
+```text
+Before claiming the task is complete, run:
 
 donespec validate done.json --strict
 
-If DoneSpec fails, the work is not complete.
-Never weaken the DoneSpec contract unless the human explicitly asks for a contract change.
+If validation fails, fix the issue and run it again.
+Do not mark the task complete until DoneSpec passes.
+Do not weaken, remove, or bypass DoneSpec checks to make validation pass.
 ```
 
 Recommended workflow:
@@ -59,9 +51,40 @@ donespec explain done.json --strict
 donespec validate done.json --strict
 ```
 
+## Claude Code
+
+Use `CLAUDE.md` to import the shared repository rules from `AGENTS.md`.
+
+Claude Code should:
+
+1. read the task contract in `done.json`
+2. make the requested change
+3. run the project's normal tests or checks
+4. run `donespec validate done.json --strict`
+5. report failures honestly and continue fixing until validation passes
+
+Copy-paste instruction:
+
+```text
+Read the DoneSpec contract before editing.
+Run the project checks after editing.
+Run `donespec validate done.json --strict` before reporting completion.
+If validation fails, report the failing check and fix the underlying issue.
+Do not weaken done.json checks unless the human explicitly asks for a contract change.
+```
+
 ## Cursor
 
-Add this to Cursor project rules:
+Cursor can use DoneSpec through normal VS Code-style project files and terminal tasks.
+
+Recommended setup:
+
+- keep `done.json` in the project root
+- associate `done.json` with `done.schema.json`
+- run DoneSpec from the integrated terminal or a task
+- ask Cursor agents to validate before completion
+
+Copy-paste project rule:
 
 ```text
 This repository uses DoneSpec for deterministic completion validation.
@@ -71,41 +94,39 @@ Before marking a task as done, run:
 donespec validate done.json --strict
 
 If validation fails, continue working until it passes.
-Do not remove or weaken checks in done.json unless explicitly requested.
-```
-
-Useful terminal command:
-
-```bash
-donespec validate done.json --strict
+Do not remove, weaken, or bypass checks in done.json unless explicitly requested.
 ```
 
 ## Aider
 
-Add this to your Aider instruction file or project prompt:
+Use DoneSpec as the validation step after Aider modifies files.
+
+Simple workflow:
+
+```bash
+aider --message "Make the requested change. Keep done.json visible. Before reporting completion, run donespec validate done.json --strict and fix any failures."
+```
+
+Copy-paste instruction:
 
 ```text
 The project uses DoneSpec.
 
-At the end of every task, run:
+After modifying files, run:
 
 donespec validate done.json --strict
 
-If validation fails, inspect the failure, fix the issue, and rerun validation.
+Do not accept conversational completion without validation.
 Do not edit done.json to bypass the intended contract.
-```
-
-Recommended command:
-
-```bash
-aider --message "Complete the task, then run donespec validate done.json --strict before reporting done."
 ```
 
 ## OpenAI Agents SDK
 
-Use DoneSpec as a deterministic terminal gate after agent execution.
+Keep DoneSpec as an external deterministic validation command in the workflow.
 
-Example instruction:
+Do not build DoneSpec into a runtime integration. The agent workflow only needs to call the CLI after modifications.
+
+Copy-paste instruction:
 
 ```text
 After applying code changes, execute:
@@ -114,23 +135,22 @@ donespec validate done.json --strict
 
 Return success only if the command exits with code 0.
 If it exits non-zero, treat the task as incomplete and inspect the failure output.
+Do not weaken, remove, or bypass DoneSpec checks to make validation pass.
 ```
 
 Conceptual flow:
 
 ```text
 agent edits files
-  ↓
+agent runs project checks
 agent runs DoneSpec
-  ↓
-DoneSpec returns exit code
-  ↓
+DoneSpec returns an exit code
 agent reports only if validation passed
 ```
 
 ## GitHub Actions
 
-Use DoneSpec in CI:
+Use the DoneSpec action to install the CLI, then run strict validation explicitly:
 
 ```yaml
 name: DoneSpec
@@ -138,32 +158,29 @@ name: DoneSpec
 on:
   pull_request:
   push:
-    branches:
-      - main
 
 jobs:
-  validate:
+  donespec:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
       - uses: xryv/DoneSpec@v0.8.0
-
       - name: Validate completion contract
         run: donespec validate done.json --strict
 ```
 
+This keeps the workflow copy-paste ready while preserving strict mode as the visible CI gate.
+
 ## Generic CI pipeline
 
-Any CI system can run:
+Any CI system can run DoneSpec as a normal command:
 
 ```bash
 pip install donespec
 donespec validate done.json --strict
 ```
 
-Recommended pipeline stage:
+Recommended stage order:
 
 ```text
 install dependencies
@@ -172,76 +189,12 @@ run DoneSpec validation
 publish only if DoneSpec passes
 ```
 
-## Local shell workflow
+## What not to do
 
-For humans:
+- Do not treat a conversational agent summary as completion.
+- Do not weaken, remove, or bypass DoneSpec checks to make validation pass.
+- Do not hide failures behind CI-only configuration.
+- Do not turn DoneSpec into an agent runtime or orchestration layer.
+- Do not skip tests or review because DoneSpec passed.
 
-```bash
-donespec explain done.json --strict
-donespec validate done.json --strict
-```
-
-For agents:
-
-```bash
-donespec validate done.json --strict
-```
-
-For machine-readable output:
-
-```bash
-donespec validate done.json --strict --json
-```
-
-## Pre-push workflow
-
-Install generated hooks:
-
-```bash
-donespec init --yes
-```
-
-Then install git hooks:
-
-Windows PowerShell:
-
-```powershell
-.\scripts\install-git-hooks.ps1
-```
-
-Unix:
-
-```bash
-./scripts/install-git-hooks.sh
-```
-
-This blocks pushes when the completion contract fails.
-
-## Recommended agent contract
-
-Use this minimal instruction for any agent:
-
-```text
-You may modify the repository to complete the task.
-
-Completion is valid only when:
-
-donespec validate done.json --strict
-
-passes with exit code 0.
-
-Do not claim completion before this command passes.
-Do not weaken the contract unless explicitly asked.
-```
-
-## Philosophy
-
-DoneSpec integrates well because it does almost nothing magical.
-
-It defines a contract.
-
-It runs deterministic checks.
-
-It returns an exit code.
-
-That is enough.
+DoneSpec verifies explicit contracts. It does not guarantee correctness, replace CI, or replace human review.

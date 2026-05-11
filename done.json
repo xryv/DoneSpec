@@ -948,9 +948,69 @@
     },
     {
       "type": "regex_in_file",
+      "name": "Integrations docs warn not to weaken checks",
+      "path": "docs/integrations.md",
+      "pattern": "Do not weaken, remove, or bypass DoneSpec checks"
+    },
+    {
+      "type": "file_exists",
+      "name": "Codex integration example exists",
+      "path": "examples/integrations/codex.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Claude Code integration example exists",
+      "path": "examples/integrations/claude-code.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Cursor integration example exists",
+      "path": "examples/integrations/cursor.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "Aider integration example exists",
+      "path": "examples/integrations/aider.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "OpenAI Agents SDK integration example exists",
+      "path": "examples/integrations/openai-agents-sdk.md"
+    },
+    {
+      "type": "file_exists",
+      "name": "GitHub Actions integration example exists",
+      "path": "examples/integrations/github-actions.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Agent instructions require strict validation",
+      "path": "AGENTS.md",
+      "pattern": "donespec validate done\\.json --strict"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Claude instructions require strict validation",
+      "path": "CLAUDE.md",
+      "pattern": "donespec validate done\\.json --strict"
+    },
+    {
+      "type": "regex_in_file",
       "name": "README links integrations documentation",
       "path": "README.md",
       "pattern": "docs/integrations\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links integration examples",
+      "path": "README.md",
+      "pattern": "examples/integrations/"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records integration example polish",
+      "path": "CHANGELOG.md",
+      "pattern": "Refined AI coding agent integration examples for v1 readiness"
     },
     {
       "type": "file_exists",

@@ -1,11 +1,11 @@
-﻿# Agent Integration
+# Agent Integration
 
-DoneSpec is designed to work with any AI coding agent that can read files and run shell commands.
+DoneSpec is designed for any AI coding agent that can read files and run shell commands.
 
-The integration model is intentionally simple:
+The integration model is intentionally small:
 
 ```bash
-donespec validate done.json
+donespec validate done.json --strict
 ```
 
 No API key.  
@@ -14,36 +14,38 @@ No orchestration layer.
 No dashboard.  
 No hidden state.
 
-DoneSpec acts as a deterministic completion gate.
+DoneSpec stays outside the agent. The agent only needs to pass through the deterministic contract before claiming the task is complete.
 
 ## Core rule
 
-An AI coding agent must not claim a task is complete until DoneSpec passes.
+An AI coding agent must not claim completion until DoneSpec passes.
 
-```bash
-donespec validate done.json
+Use this instruction with any coding agent:
+
+```text
+You may only claim completion after:
+
+1. implementing the requested change
+2. running the project's normal checks
+3. running `donespec validate done.json --strict`
+4. fixing any failures
+5. reporting the final validation result
+
+Do not weaken, remove, or bypass DoneSpec checks to make validation pass.
 ```
 
 If DoneSpec fails, the task is not complete.
 
 The agent should:
 
-1. Read the failing check.
-2. Fix the underlying issue.
-3. Run DoneSpec again.
-4. Repeat until validation passes.
+1. read the failing check
+2. fix the underlying issue
+3. run DoneSpec again
+4. repeat until validation passes
 
 ## Codex
 
 Codex-compatible workflows should use `AGENTS.md`.
-
-This repository includes:
-
-```text
-AGENTS.md
-```
-
-The file instructs agents to treat `done.json` as the source of truth for task completion.
 
 Expected Codex workflow:
 
@@ -51,8 +53,8 @@ Expected Codex workflow:
 read AGENTS.md
 read done.json
 modify code
-run relevant commands
-run donespec validate done.json
+run relevant project checks
+run donespec validate done.json --strict
 only report completion if validation passes
 ```
 
@@ -60,19 +62,11 @@ only report completion if validation passes
 
 Claude Code uses `CLAUDE.md`.
 
-This repository includes:
-
-```text
-CLAUDE.md
-```
-
-The file imports the shared agent protocol:
+This repository keeps Claude-specific notes small and imports the shared protocol:
 
 ```text
 @AGENTS.md
 ```
-
-This avoids duplicating rules across agent-specific instruction files.
 
 Expected Claude Code workflow:
 
@@ -81,36 +75,52 @@ read CLAUDE.md
 load AGENTS.md
 inspect done.json
 make changes
-run donespec validate done.json
+run project tests or checks
+run donespec validate done.json --strict
+report failures honestly
 continue fixing until validation passes
 ```
 
-## VS Code
+## Cursor and VS Code
 
-This repository includes VS Code tasks:
+Cursor can use the same files and tasks as VS Code.
 
-```text
-.vscode/tasks.json
-```
+Recommended setup:
 
-Available tasks:
+- keep `done.json` in the project root
+- map `done.json` to `done.schema.json` for autocomplete
+- run DoneSpec from the integrated terminal or a task
+- instruct Cursor agents to validate before completion
 
-- DoneSpec: Validate
-- DoneSpec: Validate JSON
-- DoneSpec: Test
-- DoneSpec: Lint
-- DoneSpec: Format Check
-
-In VS Code:
-
-```text
-Terminal → Run Task → DoneSpec: Validate
-```
-
-The default validation task runs:
+The validation command is:
 
 ```bash
-donespec validate done.json
+donespec validate done.json --strict
+```
+
+## Aider
+
+Aider workflows should keep `done.json` visible and validate after edits.
+
+Use this instruction:
+
+```text
+After changing files, run `donespec validate done.json --strict`.
+If validation fails, inspect the failing check, fix the issue, and run validation again.
+Do not accept conversational completion without validation.
+```
+
+## OpenAI Agents SDK
+
+Use DoneSpec as an external command after file modifications.
+
+The workflow does not need DoneSpec-specific runtime code:
+
+```text
+agent modifies files
+agent runs project checks
+agent runs donespec validate done.json --strict
+agent reports success only on exit code 0
 ```
 
 ## Git hooks
@@ -121,88 +131,38 @@ This repository includes a pre-push hook:
 .githooks/pre-push
 ```
 
-The hook runs:
+The hook runs DoneSpec before pushes. Install it with:
 
-```bash
-donespec validate done.json
-```
-
-This prevents pushing code if DoneSpec fails locally.
-
-### Install hooks on Windows
+Windows PowerShell:
 
 ```powershell
 .\scripts\install-git-hooks.ps1
 ```
 
-### Install hooks on Linux/macOS
+Linux/macOS:
 
 ```bash
 ./scripts/install-git-hooks.sh
 ```
 
-After installation, Git uses:
-
-```text
-core.hooksPath = .githooks
-```
-
 ## CI enforcement
 
-GitHub Actions also runs DoneSpec:
+GitHub Actions and generic CI systems can run the same command agents run locally:
 
 ```yaml
-- name: DoneSpec self-validation
-  run: donespec validate done.json
+- name: Validate DoneSpec contract strictly
+  run: donespec validate done.json --strict
 ```
 
-This creates four validation layers:
+This creates repeatable validation layers:
 
 ```text
 agent instructions
-↓
-VS Code task
-↓
-local pre-push hook
-↓
-GitHub Actions
+local terminal
+pre-push hook
+CI
 ```
 
-## Recommended agent prompt
+## More examples
 
-Use this instruction with any coding agent:
-
-```text
-This repository uses DoneSpec.
-
-Before declaring the task complete, run:
-
-donespec validate done.json
-
-If validation fails, inspect the failing checks, fix the issue, and run DoneSpec again.
-
-Do not claim completion until DoneSpec passes.
-```
-
-## Why this works
-
-DoneSpec is agent-agnostic because it does not depend on any specific model, vendor, editor, or runtime.
-
-Any system capable of running shell commands can use DoneSpec.
-
-Compatible workflows include:
-
-- Codex
-- Claude Code
-- Cursor
-- Windsurf
-- terminal agents
-- local scripts
-- CI/CD pipelines
-- custom internal agents
-
-The contract stays the same:
-
-```bash
-donespec validate done.json
-```
+See [docs/integrations.md](integrations.md) for copy-paste examples for Codex, Claude Code, Cursor, Aider, OpenAI Agents SDK, GitHub Actions, and generic CI.
