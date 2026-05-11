@@ -738,6 +738,42 @@
     },
     {
       "type": "regex_in_file",
+      "name": "README includes CI badge",
+      "path": "README.md",
+      "pattern": "actions/workflows/ci\\.yml/badge\\.svg"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README includes cross-platform badge",
+      "path": "README.md",
+      "pattern": "actions/workflows/cross-platform\\.yml/badge\\.svg"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README includes package verification badge",
+      "path": "README.md",
+      "pattern": "actions/workflows/package-verification\\.yml/badge\\.svg"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README includes PyPI badge",
+      "path": "README.md",
+      "pattern": "img\\.shields\\.io/pypi/v/donespec"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README includes verification section",
+      "path": "README.md",
+      "pattern": "## Verification"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links package smoke test documentation",
+      "path": "README.md",
+      "pattern": "docs/package-smoke-test\\.md"
+    },
+    {
+      "type": "regex_in_file",
       "name": "README links contributing guide",
       "path": "README.md",
       "pattern": "CONTRIBUTING\\.md"
@@ -800,6 +836,12 @@
       "name": "Changelog records README v1 polish",
       "path": "CHANGELOG.md",
       "pattern": "Added v1\\.0 README polish"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records README verification summary",
+      "path": "CHANGELOG.md",
+      "pattern": "Added public verification badges and README verification summary for v1 readiness"
     },
     {
       "type": "regex_in_file",

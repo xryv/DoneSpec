@@ -6,6 +6,12 @@
 
 The deterministic completion layer for AI coding agents.
 
+[![CI](https://github.com/xryv/DoneSpec/actions/workflows/ci.yml/badge.svg)](https://github.com/xryv/DoneSpec/actions/workflows/ci.yml)
+[![Cross-platform verification](https://github.com/xryv/DoneSpec/actions/workflows/cross-platform.yml/badge.svg)](https://github.com/xryv/DoneSpec/actions/workflows/cross-platform.yml)
+[![Package verification](https://github.com/xryv/DoneSpec/actions/workflows/package-verification.yml/badge.svg)](https://github.com/xryv/DoneSpec/actions/workflows/package-verification.yml)
+[![PyPI](https://img.shields.io/pypi/v/donespec.svg)](https://pypi.org/project/donespec/)
+[![Python versions](https://img.shields.io/pypi/pyversions/donespec.svg)](https://pypi.org/project/donespec/)
+
 DoneSpec turns "done" into a local, repeatable, machine-checkable contract.
 
 <p align="center">
@@ -373,6 +379,16 @@ Create DoneSpec files in a project. See [docs/init.md](docs/init.md).
 Editor support is documented in [docs/editor-support.md](docs/editor-support.md).
 
 CLI output principles are documented in [docs/cli-ux.md](docs/cli-ux.md).
+
+---
+
+## Verification
+
+DoneSpec validates itself with the same contract model it asks agents to use.
+
+The repository is checked through `done.json` self-validation, strict DoneSpec validation, cross-platform GitHub Actions, package build verification, and a local wheel smoke test. Normal validation remains local-first and does not depend on hidden network calls.
+
+See [docs/cross-platform-verification.md](docs/cross-platform-verification.md), [docs/package-smoke-test.md](docs/package-smoke-test.md), [docs/v1-release-candidate-audit.md](docs/v1-release-candidate-audit.md), and [docs/v1-release-runbook.md](docs/v1-release-runbook.md).
 
 ---
 
