@@ -1036,6 +1036,59 @@
     },
     {
       "type": "file_exists",
+      "name": "v1 release runbook exists",
+      "path": "docs/v1-release-runbook.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release runbook includes local validation gate",
+      "path": "docs/v1-release-runbook.md",
+      "pattern": "## Local validation gate"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release runbook includes package build gate",
+      "path": "docs/v1-release-runbook.md",
+      "pattern": "## Package build gate"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release runbook includes local wheel smoke test",
+      "path": "docs/v1-release-runbook.md",
+      "pattern": "## Local wheel smoke test"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release runbook includes PyPI smoke test",
+      "path": "docs/v1-release-runbook.md",
+      "pattern": "## PyPI smoke test after publish"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release runbook includes tagging procedure",
+      "path": "docs/v1-release-runbook.md",
+      "pattern": "## Tagging procedure"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release runbook includes rollback handling",
+      "path": "docs/v1-release-runbook.md",
+      "pattern": "## Rollback / failure handling"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links v1 release runbook",
+      "path": "README.md",
+      "pattern": "docs/v1-release-runbook\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records v1 release runbook",
+      "path": "CHANGELOG.md",
+      "pattern": "Added final v1\\.0 release runbook"
+    },
+    {
+      "type": "file_exists",
       "name": "Integrations documentation exists",
       "path": "docs/integrations.md"
     },

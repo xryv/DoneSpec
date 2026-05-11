@@ -10,6 +10,7 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ### Added
 
+- Added final v1.0 release runbook.
 - Added v1.0 release candidate audit documentation.
 - Added v1.0 GitHub release notes draft.
 - Added package smoke-test documentation for local wheel and PyPI install verification.
