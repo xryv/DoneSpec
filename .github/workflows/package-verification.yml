@@ -1,0 +1,38 @@
+name: Package verification
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build package
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install build twine
+          python -m build
+          python -m twine check dist/*
+
+      - name: Smoke test local wheel
+        run: |
+          python -m venv .package-smoke-venv
+          .package-smoke-venv/bin/python -m pip install --upgrade pip
+          .package-smoke-venv/bin/python -m pip install dist/*.whl
+          .package-smoke-venv/bin/donespec --version
+          .package-smoke-venv/bin/donespec --help
+          .package-smoke-venv/bin/donespec init package-smoke --yes
+          .package-smoke-venv/bin/donespec validate package-smoke/done.json --strict

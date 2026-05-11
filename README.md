@@ -388,6 +388,8 @@ Cross-platform verification is documented in [docs/cross-platform-verification.m
 
 Package smoke tests are documented in [docs/package-smoke-test.md](docs/package-smoke-test.md).
 
+Package build and local wheel verification also run in CI.
+
 ---
 
 ## v1.0 Readiness

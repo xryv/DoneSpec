@@ -68,6 +68,18 @@ donespec validate smoke/done.json --strict
 donespec explain smoke/done.json --json
 ```
 
+## Automated package verification
+
+Package verification also runs in GitHub Actions:
+
+```text
+.github/workflows/package-verification.yml
+```
+
+The workflow builds the package, runs `twine check`, installs from the local wheel, and validates a smoke project strictly.
+
+It does not publish to PyPI.
+
 ## Pass criteria
 
 The smoke test passes when:

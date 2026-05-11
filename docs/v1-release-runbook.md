@@ -185,11 +185,14 @@ Verify:
 
 - main CI
 - cross-platform verification
+- package verification workflow
 - Windows jobs
 - Linux jobs
 - macOS jobs
 
 The cross-platform workflow should validate linting, formatting, tests, normal DoneSpec validation, strict DoneSpec validation, JSON explain output, CLI smoke checks, and init smoke validation.
+
+The package verification workflow must build the package, run `twine check`, install the local wheel, and validate a smoke project strictly.
 
 ## Version bump procedure
 

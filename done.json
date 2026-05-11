@@ -953,6 +953,53 @@
       "pattern": "python -m pip install --no-cache-dir donespec"
     },
     {
+      "type": "file_exists",
+      "name": "Package verification workflow exists",
+      "path": ".github/workflows/package-verification.yml"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Package verification workflow builds package",
+      "path": ".github/workflows/package-verification.yml",
+      "pattern": "python -m build"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Package verification workflow runs twine check",
+      "path": ".github/workflows/package-verification.yml",
+      "pattern": "python -m twine check dist/\\*"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Package verification workflow installs local wheel",
+      "path": ".github/workflows/package-verification.yml",
+      "pattern": "python -m pip install dist/\\*\\.whl"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Package verification workflow validates smoke project strictly",
+      "path": ".github/workflows/package-verification.yml",
+      "pattern": "donespec validate package-smoke/done\\.json --strict"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Package smoke test docs mention automated package verification",
+      "path": "docs/package-smoke-test.md",
+      "pattern": "Automated package verification"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "v1 release runbook mentions package verification workflow",
+      "path": "docs/v1-release-runbook.md",
+      "pattern": "package verification workflow"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records package verification workflow",
+      "path": "CHANGELOG.md",
+      "pattern": "Added package verification workflow for v1 release readiness"
+    },
+    {
       "type": "regex_in_file",
       "name": "Action metadata preserves DoneSpec contract wording",
       "path": "action.yml",
