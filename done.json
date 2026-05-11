@@ -1160,6 +1160,47 @@
     },
     {
       "type": "file_exists",
+      "name": "GitHub Actions verification report exists",
+      "path": "docs/v1-github-actions-verification.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "GitHub Actions verification report lists CI workflow",
+      "path": "docs/v1-github-actions-verification.md",
+      "pattern": "CI"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "GitHub Actions verification report lists cross-platform workflow",
+      "path": "docs/v1-github-actions-verification.md",
+      "pattern": "Cross-platform verification"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "GitHub Actions verification report lists package verification workflow",
+      "path": "docs/v1-github-actions-verification.md",
+      "pattern": "Package verification"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "GitHub Actions verification report includes no-release-before-green rule",
+      "path": "docs/v1-github-actions-verification.md",
+      "pattern": "No v1\\.0 release should be tagged or published until CI, cross-platform verification, and package verification are green"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "README links GitHub Actions verification report",
+      "path": "README.md",
+      "pattern": "docs/v1-github-actions-verification\\.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records GitHub Actions verification report",
+      "path": "CHANGELOG.md",
+      "pattern": "Added v1\\.0 GitHub Actions verification report"
+    },
+    {
+      "type": "file_exists",
       "name": "v1 release runbook exists",
       "path": "docs/v1-release-runbook.md"
     },
