@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "donespec"
 version = "0.8.0"
-description = "Deterministic validation for AI agent task completion."
+description = "Deterministic completion validation for AI coding agents."
 readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"
@@ -17,6 +17,8 @@ keywords = [
   "cli",
   "ci",
   "developer-tools",
+  "json-schema",
+  "local-first",
   "validation",
   "testing",
   "deterministic"
@@ -46,9 +48,11 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/donespec/donespec"
-Repository = "https://github.com/donespec/donespec"
-Issues = "https://github.com/donespec/donespec/issues"
+Homepage = "https://github.com/xryv/DoneSpec"
+Repository = "https://github.com/xryv/DoneSpec"
+Issues = "https://github.com/xryv/DoneSpec/issues"
+Changelog = "https://github.com/xryv/DoneSpec/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/xryv/DoneSpec#readme"
 
 [project.scripts]
 donespec = "donespec.cli:app"

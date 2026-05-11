@@ -386,6 +386,8 @@ See [docs/field-notes/first-codex-vscode-experience.md](docs/field-notes/first-c
 
 Cross-platform verification is documented in [docs/cross-platform-verification.md](docs/cross-platform-verification.md).
 
+Package smoke tests are documented in [docs/package-smoke-test.md](docs/package-smoke-test.md).
+
 ---
 
 ## v1.0 Readiness

@@ -10,6 +10,7 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ### Added
 
+- Added package smoke-test documentation for local wheel and PyPI install verification.
 - Added copy-paste integration examples for Codex, Claude Code, Cursor, Aider, OpenAI Agents SDK, and GitHub Actions.
 - Added CLI UX documentation for v1.0 output and automation principles.
 - Added polished demo transcript and recording guide for v1.0 launch readiness.
@@ -18,6 +19,7 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ### Changed
 
+- Polished package, installation, and release metadata documentation for v1 readiness.
 - Refined AI coding agent integration examples for v1 readiness.
 - Refined schema and editor-support documentation for v1 stability.
 - Polished template examples for v1 onboarding consistency.

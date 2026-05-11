@@ -1,5 +1,5 @@
 name: "DoneSpec Validate"
-description: "Run deterministic DoneSpec validation in CI."
+description: "Validate a DoneSpec done.json completion contract in GitHub Actions."
 author: "DoneSpec Contributors"
 
 inputs:

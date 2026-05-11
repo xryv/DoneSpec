@@ -45,6 +45,24 @@
       "pattern": "openai|anthropic|langchain|llama-index"
     },
     {
+      "type": "regex_in_file",
+      "name": "Pyproject has project description",
+      "path": "pyproject.toml",
+      "pattern": "description = \"Deterministic completion validation for AI coding agents\\.\""
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Pyproject exposes DoneSpec CLI script",
+      "path": "pyproject.toml",
+      "pattern": "donespec = \"donespec\\.cli:app\""
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Pyproject has project URLs",
+      "path": "pyproject.toml",
+      "pattern": "\\[project\\.urls\\]"
+    },
+    {
       "type": "file_exists",
       "name": "Agent instructions exist",
       "path": "AGENTS.md"
@@ -898,6 +916,53 @@
       "name": "Release checklist includes v1 readiness gate",
       "path": "docs/release-checklist.md",
       "pattern": "v1\\.0 readiness gate"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Installation docs mention pip install donespec",
+      "path": "docs/installation.md",
+      "pattern": "python -m pip install donespec"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Installation docs mention Windows PATH guidance",
+      "path": "docs/installation.md",
+      "pattern": "\\$env:PATH = \"\\$PWD\\\\\\.venv\\\\Scripts;\\$env:PATH\""
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Release checklist includes twine check",
+      "path": "docs/release-checklist.md",
+      "pattern": "python -m twine check dist/\\*"
+    },
+    {
+      "type": "file_exists",
+      "name": "Package smoke-test docs exist",
+      "path": "docs/package-smoke-test.md"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Package smoke-test docs verify local wheel install",
+      "path": "docs/package-smoke-test.md",
+      "pattern": "donespec-X\\.Y\\.Z-py3-none-any\\.whl"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Package smoke-test docs verify PyPI install",
+      "path": "docs/package-smoke-test.md",
+      "pattern": "python -m pip install --no-cache-dir donespec"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Action metadata preserves DoneSpec contract wording",
+      "path": "action.yml",
+      "pattern": "Validate a DoneSpec done\\.json completion contract in GitHub Actions"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Changelog records package release metadata polish",
+      "path": "CHANGELOG.md",
+      "pattern": "Polished package, installation, and release metadata documentation for v1 readiness"
     },
     {
       "type": "file_exists",

@@ -1,6 +1,6 @@
-﻿# Release checklist
+# Release checklist
 
-This checklist exists to keep DoneSpec releases small, deterministic, repeatable, and trustworthy.
+This checklist keeps DoneSpec releases small, deterministic, repeatable, and trustworthy.
 
 DoneSpec is not an AI framework, platform, orchestration layer, workflow engine, SaaS product, dashboard, database-backed system, or agent runtime.
 
@@ -14,21 +14,11 @@ Every release must preserve the core identity:
 Done means deterministically verified.
 ```
 
-A release is acceptable only when it improves:
-
-- determinism
-- stability
-- documentation
-- onboarding
-- CLI clarity
-- schema quality
-- test coverage
-- cross-platform reliability
-- ecosystem integration
+A release is acceptable only when it improves determinism, stability, documentation, onboarding, CLI clarity, schema quality, test coverage, cross-platform reliability, packaging, or ecosystem integration.
 
 A release is not acceptable if it expands DoneSpec into a platform.
 
-## Before release
+## Pre-release validation
 
 Confirm the working tree is clean:
 
@@ -36,42 +26,29 @@ Confirm the working tree is clean:
 git status
 ```
 
-Run formatting and linting:
+Use the repository virtual environment when running local checks.
+
+Windows PowerShell:
+
+```powershell
+$env:PATH = "$PWD\.venv\Scripts;$env:PATH"
+```
+
+Run the required checks:
 
 ```bash
 python -m ruff check .
 python -m ruff format --check .
-```
-
-Run tests:
-
-```bash
 python -m pytest -q
-```
-
-Run DoneSpec self-validation:
-
-```bash
 donespec validate done.json
 donespec validate done.json --strict
 ```
 
-Confirm CLI version:
+Confirm CLI version and inspect the contract:
 
 ```bash
 donespec --version
-```
-
-Inspect the contract:
-
-```bash
 donespec explain done.json --strict
-```
-
-Validate package metadata:
-
-```bash
-python -m twine check dist/*
 ```
 
 ## Version bump
@@ -98,9 +75,9 @@ MINOR: small compatible CLI improvements
 MAJOR: stable public contract milestone
 ```
 
-For v1.0, only release when the CLI, schema, docs, and onboarding experience feel stable.
+For v1.0, only release when the CLI, schema, docs, packaging, and onboarding experience feel stable.
 
-## Build
+## Build package
 
 Remove old build artifacts:
 
@@ -108,16 +85,16 @@ Remove old build artifacts:
 rm -rf dist
 ```
 
+Windows PowerShell:
+
+```powershell
+Remove-Item -Recurse -Force dist -ErrorAction SilentlyContinue
+```
+
 Build the package:
 
 ```bash
 python -m build
-```
-
-Check distributions:
-
-```bash
-python -m twine check dist/*
 ```
 
 Expected artifacts:
@@ -127,78 +104,90 @@ dist/donespec-X.Y.Z-py3-none-any.whl
 dist/donespec-X.Y.Z.tar.gz
 ```
 
+## Twine check
+
+Validate package metadata before upload:
+
+```bash
+python -m twine check dist/*
+```
+
 ## Local wheel smoke test
 
-Create a clean environment and install the wheel:
+Test the built wheel in a clean environment.
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install ../DoneSpec/dist/donespec-X.Y.Z-py3-none-any.whl
-```
-
-On Windows PowerShell:
+Windows PowerShell:
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+python -m venv .venv-wheel-smoke
+.\.venv-wheel-smoke\Scripts\Activate.ps1
 python -m pip install --upgrade pip
-python -m pip install ..\DoneSpec\dist\donespec-X.Y.Z-py3-none-any.whl
-```
-
-Smoke test:
-
-```bash
+python -m pip install .\dist\donespec-X.Y.Z-py3-none-any.whl
 donespec --version
 donespec --help
-donespec init smoke-project --yes
-donespec validate smoke-project/done.json
-donespec validate smoke-project/done.json --strict
-donespec explain smoke-project/done.json
+donespec init smoke --yes
+donespec validate .\smoke\done.json --strict
+donespec explain .\smoke\done.json --json
 ```
 
-## PyPI release
+Linux/macOS:
 
-Upload:
+```bash
+python -m venv .venv-wheel-smoke
+. .venv-wheel-smoke/bin/activate
+python -m pip install --upgrade pip
+python -m pip install ./dist/donespec-X.Y.Z-py3-none-any.whl
+donespec --version
+donespec --help
+donespec init smoke --yes
+donespec validate smoke/done.json --strict
+donespec explain smoke/done.json --json
+```
+
+## PyPI upload
+
+Upload manually after validation:
 
 ```bash
 python -m twine upload dist/*
 ```
 
-Verify availability:
+Do not automate publishing in repository code.
+
+## PyPI smoke test
+
+Verify the published package from a clean environment:
 
 ```bash
-python -m pip cache purge
-python -m pip --no-cache-dir index versions donespec
-```
-
-Install from PyPI in a clean environment:
-
-```bash
+python -m venv .venv-pypi-smoke
+. .venv-pypi-smoke/bin/activate
+python -m pip install --upgrade pip
 python -m pip install --no-cache-dir --index-url https://pypi.org/simple donespec==X.Y.Z
-```
-
-Smoke test the PyPI package:
-
-```bash
 donespec --version
 donespec --help
 donespec init pypi-smoke --yes
 donespec validate pypi-smoke/done.json --strict
 ```
 
+Windows PowerShell:
+
+```powershell
+python -m venv .venv-pypi-smoke
+.\.venv-pypi-smoke\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install --no-cache-dir --index-url https://pypi.org/simple donespec==X.Y.Z
+donespec --version
+donespec --help
+donespec init pypi-smoke --yes
+donespec validate .\pypi-smoke\done.json --strict
+```
+
 ## Git tag
 
-Create an annotated tag:
+Create and push an annotated tag:
 
 ```bash
 git tag -a vX.Y.Z -m "vX.Y.Z - Release title"
-```
-
-Push the tag:
-
-```bash
 git push origin vX.Y.Z
 ```
 
@@ -214,7 +203,7 @@ Create a GitHub release with:
 
 ```text
 Tag: vX.Y.Z
-Title: DoneSpec vX.Y.Z — Release title
+Title: DoneSpec vX.Y.Z - Release title
 ```
 
 The release description should include:
@@ -226,9 +215,9 @@ The release description should include:
 - upgrade command
 - validation command
 - compatibility notes
-- full checklist confirmation
+- checklist confirmation
 
-## Final release validation
+## Post-release validation
 
 After publishing, verify from a clean environment:
 
@@ -239,26 +228,57 @@ donespec init final-smoke --yes
 donespec validate final-smoke/done.json --strict
 ```
 
+Confirm the public metadata:
+
+```text
+PyPI page renders README correctly
+GitHub release links to the tag
+GitHub repository description is concise
+GitHub topics match the project scope
+```
+
+## GitHub repository metadata
+
+Suggested repository description:
+
+```text
+Deterministic completion validation for AI coding agents.
+```
+
+Suggested topics:
+
+```text
+ai-agents
+developer-tools
+cli
+ci
+validation
+testing
+json-schema
+local-first
+```
+
 ## v1.0 readiness gate
 
 Do not declare v1.0 complete until these are true:
 
 ```text
-✓ README is polished
-✓ quickstart is clear
-✓ CLI output is stable
-✓ schema is stable
-✓ docs are complete
-✓ changelog exists
-✓ release checklist exists
-✓ examples are realistic
-✓ GitHub Action works
-✓ PyPI package installs cleanly
-✓ Windows smoke test passes
-✓ Linux smoke test passes
-✓ macOS smoke test passes
-✓ no LLM dependencies exist
-✓ no platform expansion has happened
+README is polished
+quickstart is clear
+CLI output is stable
+schema is stable
+docs are complete
+changelog exists
+release checklist exists
+examples are realistic
+GitHub Action works
+PyPI package installs cleanly
+local wheel smoke test passes
+Windows smoke test passes
+Linux smoke test passes
+macOS smoke test passes
+no LLM dependencies exist
+no platform expansion has happened
 ```
 
 ## Anti-expansion checklist
@@ -280,16 +300,4 @@ x LLM-dependent tool
 
 ## Release philosophy
 
-DoneSpec should feel boring in the best possible way.
-
-Reliable.
-
-Deterministic.
-
-Local.
-
-Composable.
-
-Small.
-
-Standard-ready.
+DoneSpec should feel boring in the best possible way: reliable, deterministic, local, composable, small, and standard-ready.
