@@ -355,7 +355,7 @@ Inspect whether a project is DoneSpec-ready. Supports `--json`. See [docs/doctor
 
 `donespec schema`
 
-Print or export the packaged JSON Schema. See [docs/schema.md](docs/schema.md).
+Print or export the packaged JSON Schema. Schema usage and v1 stability are documented in [docs/schema.md](docs/schema.md).
 
 `donespec templates`
 

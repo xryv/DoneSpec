@@ -395,6 +395,12 @@
       "pattern": "--force"
     },
     {
+      "type": "regex_in_file",
+      "name": "Schema tests validate template examples",
+      "path": "tests/test_schema_command.py",
+      "pattern": "test_template_examples_validate_against_schema_and_strict_mode"
+    },
+    {
       "type": "file_exists",
       "name": "Packaged JSON schema exists",
       "path": "src/donespec/schemas/done.schema.json"
@@ -433,6 +439,24 @@
       "name": "Schema docs explain schema reference",
       "path": "docs/schema.md",
       "pattern": "\\$schema"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Schema docs mention v1 schema stability",
+      "path": "docs/schema.md",
+      "pattern": "v1 schema stability"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Schema docs mention done json as stable contract",
+      "path": "docs/schema.md",
+      "pattern": "stable contract format"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Schema docs mention local-first schema usage",
+      "path": "docs/schema.md",
+      "pattern": "local-first"
     },
     {
       "type": "regex_in_file",
@@ -760,6 +784,12 @@
       "pattern": "Added v1\\.0 README polish"
     },
     {
+      "type": "regex_in_file",
+      "name": "Changelog records schema stability documentation",
+      "path": "CHANGELOG.md",
+      "pattern": "Refined schema and editor-support documentation for v1 stability"
+    },
+    {
       "type": "file_exists",
       "name": "Safe output helper exists",
       "path": "src/donespec/output.py"
@@ -944,6 +974,12 @@
       "name": "Editor support docs include json.schemas",
       "path": "docs/editor-support.md",
       "pattern": "json\\.schemas"
+    },
+    {
+      "type": "regex_in_file",
+      "name": "Editor support docs mention schema write command",
+      "path": "docs/editor-support.md",
+      "pattern": "donespec schema --write done\\.schema\\.json"
     },
     {
       "type": "regex_in_file",

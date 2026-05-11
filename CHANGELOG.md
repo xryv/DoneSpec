@@ -17,6 +17,8 @@ The project goal is to remain a tiny, local-first, deterministic completion laye
 
 ### Changed
 
+- Refined schema and editor-support documentation for v1 stability.
+- Polished template examples for v1 onboarding consistency.
 - Refined CLI wording consistency for v1.0 readiness.
 
 ### Fixed

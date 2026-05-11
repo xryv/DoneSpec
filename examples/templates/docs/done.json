@@ -1,4 +1,5 @@
 {
+  "$schema": "../../../done.schema.json",
   "version": "1.0",
   "task_id": "docs-validation",
   "must_pass": [

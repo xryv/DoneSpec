@@ -1,42 +1,25 @@
-﻿# Editor support
+# Editor support
 
-DoneSpec contracts are plain JSON.
+DoneSpec contracts are plain JSON. Editors can validate and autocomplete `done.json` before the CLI runs.
 
-That means `done.json` can be validated, inspected, and completed by editors before the CLI ever runs.
-
-The goal is simple:
-
-```text
-done.json should feel like a real infrastructure file.
-```
-
-Similar to:
-
-```text
-package.json
-pyproject.toml
-openapi.json
-tsconfig.json
-```
-
-## Generated schema
-
-Every initialized DoneSpec project includes:
+The recommended local files are:
 
 ```text
 done.json
 done.schema.json
 ```
 
-The schema can also be exported manually:
+Generate the schema with:
 
 ```bash
 donespec schema --write done.schema.json
 ```
 
+Projects created with `donespec init` already include both files.
+
 ## VS Code schema association
 
-To enable validation and autocomplete in VS Code, create or update:
+Create or update:
 
 ```text
 .vscode/settings.json
@@ -57,114 +40,60 @@ with:
 }
 ```
 
-Now VS Code can provide:
-
-- field validation
-- autocomplete
-- type hints
-- missing-field warnings
-- unsupported-field warnings
-
-## Cursor schema association
-
-Cursor uses VS Code-compatible workspace settings.
-
-Use the same file:
-
-```text
-.vscode/settings.json
-```
-
-with:
-
-```json
-{
-  "json.schemas": [
-    {
-      "fileMatch": [
-        "/done.json"
-      ],
-      "url": "./done.schema.json"
-    }
-  ]
-}
-```
-
-This helps both humans and agents understand the contract shape before execution.
-
-## Generic editor support
-
-Any editor that supports JSON Schema can associate:
+This maps:
 
 ```text
 done.json -> done.schema.json
 ```
 
-Recommended local files:
+VS Code can then provide validation, autocomplete, type hints, missing-field warnings, and unsupported-field warnings.
 
-```text
-done.json
-done.schema.json
+## Cursor compatibility
+
+Cursor uses VS Code-style workspace settings.
+
+Use the same `.vscode/settings.json` schema association:
+
+```json
+{
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "/done.json"
+      ],
+      "url": "./done.schema.json"
+    }
+  ]
+}
 ```
 
-Recommended validation gate:
+## Other editors
+
+Any editor with JSON Schema support can use the same local mapping:
+
+```text
+done.json -> done.schema.json
+```
+
+No editor extension, cloud service, or network access is required.
+
+This keeps schema support local-first.
+
+## Why autocomplete matters
+
+Autocomplete makes reliable contracts easier to author.
+
+It helps humans and coding agents see:
+
+- supported check types
+- required fields
+- optional fields
+- `must_pass` and `must_not` group structure
+- `version` and `task_id`
+- unsupported properties before validation
+
+The editor helps write the contract. The CLI enforces it:
 
 ```bash
 donespec validate done.json --strict
 ```
-
-## Agent benefit
-
-Editor schema support helps AI coding agents because the contract becomes easier to inspect.
-
-Agents can read:
-
-```text
-done.json
-done.schema.json
-```
-
-and infer:
-
-- allowed check types
-- required fields
-- optional fields
-- check group structure
-- schema version
-- strict validation expectations
-
-This reduces malformed contracts.
-
-## Recommended workspace files
-
-A well-prepared project can include:
-
-```text
-done.json
-done.schema.json
-AGENTS.md
-CLAUDE.md
-.vscode/tasks.json
-.vscode/settings.json
-.githooks/pre-push
-scripts/install-git-hooks.ps1
-scripts/install-git-hooks.sh
-```
-
-DoneSpec remains local-first.
-
-No editor extension is required.
-
-No cloud service is required.
-
-No agent runtime is required.
-
-## Philosophy
-
-The schema is part of the trust layer.
-
-The CLI enforces the contract.
-
-The editor helps authors write the contract correctly.
-
-Together they make completion explicit, inspectable, and deterministic.
